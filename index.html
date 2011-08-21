@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+  <title>Nothing Calendar</title>
+  <link href='./styles/main.css' rel='stylesheet' type='text/css' /> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script src="./javascript/jquery.calendar-widget.js"></script>
+  <script src="./javascript/lawnchair-0.6.1.min.js"></script>
+
+</head>
+
+<body>
+  <div class='wrap'>
+  <div class="title">NothingCalendar</div>
+  <div class="subtitle">Tracks occurences of some event.</div>
+
+  <div id="calendar">
+    <p>Please enable Javascript to view this calendar.</p>
+  </div>
+   
+
+  <hr>
+  <p>
+    Inspired by <a href="http://calendaraboutnothing.com">Calendar
+  About Nothing</a>, in fact sharing open source <a href="https://github.com/entp/seinfeld">code</a>.
+  </p>
+  </div>
+  <script>
+  //setup offline storage
+  var marks_store = new Lawnchair({name:'marks'}, function(marks) {});  
+  $(function(){
+    //display calendar
+    $("#calendar").calendarWidget({});
+
+    $('.current-month, .other-month').live('click', function(){
+      if($(this).hasClass('xmarksthespot')) {
+        $(this).toggleClass('xmarksthespot');
+        marks_store.remove($(this).attr('class'), function() {});
+      } else {
+        marks_store.save({key:$(this).attr('class'),val:true});
+        $(this).toggleClass('xmarksthespot');
+      }
+    });
+  
+    marks_store.all(function(items) {
+      items.forEach(function(item) {
+        console.log(item.key);
+        $("."+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
+      });
+    });
+  
+  });
+  </script>
+</body>
+</html>
