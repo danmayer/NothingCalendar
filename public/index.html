@@ -5,7 +5,11 @@
   <link href='./stylesheets/main.css' rel='stylesheet' type='text/css' /> 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script src="./javascripts/jquery.calendar-widget.js"></script>
+  <script>window.JSON = null;</script>
+  <script src="./javascripts/json2.js"></script>
   <script src="./javascripts/lawnchair-0.6.1.min.js"></script>
+  <script src="./javascripts/lawnchair-adapter-webkit-sqlite-0.6.1.js"></script>
+  <script src="./javascripts/lawnchair-adapter-indexed-db-0.6.1.js"></script>
 
 </head>
 
@@ -27,7 +31,7 @@
   </div>
   <script>
   //setup offline storage
-  var marks_store = new Lawnchair({name:'marks'}, function(marks) {});  
+  var marks_store = new Lawnchair({name:'marks', adaptor:'dom indexed-db webkit-sqlite window-name'}, function(marks) {});  
   $(function(){
     //display calendar
     $("#calendar").calendarWidget({});
