@@ -1,4 +1,5 @@
 Nothingcalendar::Application.routes.draw do
+  match "/application.manifest" => Rails::Offline
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
