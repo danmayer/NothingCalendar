@@ -200,22 +200,7 @@ a{
 }
 
 #calendar table th{
-  display:block;
-  color:#00538d;
-  font-weight:normal;
-  text-align:left;
-  text-decoration:none;
-  font-size:11px;
-  text-transform:uppercase;
-}
-
-table th{
-  display:block;
-  color:#00538d;
-  font-weight:normal;
-  text-align:left;
-  text-decoration:none;
-  font-size:11px;
+  font-size:9px;
   text-transform:uppercase;
 }
 
