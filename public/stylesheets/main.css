@@ -118,7 +118,7 @@ a{
 ------------------------------------------------------------------------------------*/
 
 #main, #borderedMain{
-  margin:15px auto 30px auto;
+  margin:15px auto 20px auto;
   padding:0 0 20px 0;
   width:90%;
   background:#fff;
@@ -224,7 +224,7 @@ a{
 #widget textarea {
   width:40%;
   height:150px;
-  margin:0 150px;
+  margin:0 15%;
 }
 
 tr.dayname th{
