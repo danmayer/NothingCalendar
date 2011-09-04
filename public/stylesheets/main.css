@@ -46,7 +46,7 @@ body{
 
 .title, .subtitle{
   margin:0 auto;
-  width:700px;
+  width:90%;
   text-align:center;
 }
 
@@ -65,7 +65,7 @@ body{
 }
 
 .current_streak, .longest_streak{
-  width:150px;
+  width:40%;
   float:left;
 }
 .current_streak, .longest_streak{
@@ -120,7 +120,7 @@ a{
 #main, #borderedMain{
   margin:15px auto 30px auto;
   padding:0 0 20px 0;
-  width:700px;
+  width:90%;
   background:#fff;
 }
 
@@ -130,11 +130,11 @@ a{
 }
 
 #content{
-  width: 700px;
+  width: 95%;
 }
 
 #recentUsers, #userRecords{
-  width:340px;
+  width:30%;
 }
 
 #recentUsers{
@@ -168,7 +168,7 @@ a{
 #calendar, #widget{
   margin:30px auto 15px auto;
   padding:0 0 20px 0;
-  width:700px;
+  width:90%;
   background:#fff;
   font-size:24px;
   border-top:2px solid #000;
@@ -177,7 +177,7 @@ a{
 
 
 #calendar table{
-  width:700px;
+  width:90%;
   border-spacing:none;
   border-collapse:collapse;
 }
@@ -205,7 +205,7 @@ a{
   text-align:center;
   font-size:36px;
   font-weight:bold;
-  width:100px;
+  width:12%;
   height:60px;
 }
 #calendar table td.otherMonth{
@@ -213,7 +213,7 @@ a{
 }
 
 #widget form {
-  width:700px;
+  width:90%;
   margin:0; padding:0;
 }
 
@@ -222,13 +222,13 @@ a{
 }
 
 #widget textarea {
-  width:400px;
+  width:40%;
   height:150px;
   margin:0 150px;
 }
 
 tr.dayname th{
-  width:100px;
+  width:12%;
   padding:5px 0;
   text-transform:uppercase;
   font-size:12px;
@@ -254,7 +254,7 @@ tr.dayname abbr{
 }
 
 .xmarksthespot{
-  width:100px;
+  width:12%;
   height:60px;
   position:relative;
   float:left;
