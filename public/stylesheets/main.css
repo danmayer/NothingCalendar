@@ -189,18 +189,10 @@ a{
   text-transform:uppercase;
   color:#b20000;
 }
-#calendar table th a{
-  display:block;
-  color:#00538d;
-  font-weight:normal;
-  text-align:left;
-  text-decoration:none;
-  font-size:11px;
-  text-transform:uppercase;
-}
 
 #calendar table th{
   font-size:9px;
+  font-weight:normal;
   text-transform:uppercase;
 }
 
