@@ -168,7 +168,7 @@ a{
 #calendar, #widget{
   margin:30px auto 15px auto;
   padding:0 0 20px 0;
-  width:90%;
+  width:95%;
   background:#fff;
   font-size:24px;
   border-top:2px solid #000;
@@ -177,14 +177,14 @@ a{
 
 
 #calendar table{
-  width:90%;
+  width:95%;
   border-spacing:none;
   border-collapse:collapse;
 }
 
 #calendar table th.monthName{
-  padding:10px 0;
-  font-size:48px;
+  padding:5px 0;
+  font-size:38px;
   letter-spacing:5px;
   text-transform:uppercase;
   color:#b20000;
@@ -198,6 +198,17 @@ a{
   font-size:11px;
   text-transform:uppercase;
 }
+
+#calendar table th{
+  display:block;
+  color:#00538d;
+  font-weight:normal;
+  text-align:left;
+  text-decoration:none;
+  font-size:11px;
+  text-transform:uppercase;
+}
+
 #calendar table th a.next{ text-align:right; }
 
 #calendar table td{
