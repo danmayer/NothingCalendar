@@ -55,7 +55,7 @@
   
     marks_store.all(function(items) {
       items.forEach(function(item) {
-        console.log(item.key);
+        console.log('cached-mark: '+item.key);
         $("."+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
       });
     });

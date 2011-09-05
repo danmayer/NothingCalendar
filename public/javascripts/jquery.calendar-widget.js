@@ -57,6 +57,7 @@
             var firstDay=firstDayDate.getDay();
 			
 			var prev_m = month == 0 ? 11 : month-1;
+			var next_m = month == 11 ? 0 : month+1;
 			var prev_y = prev_m == 11 ? year - 1 : year;
 			var prev_days = getDaysInMonth(prev_m, prev_y);
 			firstDay = (firstDay == 0 && firstDayDate) ? 7 : firstDay;
@@ -65,12 +66,12 @@
             for (j=0;j<42;j++){
 			  
               if ((j<firstDay)){
-                table += ('<td class="other-month"><span class="day">'+ (prev_days-firstDay+j+1) +'</span></td>');
+                table += ('<td class="other-month month-val-'+prev_m+' day'+(prev_days-firstDay+j+1)+'"><span class="day">'+ (prev_days-firstDay+j+1) +'</span></td>');
 			  } else if ((j>=firstDay+getDaysInMonth(month,year))) {
 				i = i+1;
-                table += ('<td class="other-month"><span class="day">'+ i +'</span></td>');			 
+                table += ('<td class="other-month month-val-'+next_m+' day'+i+'"><span class="day">'+ i +'</span></td>');			 
               }else{
-                table += ('<td class="current-month day'+(j-firstDay+1)+'"><span class="day">'+(j-firstDay+1)+'</span></td>');
+                table += ('<td class="current-month month-val-'+month+' day'+(j-firstDay+1)+'"><span class="day">'+(j-firstDay+1)+'</span></td>');
               }
               if (j%7==6)  table += ('</tr>');
             }
