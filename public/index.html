@@ -5,6 +5,7 @@
   <link href='./stylesheets/main.css' rel='stylesheet' type='text/css' /> 
   <script src="./javascripts/jquery-1.4.2.min.js"></script>
   <script src="./javascripts/jquery.calendar-widget.js"></script>
+  <!--fixes a broken json parser on some android phones -->
   <script>window.JSON = null;</script>
   <script src="./javascripts/json2.js"></script>
   <script src="./javascripts/lawnchair-0.6.1.min.js"></script>
@@ -24,7 +25,11 @@
   <div class='wrap'>
   <div class="title">NothingCalendar</div>
   <div class="subtitle">Tracks occurences of some event.</div>
-
+  <div class="nav">
+    <span><a href="#" id="prev-month">Previous</a></span>
+    <span><a href="#" id="next-month">Next</a></span>
+  </div>
+  
   <div id="calendar">
     <p>Please enable Javascript to view this calendar.</p>
   </div>
@@ -52,14 +57,44 @@
         $(this).toggleClass('xmarksthespot');
       }
     });
+
+    restore_marks();
   
-    marks_store.all(function(items) {
+  });
+
+  var restore_marks = function() {
+      marks_store.all(function(items) {
       items.forEach(function(item) {
         console.log('cached-mark: '+item.key);
         $("."+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
       });
     });
-  
+  }
+
+  $('#next-month').live('click', function() {
+    var next_month = month + 1;
+    if(next_month >= 12) {
+      year = year + 1;
+      next_month = 0;
+    }
+    $("#calendar").calendarWidget({
+        month: next_month,
+	year: year
+    });
+    restore_marks();
+  });
+
+  $('#prev-month').live('click', function() {
+    var prev_month = month - 1;
+    if(prev_month < 0) {
+      year = year - 1;
+      prev_month = 11;
+    }
+    $("#calendar").calendarWidget({
+        month: prev_month,
+	year: year
+    });
+    restore_marks();
   });
   </script>
 </body>
