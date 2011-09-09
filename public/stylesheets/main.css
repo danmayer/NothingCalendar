@@ -5,7 +5,7 @@
   padding:0;
   margin:0;
 }
-h1, h2, h3, h4, h5, h6, p, pre, blockquote, label, ul, ol, dl, fieldset, address { margin:1em 0; }
+h1, h2, h3, h4, h5, h6, p, pre, blockquote, label, ul, ol, dl, fieldset, address { margin:.5em 0; }
 li, dd { margin-left:5%; }
 fieldset { padding: .5em; }
 select option{ padding:0 5px; }
@@ -51,7 +51,7 @@ body{
 }
 
 .title{
-  margin-top:30px;
+  margin-top:10px;
   font-size:20px;
   color:#000;
   text-transform:uppercase;
@@ -59,6 +59,7 @@ body{
 }
 .subtitle{
   margin-top:5px;
+  margin-bottom:5px;
   text-transform:uppercase;
   font-size:11px;
   color:#999;
@@ -166,7 +167,7 @@ a{
 ------------------------------------------------------------------------------------*/
 
 #calendar, #widget{
-  margin:30px auto 15px auto;
+  margin:10px auto 10px auto;
   padding:0 0 20px 0;
   width:95%;
   background:#fff;
@@ -242,6 +243,33 @@ tr.dayname abbr{
 }
 
 /* @end */
+
+/*------------------------------------------------------------------------------------
+  Nav & Stat Styles
+------------------------------------------------------------------------------------*/
+
+.stats {
+  font-size:18px;
+  color:#666;
+}
+
+.stats .stat {
+  padding: 0 12%;
+}
+
+.nav {
+  font-size:18px;
+  color:#666;
+}
+
+.nav span{
+  padding: 0 15%;
+}
+
+.nav a {
+  font-size:18px;
+  color:#666;
+}
 
 /*------------------------------------------------------------------------------------
   @group X Styles

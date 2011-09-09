@@ -25,8 +25,14 @@
   <div class='wrap'>
   <div class="title">NothingCalendar</div>
   <div class="subtitle">Tracks occurences of some event.</div>
+  <div class="stats">
+    <span class="stat">Current Steak: <span id="current-streak">0</span></span>
+    <span class="stat">Longest Steak: <span id="longest-streak">0</span></span>
+    <span class="stat">Total Mark: <span id="total-marks">0</span></span>
+  </div>
   <div class="nav">
     <span><a href="#" id="prev-month">Previous</a></span>
+    <span><a href="#" id="clear-all">Clear All</a></span>
     <span><a href="#" id="next-month">Next</a></span>
   </div>
   
@@ -43,7 +49,8 @@
   </div>
   <script>
   //setup offline storage
-  var marks_store = new Lawnchair({name:'marks', adaptor:'dom indexed-db webkit-sqlite window-name'}, function(marks) {});  
+  var marks_store = new Lawnchair({name:'marks', adaptor:'dom indexed-db webkit-sqlite window-name'}, function(marks) {});
+  var mark_count = 0;
   $(function(){
     //display calendar
     $("#calendar").calendarWidget({});
@@ -52,10 +59,13 @@
       if($(this).hasClass('xmarksthespot')) {
         $(this).toggleClass('xmarksthespot');
         marks_store.remove($(this).attr('class'), function() {});
+        mark_count -= 1;
       } else {
         marks_store.save({key:$(this).attr('class'),val:true});
         $(this).toggleClass('xmarksthespot');
+        mark_count += 1;
       }
+      $("#total-marks").html(mark_count);
     });
 
     restore_marks();
@@ -63,12 +73,15 @@
   });
 
   var restore_marks = function() {
-      marks_store.all(function(items) {
+    
+    marks_store.all(function(items) {
       items.forEach(function(item) {
+        mark_count += 1;
         console.log('cached-mark: '+item.key);
         $("."+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
       });
     });
+    $("#total-marks").html(mark_count);
   }
 
   $('#next-month').live('click', function() {
@@ -96,6 +109,16 @@
     });
     restore_marks();
   });
+
+  $('#clear-all').live('click', function() {
+    marks_store.nuke();
+    $("#calendar").calendarWidget({
+        month: month,
+	year: year
+    });
+    restore_marks();
+  });
+
   </script>
 </body>
 </html>
