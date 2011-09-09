@@ -112,6 +112,7 @@
 
   $('#clear-all').live('click', function() {
     marks_store.nuke();
+    mark_count = 0;
     $("#calendar").calendarWidget({
         month: month,
 	year: year
