@@ -55,7 +55,7 @@
     //display calendar
     $("#calendar").calendarWidget({});
 
-    $('.current-month, .other-month').live('click', function(){
+    $('.current-month, .date-item').live('click', function(){
       if($(this).hasClass('xmarksthespot')) {
         $(this).toggleClass('xmarksthespot');
         marks_store.remove($(this).attr('class'), function() {});

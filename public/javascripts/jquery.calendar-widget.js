@@ -67,12 +67,12 @@
             for (j=0;j<42;j++){
 			  
               if ((j<firstDay)){
-                table += ('<td class="other-month year-val-'+prev_y+' month-val-'+prev_m+' day'+(prev_days-firstDay+j+1)+'"><span class="day">'+ (prev_days-firstDay+j+1) +'</span></td>');
+                table += ('<td class="date-item year-val-'+prev_y+' month-val-'+prev_m+' day'+(prev_days-firstDay+j+1)+'"><span class="day">'+ (prev_days-firstDay+j+1) +'</span></td>');
 			  } else if ((j>=firstDay+getDaysInMonth(month,year))) {
 				i = i+1;
-                table += ('<td class="other-month year-val-'+next_y+' month-val-'+next_m+' day'+i+'"><span class="day">'+ i +'</span></td>');			 
+                table += ('<td class="date-item year-val-'+next_y+' month-val-'+next_m+' day'+i+'"><span class="day">'+ i +'</span></td>');			 
               }else{
-                table += ('<td class="current-month year-val-'+year+' month-val-'+month+' day'+(j-firstDay+1)+'"><span class="day">'+(j-firstDay+1)+'</span></td>');
+                table += ('<td class="date-item current-month year-val-'+year+' month-val-'+month+' day'+(j-firstDay+1)+'"><span class="day">'+(j-firstDay+1)+'</span></td>');
               }
               if (j%7==6)  table += ('</tr>');
             }
