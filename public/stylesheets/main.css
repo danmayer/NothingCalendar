@@ -254,7 +254,7 @@ tr.dayname abbr{
 }
 
 .stats .stat {
-  padding: 0 12%;
+  padding: 0 8%;
 }
 
 .nav {
@@ -263,7 +263,7 @@ tr.dayname abbr{
 }
 
 .nav span{
-  padding: 0 15%;
+  padding: 0 10%;
 }
 
 .nav a {

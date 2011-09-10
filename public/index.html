@@ -11,6 +11,7 @@
   <script src="./javascripts/lawnchair-0.6.1.min.js"></script>
   <script src="./javascripts/lawnchair-adapter-webkit-sqlite-0.6.1.js"></script>
   <script src="./javascripts/lawnchair-adapter-indexed-db-0.6.1.js"></script>
+  <script src="./javascripts/query.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
@@ -51,37 +52,96 @@
   //setup offline storage
   var marks_store = new Lawnchair({name:'marks', adaptor:'dom indexed-db webkit-sqlite window-name'}, function(marks) {});
   var mark_count = 0;
+  var longest_streak = 0;
+  
   $(function(){
     //display calendar
     $("#calendar").calendarWidget({});
 
-    $('.current-month, .date-item').live('click', function(){
+    $('.date-item').live('click', function(){
       if($(this).hasClass('xmarksthespot')) {
         $(this).toggleClass('xmarksthespot');
-        marks_store.remove($(this).attr('class'), function() {});
+        marks_store.remove($(this).attr('id'), function() {});
         mark_count -= 1;
       } else {
-        marks_store.save({key:$(this).attr('class'),val:true});
+        marks_store.save({key:$(this).attr('id'),val:true});
         $(this).toggleClass('xmarksthespot');
         mark_count += 1;
       }
       $("#total-marks").html(mark_count);
+      streaks();
     });
 
     restore_marks();
-  
   });
 
   var restore_marks = function() {
-    
+    mark_count = 0;
     marks_store.all(function(items) {
       items.forEach(function(item) {
         mark_count += 1;
         console.log('cached-mark: '+item.key);
-        $("."+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
+        $("#"+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
       });
     });
     $("#total-marks").html(mark_count);
+    streaks();
+  }
+
+  var dateFormatted = function(d) {
+    var curr_date  = zeroPad(d.getDate(),2);
+    var curr_month = zeroPad(d.getMonth() + 1,2); //months are zero based
+    var curr_year  = zeroPad(d.getFullYear(),2);
+    return (curr_month + "-" + curr_date + "-" + curr_year);
+  }
+
+  var zeroPad = function (num,count) {
+    var numZeropad = num + '';
+    while(numZeropad.length < count) {
+      numZeropad = "0" + numZeropad;
+    }
+    return numZeropad;
+  }
+
+  var streaks = function() {
+    longest_streak = 0;
+    var streak_count = 0;
+    var current_streak = [];
+    marks_store.where('record.val==true').asc('key', function(){
+      this.each(function(record, index) {
+        console.log('current: '+record.key);
+  
+        if(current_streak.length==0) {
+          console.log('first');
+          current_streak.push(record.key)
+          streak_count = current_streak.length;
+          if(streak_count > longest_streak) {
+            longest_streak = streak_count;
+          }
+        } else if(current_streak.length>0) {
+          console.log('more than one');
+          var tomorrow = new Date();
+          var parts = current_streak[current_streak.length-1].split('-');
+          tomorrow.setFullYear(parts[2], parts[0]-1, parts[1]); // year, month (0-based), day
+          tomorrow.setTime(tomorrow.getTime() + 86400000);
+          console.log('tomorrow: '+dateFormatted(tomorrow));
+          console.log('matching: '+record.key);
+          if(dateFormatted(tomorrow)==record.key) {
+            console.log('hit single');
+            current_streak.push(record.key);
+            streak_count = current_streak.length;
+            if(streak_count > longest_streak) {
+              longest_streak = streak_count;
+            }
+          } else {
+            current_streak = [];
+          }
+         
+        }
+
+      })
+    });
+    $("#longest-streak").html(longest_streak);
   }
 
   $('#next-month').live('click', function() {
