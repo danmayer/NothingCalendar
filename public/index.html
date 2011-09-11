@@ -103,21 +103,28 @@
     return numZeropad;
   }
 
+  //todo refactor this
   var streaks = function() {
     longest_streak = 0;
     var streak_count = 0;
     var current_streak = [];
+    var current_streak_count = 0;
+    var today = new Date();
+    var yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+  
     marks_store.where('record.val==true').asc('key', function(){
       this.each(function(record, index) {
         console.log('current: '+record.key);
   
         if(current_streak.length==0) {
-          console.log('first');
+          console.log('first: '+record.key);
           current_streak.push(record.key)
           streak_count = current_streak.length;
           if(streak_count > longest_streak) {
             longest_streak = streak_count;
           }
+
         } else if(current_streak.length>0) {
           console.log('more than one');
           var tomorrow = new Date();
@@ -134,14 +141,38 @@
               longest_streak = streak_count;
             }
           } else {
+            //update current streak
+            $.each(current_streak, function(index, value) { 
+              console.log('today:'+dateFormatted(today));
+              console.log('match:'+value);
+              if(dateFormatted(today)==value) {
+                current_streak_count = current_streak.length;
+              }
+            });
+
             current_streak = [];
+            current_streak.push(record.key)
+            if(dateFormatted(today)==record.key || dateFormatted(yesterday)==record.key) {
+              current_streak_count = current_streak.length;
+            }
           }
          
         }
 
       })
     });
+
+    //update current streak, which didn't hit the next streak case
+    $.each(current_streak, function(index, value) { 
+      console.log('today:'+dateFormatted(today));
+      console.log('match:'+value);
+      if(dateFormatted(today)==value || dateFormatted(yesterday)==value) {
+        current_streak_count = current_streak.length;
+      }
+    });
+
     $("#longest-streak").html(longest_streak);
+    $("#current-streak").html(current_streak_count);
   }
 
   $('#next-month').live('click', function() {

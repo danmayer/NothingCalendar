@@ -1,7 +1,15 @@
 == Welcome to NothingCalendar
+  This project aims to help tracking arbitrary events. Such as working out every day, quiting smoking, reading, writing, or whatever chain you are currently working on. It is inspired by the popular Seinfeld don't break the chain concept. It also was based originally on Calendar about Nothing, which implements the don't break the chain concept for commiting to open source. I wanted to track keeping a chain alive for things other than open source so this project began.
+
+  Goals:
+    * Simple shared chain calendar
+    * full mobile support
+    * full offline mode (installable as html5 app, offline syncing, etc)
+    * possible phonegap compatibility for native android / iphone app.
 
 **TODOS**
-  * longest streak
-  * current streak
-  * sync with rails DB
+  * sync with rails DB / user account
   * shareable urls
+  * better mobile styling
+  * multiple track chains (tagging on chains)
+  * different concept of goal (not every day but twice a week (Erin's feature))
