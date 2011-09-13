@@ -8,6 +8,8 @@
     * possible phonegap compatibility for native android / iphone app.
 
 **TODOS**
+  * Fix style / clicks on old iphone OS (erin's phone)
+  * onclick doesn't trigger #
   * sync with rails DB / user account
   * shareable urls
   * multiple track chains (tagging on chains)
