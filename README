@@ -10,6 +10,9 @@
 **TODOS**
   * sync with rails DB / user account
   * shareable urls
-  * better mobile styling
   * multiple track chains (tagging on chains)
   * different concept of goal (not every day but twice a week (Erin's feature))
+  * add to igoogle
+  * possible osx widget
+  * android widget
+  * full api support

@@ -40,6 +40,10 @@ body{
   font-family: "Futura", "Gill Sans", Arial, sans-serif;
 }
 
+.nav_info {
+  background:#DFDFDF;
+}
+
 .wrap {
   text-align:center;
 }
@@ -202,12 +206,12 @@ a{
 #calendar table td{
   position:relative;
   text-align:center;
-  font-size:36px;
+  font-size:28px;
   font-weight:bold;
   width:12%;
-  height:60px;
+  height:50px;
 }
-#calendar table td.otherMonth{
+#calendar table td.otherMonth, td.otherMonth {
   color:#ccc;
 }
 
@@ -249,26 +253,26 @@ tr.dayname abbr{
 ------------------------------------------------------------------------------------*/
 
 .stats {
-  font-size:18px;
+  font-size:12px;
   color:#666;
 }
 
 .stats .stat {
-  padding: 0 8%;
+  padding: 0 4% 0 2%;
 }
 
 .nav {
-  font-size:18px;
+  font-size:16px;
   color:#666;
 }
 
 .nav span{
-  padding: 0 10%;
+  padding: 0 8%;
 }
 
 .nav a {
-  font-size:18px;
-  color:#666;
+  font-size:16px;
+  color:#468;
 }
 
 /*------------------------------------------------------------------------------------
