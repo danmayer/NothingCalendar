@@ -253,21 +253,21 @@ tr.dayname abbr{
 ------------------------------------------------------------------------------------*/
 
 .stats {
-  font-size:12px;
+  font-size:11px;
   color:#666;
 }
 
 .stats .stat {
-  padding: 0 4% 0 2%;
+  padding: 0 3% 0 1%;
 }
 
 .nav {
-  font-size:16px;
+  font-size:15px;
   color:#666;
 }
 
 .nav span{
-  padding: 0 8%;
+  padding: 0 4% 0 2%;
 }
 
 .nav a {

@@ -10,7 +10,9 @@
   <script src="./javascripts/json2.js"></script>
   <script src="./javascripts/lawnchair-0.6.1.min.js"></script>
   <script src="./javascripts/lawnchair-adapter-webkit-sqlite-0.6.1.js"></script>
+  <!-- adaprter kills ios 3
   <script src="./javascripts/lawnchair-adapter-indexed-db-0.6.1.js"></script>
+  -->
   <script src="./javascripts/query.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -58,7 +60,12 @@
     //display calendar
     $("#calendar").calendarWidget({});
 
-    $('.date-item').live('click', function(){
+    setTimeout(function() { window.scrollTo(0, 1) }, 1000);
+    restore_marks();
+  });
+
+  var update_links = function() {
+    $(".date-item").click( function(){
       if($(this).hasClass('xmarksthespot')) {
         $(this).toggleClass('xmarksthespot');
         marks_store.remove($(this).attr('id'), function() {});
@@ -72,11 +79,10 @@
       streaks();
       return false;
     });
-
-    restore_marks();
-  });
+  }
 
   var restore_marks = function() {
+    update_links();
     mark_count = 0;
     marks_store.all(function(items) {
       items.forEach(function(item) {
@@ -176,7 +182,7 @@
     $("#current-streak").html(current_streak_count);
   }
 
-  $('#next-month').live('click', function() {
+  $('#next-month').click( function() {
     var next_month = month + 1;
     if(next_month >= 12) {
       year = year + 1;
@@ -187,9 +193,10 @@
 	year: year
     });
     restore_marks();
+    return false;
   });
 
-  $('#prev-month').live('click', function() {
+  $('#prev-month').click( function() {
     var prev_month = month - 1;
     if(prev_month < 0) {
       year = year - 1;
@@ -200,9 +207,10 @@
 	year: year
     });
     restore_marks();
+    return false;
   });
 
-  $('#clear-all').live('click', function() {
+  $('#clear-all').click( function() {
     marks_store.nuke();
     mark_count = 0;
     $("#calendar").calendarWidget({
@@ -210,6 +218,7 @@
 	year: year
     });
     restore_marks();
+    return false;
   });
 
   </script>
