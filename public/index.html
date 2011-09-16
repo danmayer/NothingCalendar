@@ -75,6 +75,7 @@
         $(this).toggleClass('xmarksthespot');
         mark_count += 1;
       }
+      marks_store.save({key:'updated_at',val:new Date()});
       $("#total-marks").html(mark_count);
       streaks();
       return false;
@@ -87,8 +88,12 @@
     marks_store.all(function(items) {
       items.forEach(function(item) {
         mark_count += 1;
-        console.log('cached-mark: '+item.key);
-        $("#"+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
+        if(item.key!="updated_at") {
+          console.log('cached-mark: '+item.key);
+          $("#"+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
+        } else {
+          console.log('last updated: '+item.key+' : '+item.val);
+        }
       });
     });
     $("#total-marks").html(mark_count);
