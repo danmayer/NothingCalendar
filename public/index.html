@@ -75,11 +75,25 @@
         $(this).toggleClass('xmarksthespot');
         mark_count += 1;
       }
-      marks_store.save({key:'updated_at',val:new Date()});
+      marks_store.save({key:'last_updated',val:new Date()});
       $("#total-marks").html(mark_count);
       streaks();
+      sync();
       return false;
     });
+  }
+
+  var sync = function() {
+    console.log("start sync");
+    sync_data = [];
+    marks_store.all(function(items) { sync_data = items });
+    $.post("/marks/sync", sync_data, function (data) {
+      console.log(data);
+      //var pendingItems = $.parseJSON(localStorage["pendingItems"]);  
+      //pendingItems.shift();  
+      //localStorage["pendingItems"] = JSON.stringify(pendingItems);  
+      //setTimeout(sendPending, 100);  
+    });  
   }
 
   var restore_marks = function() {
@@ -88,7 +102,7 @@
     marks_store.all(function(items) {
       items.forEach(function(item) {
         mark_count += 1;
-        if(item.key!="updated_at") {
+        if(item.key!="last_updated") {
           console.log('cached-mark: '+item.key);
           $("#"+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
         } else {
@@ -127,10 +141,10 @@
   
     marks_store.where('record.val==true').asc('key', function(){
       this.each(function(record, index) {
-        console.log('current: '+record.key);
+        //console.log('current: '+record.key);
   
         if(current_streak.length==0) {
-          console.log('first: '+record.key);
+          //console.log('first: '+record.key);
           current_streak.push(record.key)
           streak_count = current_streak.length;
           if(streak_count > longest_streak) {
@@ -143,10 +157,10 @@
           var parts = current_streak[current_streak.length-1].split('-');
           tomorrow.setFullYear(parts[2], parts[0]-1, parts[1]); // year, month (0-based), day
           tomorrow.setTime(tomorrow.getTime() + 86400000);
-          console.log('tomorrow: '+dateFormatted(tomorrow));
-          console.log('matching: '+record.key);
+          //console.log('tomorrow: '+dateFormatted(tomorrow));
+          //console.log('matching: '+record.key);
           if(dateFormatted(tomorrow)==record.key) {
-            console.log('hit single');
+            //console.log('hit single');
             current_streak.push(record.key);
             streak_count = current_streak.length;
             if(streak_count > longest_streak) {
@@ -155,8 +169,8 @@
           } else {
             //update current streak
             $.each(current_streak, function(index, value) { 
-              console.log('today:'+dateFormatted(today));
-              console.log('match:'+value);
+              //console.log('today:'+dateFormatted(today));
+              //console.log('match:'+value);
               if(dateFormatted(today)==value) {
                 current_streak_count = current_streak.length;
               }
