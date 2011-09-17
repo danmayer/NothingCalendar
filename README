@@ -27,3 +27,5 @@
     * switching accounts / logout clears local storage
     * login takes most recent activity and offers link to restore from server
     * server can just store activity time and marks hash on user account
+    * logged out case doesn't attempt sync, but provides notif
+    * if sync attemtped when logged out server returns error which displays notif

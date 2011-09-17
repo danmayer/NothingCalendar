@@ -55,7 +55,7 @@ body{
 }
 
 .title{
-  margin-top:10px;
+  margin-top:0px;
   font-size:20px;
   color:#000;
   text-transform:uppercase;
@@ -171,7 +171,7 @@ a{
 ------------------------------------------------------------------------------------*/
 
 #calendar, #widget{
-  margin:10px auto 10px auto;
+  margin:0px auto 10px auto;
   padding:0 0 20px 0;
   width:95%;
   background:#fff;
@@ -273,6 +273,12 @@ tr.dayname abbr{
 .nav a {
   font-size:16px;
   color:#468;
+}
+
+.auth {
+  float: right;
+  padding-top: 5px;
+  padding-right: 10px;
 }
 
 /*------------------------------------------------------------------------------------
