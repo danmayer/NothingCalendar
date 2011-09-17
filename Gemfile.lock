@@ -79,6 +79,6 @@ PLATFORMS
 
 DEPENDENCIES
   devise (= 1.4.5)
-  rack-offline
+  rack-offline (= 0.6.2)
   rails (= 3.0.6)
   sqlite3

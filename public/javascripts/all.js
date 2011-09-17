@@ -8,16 +8,18 @@
     $("#calendar").calendarWidget({});
 
     setTimeout(function() { window.scrollTo(0, 1) }, 1000);
+    auth();
     restore_marks();
-    jQuery.ajaxSetup({
-	'beforeSend': function(xhr) {
-	  xhr.setRequestHeader("Accept", "text/javascript")
-	    }
-      });
+    //jQuery.ajaxSetup({
+    //	'beforeSend': function(xhr) {
+    //	  xhr.setRequestHeader("Accept", "text/javascript")
+    //	    }
+    //  });
     sync();
   });
 
   var update_links = function() {
+
     $(".date-item").click( function(){
       if($(this).hasClass('xmarksthespot')) {
         $(this).toggleClass('xmarksthespot');
@@ -34,6 +36,70 @@
       sync();
       return false;
     });
+
+    $('#next-month').click( function() {
+      var next_month = month + 1;
+      if(next_month >= 12) {
+        year = year + 1;
+        next_month = 0;
+      }
+      $("#calendar").calendarWidget({
+        month: next_month,
+	year: year
+      });
+      restore_marks();
+      return false;
+    });
+
+    $('#prev-month').click( function() {
+      var prev_month = month - 1;
+      if(prev_month < 0) {
+        year = year - 1;
+        prev_month = 11;
+      }
+      $("#calendar").calendarWidget({
+        month: prev_month,
+	year: year
+      });
+      restore_marks();
+      return false;
+    });
+
+    $('#clear-all').click( function() {
+      marks_store.nuke();
+      mark_count = 0;
+      $("#calendar").calendarWidget({
+        month: month,
+	year: year
+      });
+      restore_marks();
+      return false;
+    });
+
+    $('#logout').click( function() {
+      marks_store.nuke();
+      mark_count = 0;
+      $("#calendar").calendarWidget({
+        month: month,
+	year: year
+      });
+      restore_marks();
+      return true;
+    });
+
+  }
+
+  var auth = function() {
+    console.log("check auth");
+    $.get("/site/auth", function (data) {
+	console.log('auth resp');
+	console.log(data);
+        if(data['email']) {
+	  $("#auth-state").html("<span class='logged-in-info'>Logged in as "+data['email']+"</span><br/>Not you? <a id='logout' href='/users/sign_out'>Sign out</a>");
+	} else {
+	  $("#get-login").show();
+	}
+      });
   }
 
   var sync = function() {
@@ -165,42 +231,3 @@
     $("#longest-streak").html(longest_streak);
     $("#current-streak").html(current_streak_count);
   }
-
-  $('#next-month').click( function() {
-    var next_month = month + 1;
-    if(next_month >= 12) {
-      year = year + 1;
-      next_month = 0;
-    }
-    $("#calendar").calendarWidget({
-        month: next_month,
-	year: year
-    });
-    restore_marks();
-    return false;
-  });
-
-  $('#prev-month').click( function() {
-    var prev_month = month - 1;
-    if(prev_month < 0) {
-      year = year - 1;
-      prev_month = 11;
-    }
-    $("#calendar").calendarWidget({
-        month: prev_month,
-	year: year
-    });
-    restore_marks();
-    return false;
-  });
-
-  $('#clear-all').click( function() {
-    marks_store.nuke();
-    mark_count = 0;
-    $("#calendar").calendarWidget({
-        month: month,
-	year: year
-    });
-    restore_marks();
-    return false;
-  });

@@ -187,13 +187,24 @@ a{
   border-collapse:collapse;
 }
 
-#calendar table th.monthName{
-  padding:5px 0;
-  font-size:38px;
-  letter-spacing:5px;
+#calendar table th .monthName{
+  padding:0px;
+  font-size:32px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#b20000;
+  margin:0px;
+}
+
+#calendar table th .current-year{
+  padding:0px;
+  padding-right:15px;
+  font-size:16px;
+  letter-spacing:3px;
   text-transform:uppercase;
   color:#b20000;
 }
+
 
 #calendar table th{
   font-size:9px;
@@ -267,7 +278,7 @@ tr.dayname abbr{
 }
 
 .nav span{
-  padding: 0 4% 0 2%;
+  padding: 0 0 0 2%;
 }
 
 .nav a {
@@ -276,7 +287,9 @@ tr.dayname abbr{
 }
 
 .auth {
-  float: right;
+  position: absolute;
+  right:10px;
+  top:5px;
   padding-top: 5px;
   padding-right: 10px;
 }

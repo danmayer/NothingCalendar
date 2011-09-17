@@ -7,7 +7,7 @@ gem 'devise', '1.4.5'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'rack-offline'
+gem 'rack-offline', '0.6.2'
 
 # Use unicorn as the web server
 # gem 'unicorn'

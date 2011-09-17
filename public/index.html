@@ -27,7 +27,12 @@
 <body>
   <div class="wrap">
   <div class="nav_info">
-    <div class="auth"><a href="/site/index">Sign In</a></div>
+    <div class="auth" id="auth-state">
+      <span id="get-login" style="display:none">
+        <a href="/users/sign_in" id="sign-in-link">Sign In</a>
+        or <a href="/users/sign_up" id="sign-up-link">Sign Up</a>
+      </span>
+    </div>
     <div class="title">NothingCalendar</div>
     <div class="subtitle">Tracks occurences of some event.</div>
     <div class="stats">
@@ -35,11 +40,6 @@
       <span class="stat">Longest Steak: <span id="longest-streak">0</span></span>
       <span class="stat">Total Marks: <span id="total-marks">0</span></span>
     </div>
-  <div class="nav">
-    <span><a href="#" id="prev-month">Previous</a></span>
-    <span><a href="#" id="clear-all">Clear All</a></span>
-    <span><a href="#" id="next-month">Next</a></span>
-  </div>
   </div>
   
   <div id="calendar">

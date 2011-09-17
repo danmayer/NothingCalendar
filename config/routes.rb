@@ -5,6 +5,8 @@ Nothingcalendar::Application.routes.draw do
   devise_for :users
 
   get "site/index"
+  get "site/auth"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

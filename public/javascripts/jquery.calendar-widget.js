@@ -33,12 +33,19 @@
 			} else {
 				var prev_month = '<a href="?month=' + (month) + '&amp;year=' + (year) + '" title="' + monthNames[month - 1] + ' ' + (year) + '">' + monthNames[month - 1] + ' ' + (year) + '</a>';
 			}		
-				
-			table += ('<h3 id="current-month">'+monthNames[month]+' '+year+'</h3>');
+
+			table += ('<table class="calendar-month " ' +'id="calendar-month'+i+' " cellspacing="0">');
+
+			table += ('<thead class="nav"><tr>');
+			table += ('<th colspan="2"><a href="#" id="prev-month">Previous</a></th>');
+			table += ('<th colspan="3"><h3 id="current-month" class="monthName">'+monthNames[month]+'</h3><span class="current-year">'+year+'</span><a href="#" id="clear-all">Clear All</a></th>');
+			table += ('<th colspan="2"><a href="#" id="next-month">Next</a></span></th>');
+			table += ('</tr></thead>');
+
 			// uncomment the following lines if you'd like to display calendar month based on 'month' and 'view' paramaters from the URL
 			//table += ('<div class="nav-prev">'+ prev_month +'</div>');
 			//table += ('<div class="nav-next">'+ next_month +'</div>');
-			table += ('<table class="calendar-month " ' +'id="calendar-month'+i+' " cellspacing="0">');	
+	
 		
 			table += '<tr>';
 			
