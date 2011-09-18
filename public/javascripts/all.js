@@ -10,12 +10,15 @@
     setTimeout(function() { window.scrollTo(0, 1) }, 1000);
     auth();
     restore_marks();
+    //oddly this blows up rails 3 locally on my machine
     //jQuery.ajaxSetup({
     //	'beforeSend': function(xhr) {
     //	  xhr.setRequestHeader("Accept", "text/javascript")
     //	    }
     //  });
     sync();
+    //if we reconnect to the net sync again
+    $(window).bind("online", reconnected);  
   });
 
   var update_links = function() {
@@ -89,7 +92,13 @@
 
   }
 
+  var reconnected = function() {
+    auth();
+    sync();
+  }
+
   var auth = function() {
+    if (window.navigator.onLine) {
     console.log("check auth");
     $.get("/site/auth", function (data) {
 	console.log('auth resp');
@@ -100,9 +109,14 @@
 	  $("#get-login").show();
 	}
       });
+    } else {
+      console.log("offline try later");
+      $("#auth-state").html("<span class='offline-mode'>offline mode, syncing disabled</span>");
+    }
   }
 
   var sync = function() {
+    if (window.navigator.onLine) { 
     console.log("start sync");
     sync_data = [];
     marks_store.all(function(items) { sync_data = items });
@@ -124,7 +138,10 @@
 	     //setTimeout(sendPending, 100);
 	   });
       }
-    });  
+    });
+    } else {
+      console.log("offline try later");
+    }
   }
 
   var restore_marks = function() {
