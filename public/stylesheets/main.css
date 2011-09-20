@@ -303,10 +303,10 @@ tr.dayname abbr{
 }
 
 .xmarksthespot{
-  width:12%;
+  /*width:12%;
   height:60px;
   position:relative;
-  float:left;
+  float:left;*/
   margin-top:-60px;
   z-index:100;
   background:url(../images/x_1.png) 60% 100% no-repeat;
