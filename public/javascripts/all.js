@@ -119,7 +119,7 @@
     if (window.navigator.onLine) { 
     console.log("start sync");
     sync_data = [];
-    //marks_store.all(function(items) { sync_data = items });
+    marks_store.all(function(items) { sync_data = items });
     sync_data = {'data':JSON.stringify(sync_data)}
     console.log(sync_data);
     $.post("/marks/sync", sync_data, function (data) {
@@ -144,8 +144,8 @@
   var restore_marks = function() {
     update_links();
     mark_count = 0;
-    //marks_store.all(function(items) {
-      /*items.forEach(function(item) {
+    marks_store.all(function(items) {
+      items.forEach(function(item) {
         if(item.key!="last_updated") {
 	        mark_count += 1;
           console.log('cached-mark: '+item.key);
@@ -153,10 +153,10 @@
         } else {
           console.log('last updated: '+item.key+' : '+item.val);
         }
-      });*/
-    //});
+      });
+    });
     $("#total-marks").html(mark_count);
-    //streaks();
+    streaks();
   }
 
   var dateFormatted = function(d) {
