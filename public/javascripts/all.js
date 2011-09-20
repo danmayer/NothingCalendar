@@ -145,15 +145,15 @@
     update_links();
     mark_count = 0;
     marks_store.all(function(items) {
-      items.forEach(function(item) {
+      /*items.forEach(function(item) {
         if(item.key!="last_updated") {
-	  mark_count += 1;
+	        mark_count += 1;
           console.log('cached-mark: '+item.key);
           $("#"+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
         } else {
           console.log('last updated: '+item.key+' : '+item.val);
         }
-      });
+      });*/
     });
     $("#total-marks").html(mark_count);
     streaks();
