@@ -29,3 +29,4 @@
     * server can just store activity time and marks hash on user account
     * logged out case doesn't attempt sync, but provides notif
     * if sync attemtped when logged out server returns error which displays notif
+    * clicking anything and THEN signing in syncs the new single click and wipes out your whole history!!! Fix
