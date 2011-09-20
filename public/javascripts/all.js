@@ -132,10 +132,7 @@
 	     console.log('item: '+index+': '+record['key']+':'+record['val']);
 	     marks_store.save({key:record['key'],val:record['val']});
 	     restore_marks();
-	     //var pendingItems = $.parseJSON(localStorage["pendingItems"]);  
-	     //pendingItems.shift();  
-	     //localStorage["pendingItems"] = JSON.stringify(pendingItems);  
-	     //setTimeout(sendPending, 100);
+
 	   });
       }
     });
