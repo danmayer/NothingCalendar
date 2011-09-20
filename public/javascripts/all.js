@@ -119,7 +119,7 @@
     if (window.navigator.onLine) { 
     console.log("start sync");
     sync_data = [];
-    marks_store.all(function(items) { sync_data = items });
+    //marks_store.all(function(items) { sync_data = items });
     sync_data = {'data':JSON.stringify(sync_data)}
     console.log(sync_data);
     $.post("/marks/sync", sync_data, function (data) {
