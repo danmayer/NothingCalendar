@@ -144,7 +144,7 @@
   var restore_marks = function() {
     update_links();
     mark_count = 0;
-    marks_store.all(function(items) {
+    //marks_store.all(function(items) {
       /*items.forEach(function(item) {
         if(item.key!="last_updated") {
 	        mark_count += 1;
@@ -154,9 +154,9 @@
           console.log('last updated: '+item.key+' : '+item.val);
         }
       });*/
-    });
+    //});
     $("#total-marks").html(mark_count);
-    streaks();
+    //streaks();
   }
 
   var dateFormatted = function(d) {
