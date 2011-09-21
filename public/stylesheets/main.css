@@ -287,9 +287,6 @@ tr.dayname abbr{
 }
 
 .auth {
-  position: absolute;
-  right:10px;
-  top:5px;
   padding-top: 5px;
   padding-right: 10px;
 }

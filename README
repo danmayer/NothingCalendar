@@ -18,15 +18,10 @@
   * android widget
   * full api support
 
-**Notes**
-  * Added devise
-    * thought after page load, ajax in login info
     * if not logged in let them know they must login for server side syncing
-    * if logged in return logged in as who and switch accounts
     * if a cookie expires or is cleared but there is local storage don't clear it, next time they log in compare if the server or local storage has more recent activity and take most recent activity
-    * switching accounts / logout clears local storage
     * login takes most recent activity and offers link to restore from server
-    * server can just store activity time and marks hash on user account
     * logged out case doesn't attempt sync, but provides notif
     * if sync attemtped when logged out server returns error which displays notif
     * clicking anything and THEN signing in syncs the new single click and wipes out your whole history!!! Fix
+    * offers take local, take server version, or merge on conflict.
