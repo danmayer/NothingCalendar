@@ -106,7 +106,8 @@
         if(data['email']) {
 	  $("#auth-state").html("<span class='logged-in-info'>Logged in as "+data['email']+"</span><br/>Not you? <a id='logout' href='/users/sign_out'>Sign out</a>");
 	} else {
-	  $("#get-login").show();
+	    $("#get-login").html("<span id='get-login'><a href='/users/sign_in' id='sign-in-link'>Sign In</a>
+        or <a href='/users/sign_up' id='sign-up-link'>Sign Up</a></span>");
 	}
       });
     } else {
