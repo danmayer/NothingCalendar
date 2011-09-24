@@ -138,7 +138,16 @@
     });
     } else {
       console.log("offline try later");
+      displayNotice("No syncing occurs during offline mode");
     }
+  }
+
+  var displayNotice = function(message) {
+    $("#messages .notice").html("");
+    $("#messages .error").html("");
+    $("#messages .notice").html(message);
+    $("#messages").slideDown();
+    setTimeout("$('#messages').slideUp();", 15000)
   }
 
   var restore_marks = function() {

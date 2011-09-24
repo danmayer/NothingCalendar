@@ -9,9 +9,8 @@
 
 **TODOS**
   * possibly go back to live link (can't return false) but not always updating links
-  * sync with rails DB / user account
   * shareable urls (user alias or user id?)
-  * multiple track chains (tagging on chains)
+  * multiple track chains (tagging on chains (workout, quit smoking, etc))
   * different concept of goal (not every day but twice a week (Erin's feature))
   * add to igoogle
   * possible osx widget
@@ -24,3 +23,6 @@
     * if sync attemtped when logged out server returns error which displays notif
     * clicking anything and THEN signing in syncs the new single click and wipes out your whole history!!! Fix
     * offers take local, take server version, or merge on conflict.
+
+++++++ Later ++++++
+  * Build out as a generic rails or ActiveRecord plugin that syncs offline storage / json. Doesn't have to be on user model. Needs a unique id to associate / sync to and a key. Then you could have acts_as_syncable or some such on any model, or perhaps the plugin creates its own model with a foriegn key to the declared model. either way to allow for generic sync, restore, and merge.
