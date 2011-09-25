@@ -2,6 +2,7 @@
   var marks_store = new Lawnchair({name:'marks', adaptor:'dom indexed-db webkit-sqlite window-name'}, function(marks) {});
   var mark_count = 0;
   var longest_streak = 0;
+  var logged_in = false;
   
   $(function(){
     //display calendar
@@ -81,10 +82,11 @@
 
     $('#logout').click( function() {
       marks_store.nuke();
+      logged_in = false;
       mark_count = 0;
       $("#calendar").calendarWidget({
         month: month,
-	year: year
+	      year: year
       });
       restore_marks();
       return true;
@@ -101,13 +103,15 @@
     if (window.navigator.onLine) {
     console.log("check auth");
     $.get("/site/auth", function (data) {
-	console.log('auth resp');
-	console.log(data);
-        if(data['email']) {
-	  $("#auth-state").html("<span class='logged-in-info'>Logged in as "+data['email']+"</span><br/>Not you? <a id='logout' href='/users/sign_out'>Sign out</a>");
-	} else {
-	    $("#auth-state").html("<span id='get-login'><a href='/users/sign_in' id='sign-in-link'>Sign In</a> or <a href='/users/sign_up' id='sign-up-link'>Sign Up</a></span>");
-	}
+	  console.log('auth resp');
+	  console.log(data);
+    if(data['email']) {
+	      $("#auth-state").html("<span class='logged-in-info'>Logged in as "+data['email']+"</span><br/>Not you? <a id='logout' href='/users/sign_out'>Sign out</a>");
+        logged_in = true;
+	  } else {
+	      $("#auth-state").html("<span id='get-login'><a href='/users/sign_in' id='sign-in-link'>Sign In</a> or <a href='/users/sign_up' id='sign-up-link'>Sign Up</a></span>");
+        logged_in = false;
+	  }
       });
     } else {
       console.log("offline try later");
@@ -116,26 +120,29 @@
   }
 
   var sync = function() {
-    if (window.navigator.onLine) { 
-    console.log("start sync");
-    sync_data = [];
-    marks_store.all(function(items) { sync_data = items });
-    sync_data = {'data':JSON.stringify(sync_data)}
-    console.log(sync_data);
-    $.post("/marks/sync", sync_data, function (data) {
-      console.log('results: '+data['force_update']);
-      if(data['force_update']) {
-	 marks_store.nuke();
-	 restore_marks();
-         marks_data = data['data'];
-	 $.each(marks_data, function(index, record) {
-	     console.log('item: '+index+': '+record['key']+':'+record['val']);
-	     marks_store.save({key:record['key'],val:record['val']});
-	     restore_marks();
-
-	   });
-      }
-    });
+    if (window.navigator.onLine) {
+        if(logged_in==true) {
+            console.log("start sync");
+            sync_data = [];
+            marks_store.all(function(items) { sync_data = items });
+            sync_data = {'data':JSON.stringify(sync_data)}
+            console.log(sync_data);
+            $.post("/marks/sync", sync_data, function (data) {
+                console.log('results: '+data['force_update']);
+                if(data['force_update']) {
+	                  marks_store.nuke();
+	                  restore_marks();
+                    marks_data = data['data'];
+	                  $.each(marks_data, function(index, record) {
+	                      console.log('item: '+index+': '+record['key']+':'+record['val']);
+	                      marks_store.save({key:record['key'],val:record['val']});
+	                      restore_marks();
+	                  });
+                }
+            });
+        } else {
+            displayNotice("No syncing occurs unless logged in");
+        }
     } else {
       console.log("offline try later");
       displayNotice("No syncing occurs during offline mode");
