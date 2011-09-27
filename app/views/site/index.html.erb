@@ -1,6 +1,9 @@
-<div>Account Info</div>
+<div class="wrap">
 
-<span id="user_nav">
+  <div class="nav_info">
+    <div class="title">NothingCalendar</div>
+    <div class="subtitle">Account Info</div>
+    <div id="signin">
         <% if signed_in?(:user) %>
           Signed in as <%= current_user.email %>. Not you?
           <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
@@ -13,5 +16,6 @@
         <% else %>
           <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
         <% end %>
-</span>
-
+     </div>
+  </div>
+</div>
