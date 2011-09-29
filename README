@@ -20,6 +20,8 @@
     * put date stuff back in the json hash
     * style login page
     * Fix forgot password reminder which is broken
+    * Error messages on failed login attempts (hook rails flash up to display notice/ display error)
+    * Implement DisplayError, and move 'error notices' to it from displaynotice
 
 ++++++ Later ++++++
   * Build out as a generic rails or ActiveRecord plugin that syncs offline storage / json. Doesn't have to be on user model. Needs a unique id to associate / sync to and a key. Then you could have acts_as_syncable or some such on any model, or perhaps the plugin creates its own model with a foriegn key to the declared model. either way to allow for generic sync, restore, and merge.

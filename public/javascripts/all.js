@@ -77,6 +77,7 @@
 	year: year
       });
       restore_marks();
+      displayNotice("Local Marks cleared");
       return false;
     });
 
@@ -89,6 +90,7 @@
 	      year: year
       });
       restore_marks();
+      displayNotice("You are now logged out!");
       return true;
     });
 
@@ -141,7 +143,7 @@
                 }
             });
         } else {
-            displayNotice("No syncing occurs unless logged in");
+          displayNotice("No syncing occurs unless logged in");
         }
     } else {
       console.log("offline try later");
