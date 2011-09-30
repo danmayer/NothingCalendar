@@ -159,6 +159,14 @@
     setTimeout("$('#messages').slideUp();", 15000)
   }
 
+  var displaError = function(message) {
+    $("#messages .notice").html("");
+    $("#messages .error").html("");
+    $("#messages .error").html(message);
+    $("#messages").slideDown();
+    setTimeout("$('#messages').slideUp();", 15000)
+  }
+
   var restore_marks = function() {
     update_links();
     mark_count = 0;
