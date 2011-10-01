@@ -3,7 +3,6 @@ class SiteController < ApplicationController
   end
 
   def auth
-    Rails.logger.info "hit"
     if current_user
       render :json => {:email => current_user.email}.to_json
     else

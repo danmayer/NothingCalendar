@@ -8,6 +8,7 @@ gem 'devise', '1.4.5'
 
 gem 'sqlite3'
 gem 'rack-offline', '0.6.2'
+gem 'json'
 
 # Use unicorn as the web server
 # gem 'unicorn'
