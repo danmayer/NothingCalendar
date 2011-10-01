@@ -147,7 +147,7 @@
         }
     } else {
       console.log("offline try later");
-      displayNotice("No syncing occurs during offline mode");
+      displaError("No syncing occurs during offline mode");
     }
   }
 

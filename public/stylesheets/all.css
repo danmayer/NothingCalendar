@@ -48,6 +48,14 @@ body{
   text-align:center;
 }
 
+.messages .notice {
+  color: green;
+}
+
+.messages .error {
+  color: red;
+}
+
 .title, .subtitle{
   margin:0 auto;
   width:90%;
