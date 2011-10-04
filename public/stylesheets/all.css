@@ -160,6 +160,15 @@ a{
   padding-left: 10px;
 }
 
+.footer {
+  border-top: 1px solid black;
+  padding: 6px;
+}
+
+.shared-links {
+  padding: 6px 6px;
+}
+
 .footnote{
   text-align:right;
   font-size:11px;
@@ -185,7 +194,6 @@ a{
   background:#fff;
   font-size:24px;
   border-top:2px solid #000;
-  border-bottom:1px solid #000;
 }
 
 
