@@ -17,4 +17,7 @@
   <div id="calendar">
     <p>Please enable Javascript to view this calendar.</p>
   </div>
+<script>
+  var userMarks = $.parseJSON('<%= raw(@marks.to_json) %>');
+</script>
 <script src="/javascripts/all.js"></script>

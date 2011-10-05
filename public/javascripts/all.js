@@ -5,8 +5,10 @@
   var logged_in = false;
   
   $(function(){
+    alert(userMarks);
     //display calendar
     $("#calendar").calendarWidget({});
+    return false;
 
     setTimeout(function() { window.scrollTo(0, 1) }, 1000);
     auth();
@@ -128,7 +130,7 @@
             sync_data = [];
             marks_store.all(function(items) { sync_data = items });
             sync_data = {'data':JSON.stringify(sync_data)}
-            console.log(sync_data);
+            console.log('sync data: '+sync_data);
             $.post("/marks/sync", sync_data, function (data) {
                 console.log('results: '+data['force_update']);
                 if(data['force_update']) {
