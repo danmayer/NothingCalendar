@@ -3,13 +3,18 @@
   var mark_count = 0;
   var longest_streak = 0;
   var logged_in = false;
+  if(typeof userMarks !== "undefined" && userMarks) {
+      displayClear = false;
+  } else {
+      displayClear = true;
+  }
   
   $(function(){
     //display calendar
     $("#calendar").calendarWidget({});
     setTimeout(function() { window.scrollTo(0, 1) }, 1000);
 
-    if(userMarks) {
+    if(typeof userMarks !== "undefined" && userMarks) {
       restoreUserMarks();
     } else {
       auth();

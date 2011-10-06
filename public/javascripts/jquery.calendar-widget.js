@@ -38,7 +38,14 @@
 
 			table += ('<thead class="nav"><tr>');
 			table += ('<th colspan="2"><a href="#" id="prev-month">Previous</a></th>');
-			table += ('<th colspan="3"><h3 id="current-month" class="monthName">'+monthNames[month]+'</h3><span class="current-year">'+year+'</span><a href="#" id="clear-all">Clear All</a></th>');
+
+        //this is a bad idea need a REAL calendar object/class
+	    table += ('<th colspan="3"><h3 id="current-month" class="monthName">'+monthNames[month]+'</h3><span class="current-year">'+year+'</span>');
+            if(displayClear) {
+	      table += ('<a href="#" id="clear-all">Clear All</a>');
+	    }
+	    table +=('</th>');
+
 			table += ('<th colspan="2"><a href="#" id="next-month">Next</a></span></th>');
 			table += ('</tr></thead>');
 
