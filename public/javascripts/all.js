@@ -5,27 +5,44 @@
   var logged_in = false;
   
   $(function(){
-    alert(userMarks);
     //display calendar
     $("#calendar").calendarWidget({});
-    return false;
-
     setTimeout(function() { window.scrollTo(0, 1) }, 1000);
-    auth();
-    restore_marks();
-    //oddly this blows up rails 3 locally on my machine
-    //jQuery.ajaxSetup({
-    //	'beforeSend': function(xhr) {
-    //	  xhr.setRequestHeader("Accept", "text/javascript")
-    //	    }
-    //  });
-    sync();
-    //if we reconnect to the net sync again
-    $(window).bind("online", reconnected);  
+
+    if(userMarks) {
+      restoreUserMarks();
+    } else {
+      auth();
+      restore_marks();
+      //oddly this blows up rails 3 locally on my machine
+      //jQuery.ajaxSetup({
+      //	'beforeSend': function(xhr) {
+      //	  xhr.setRequestHeader("Accept", "text/javascript")
+      //	    }
+      //  });
+      sync();
+      //if we reconnect to the net sync again
+      $(window).bind("online", reconnected);  
+    }
   });
 
-  var update_links = function() {
+  var restoreUserMarks = function() {
+    mark_count = 0;
+    var data = userMarks.data
+    $.each(data, function(index, item) {
+        if(item.key!="last_updated") {
+	  mark_count += 1;
+          console.log('cached-mark: '+item.key);
+          $("#"+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
+        } else {
+          console.log('last updated: '+item.key+' : '+item.val);
+        }
+      });
+    $("#total-marks").html(mark_count);
+    //streaks();
+  }
 
+  var update_links = function() {
     $(".date-item").click( function(){
       if($(this).hasClass('xmarksthespot')) {
         $(this).toggleClass('xmarksthespot');
