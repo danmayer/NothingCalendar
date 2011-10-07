@@ -234,8 +234,7 @@
     var yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
   
-    marks_store.where('record.val==true').asc('key', function(){
-      this.each(function(record, index) {
+    var loopIteration = function(record, index) {
         //console.log('current: '+record.key);
   
         if(current_streak.length==0) {
@@ -279,8 +278,17 @@
           }
          
         }
-
-      })
+    }
+    
+  
+    if(typeof userMarks !== "undefined" && userMarks) {
+      $.each(userMarks, loopIteration); 
+    } else {
+    marks_store.where('record.val==true').asc('key', function(){
+      this.each( loopIteration );
+      });
+    }
+    
     });
 
     //update current streak, which didn't hit the next streak case
