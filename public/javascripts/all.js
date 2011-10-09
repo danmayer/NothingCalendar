@@ -44,7 +44,7 @@
         }
       });
     $("#total-marks").html(mark_count);
-    //streaks();
+    streaks();
   }
 
   var update_links = function() {
@@ -235,7 +235,14 @@
     yesterday.setDate(yesterday.getDate() - 1);
   
     var loopIteration = function(record, index) {
-        //console.log('current: '+record.key);
+	//seriously jquery loop and lawnchair loop have record and index in opposite fields
+	//TODO find a better way to swap or make more explicit with mehtod call
+	//TODO only swap when they are backwards
+	item = index
+	index = record
+	record = item
+
+        if(record.key!='last_updated') {
   
         if(current_streak.length==0) {
           //console.log('first: '+record.key);
@@ -278,18 +285,19 @@
           }
          
         }
-    }
+      }
+    };
     
   
     if(typeof userMarks !== "undefined" && userMarks) {
-      $.each(userMarks, loopIteration); 
+      var data = userMarks.data
+      console.log('data: '+data);
+      $.each(data, loopIteration); 
     } else {
     marks_store.where('record.val==true').asc('key', function(){
       this.each( loopIteration );
       });
     }
-    
-    });
 
     //update current streak, which didn't hit the next streak case
     $.each(current_streak, function(index, value) { 
