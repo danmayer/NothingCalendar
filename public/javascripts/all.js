@@ -235,12 +235,14 @@
     yesterday.setDate(yesterday.getDate() - 1);
   
     var loopIteration = function(record, index) {
-	//seriously jquery loop and lawnchair loop have record and index in opposite fields
-	//TODO find a better way to swap or make more explicit with mehtod call
-	//TODO only swap when they are backwards
-	item = index
-	index = record
-	record = item
+        if(typeof record.key==='undefined') {
+	  // Seriously jquery loop and lawnchair loop function
+          // have record and index in opposite fields
+	  // TODO find a better way to swap or make more explicit with mehtod call
+	  item = index
+	  index = record
+	  record = item
+	}
 
         if(record.key!='last_updated') {
   
