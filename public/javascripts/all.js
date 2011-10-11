@@ -131,8 +131,8 @@
     $.get("/site/auth", function (data) {
 	  console.log('auth resp');
 	  console.log(data);
-    if(data['email']) {
-	      $("#auth-state").html("<span class='logged-in-info'>Logged in as "+data['email']+"</span><br/>Not you? <a id='logout' href='/users/sign_out'>Sign out</a>");
+    if(data['email'] && data['id']) {
+	      $("#auth-state").html("<span class='logged-in-info'>Logged in as <a href='/users/"+data['id']+"'>"+data['email']+"</a></span><br/>Not you? <a id='logout' href='/users/sign_out'>Sign out</a>");
         logged_in = true;
 	  } else {
 	      $("#auth-state").html("<span id='get-login'><a href='/users/sign_in' id='sign-in-link'>Sign In</a> or <a href='/users/sign_up' id='sign-up-link'>Sign Up</a></span>");
