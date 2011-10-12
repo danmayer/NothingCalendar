@@ -128,7 +128,7 @@
   var auth = function() {
     if (window.navigator.onLine) {
     console.log("check auth");
-    $.get("/site/auth", function (data) {
+    $.get("/users/auth", function (data) {
 	  console.log('auth resp');
 	  console.log(data);
     if(data['email'] && data['id']) {
