@@ -69,6 +69,11 @@ body{
   text-transform:uppercase;
   letter-spacing:3px;
 }
+
+.title a{
+  color:#000;
+}
+
 .subtitle{
   margin-top:3px;
   margin-bottom:0px;
