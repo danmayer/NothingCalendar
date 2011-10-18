@@ -23,6 +23,14 @@
 </head>
 <body>
   <div class="wrap">
+
+      <% if flash[:alert] %>
+        <p class="flash-error"><%= flash[:alert] %></p>
+      <% end %>
+      <% if flash[:notice] %>
+        <p class="flash-notice"><%= flash[:notice] %></p>
+      <% end %>
+    
     <%= yield %>
 
     <p class="footer">
