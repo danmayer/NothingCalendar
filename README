@@ -19,6 +19,10 @@
     * put date stuff back in the json hash
     * Fix forgot password reminder email which is broken (no production email settings)
     * Error messages on failed login attempts (hook rails flash up to display notice/ display error)
+    * User account adds shareable username, required field (unique in DB)
+    * display user name on shared page
+    * allow edit of account
+    * display user name on shared page
 
 ++++++ Later ++++++
   * Build out as a generic rails or ActiveRecord plugin that syncs offline storage / json. Doesn't have to be on user model. Needs a unique id to associate / sync to and a key. Then you could have acts_as_syncable or some such on any model, or perhaps the plugin creates its own model with a foriegn key to the declared model. either way to allow for generic sync, restore, and merge.
