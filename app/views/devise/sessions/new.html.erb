@@ -1,7 +1,7 @@
-  <div class="nav_info">
-    <div class="title"><a href='/'>NothingCalendar</a></div>
-    <div class="subtitle">Sign in</div>
-  </div>
+<% content_for :sub_title do %>
+Sign In
+<% end %>
+
   <div id="signin">
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
         <div><%= f.label :email %><br />

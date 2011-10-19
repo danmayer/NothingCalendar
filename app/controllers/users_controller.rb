@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   def show
     user = User.find_by_id(params[:id])
     if user
+      @page_title = "NothingCalendar"
+      @sub_title = "Tracks occurences of some event."
       if user.marks_data
         sorted_marks = JSON.parse(user.marks_data).sort {|mark_a,mark_b| mark_a['key'] <=> mark_b['key']}
         @marks = {:data => (sorted_marks +[{:key => 'last_updated', :val => user.last_updated}]) }
