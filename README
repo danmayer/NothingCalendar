@@ -21,7 +21,6 @@
     * Error messages on failed login attempts (hook rails flash up to display notice/ display error)
     * User account adds shareable username, required field (unique in DB)
     * display user name on shared page
-    * allow edit of account
     * display user name on shared page
 
 ++++++ Later ++++++
