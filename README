@@ -21,7 +21,6 @@
     * Error messages on failed login attempts (hook rails flash up to display notice/ display error)
     * User account adds shareable username, required field (unique in DB)
     * edit username on edit page
-    * if you have no marks and someone goes to your URL don't have a bug
 
 ++++++ Later ++++++
   * Build out as a generic rails or ActiveRecord plugin that syncs offline storage / json. Doesn't have to be on user model. Needs a unique id to associate / sync to and a key. Then you could have acts_as_syncable or some such on any model, or perhaps the plugin creates its own model with a foriegn key to the declared model. either way to allow for generic sync, restore, and merge.
