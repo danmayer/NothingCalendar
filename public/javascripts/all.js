@@ -8,6 +8,7 @@
   } else {
       displayClear = true;
   }
+
   
   $(function(){
     //display calendar
@@ -19,13 +20,6 @@
     } else {
       auth();
       restore_marks();
-      //oddly this blows up rails 3 locally on my machine
-      //jQuery.ajaxSetup({
-      //	'beforeSend': function(xhr) {
-      //	  xhr.setRequestHeader("Accept", "text/javascript")
-      //	    }
-      //  });
-      sync();
       //if we reconnect to the net sync again
       $(window).bind("online", reconnected);  
     }
@@ -48,7 +42,9 @@
   }
 
   var update_links = function() {
+    $(".date-item").unbind('click');
     $(".date-item").click( function(){
+      console.log("clicked: "+$(this).attr('id'));
       if($(this).hasClass('xmarksthespot')) {
         $(this).toggleClass('xmarksthespot');
         marks_store.remove($(this).attr('id'), function() {});
@@ -58,13 +54,15 @@
         $(this).toggleClass('xmarksthespot');
         mark_count += 1;
       }
-      marks_store.save({key:'last_updated',val:new Date()});
-      $("#total-marks").html(mark_count);
-      streaks();
-      sync();
+      marks_store.save({key:'last_updated',val:new Date()}, function() {
+        $("#total-marks").html(mark_count);
+        streaks();
+        sync();
+      });
       return false;
     });
 
+    $("#next-month").unbind('click');
     $('#next-month').click( function() {
       var next_month = month + 1;
       if(next_month >= 12) {
@@ -79,6 +77,7 @@
       return false;
     });
 
+    $("#prev-month").unbind('click');
     $('#prev-month').click( function() {
       var prev_month = month - 1;
       if(prev_month < 0) {
@@ -93,6 +92,7 @@
       return false;
     });
 
+    $("#clear-all").unbind('click');
     $('#clear-all').click( function() {
       marks_store.nuke();
       mark_count = 0;
@@ -105,7 +105,8 @@
       return false;
     });
 
-    $('#logout').click( function() {
+    //logout is created after the page starts, can't use click
+    $('#logout').live('click', function() {
       marks_store.nuke();
       logged_in = false;
       mark_count = 0;
@@ -122,7 +123,6 @@
 
   var reconnected = function() {
     auth();
-    sync();
   }
 
   var auth = function() {
@@ -138,6 +138,7 @@
 	      $("#auth-state").html("<span id='get-login'><a href='/users/sign_in' id='sign-in-link'>Sign In</a> or <a href='/users/sign_up' id='sign-up-link'>Sign Up</a></span>");
         logged_in = false;
 	  }
+        sync();
       });
     } else {
       console.log("offline try later");
@@ -154,19 +155,21 @@
             sync_data = {'data':JSON.stringify(sync_data)}
             console.log('sync data: '+sync_data);
             $.post("/marks/sync", sync_data, function (data) {
-                console.log('results: '+data['force_update']);
+                console.log('force local update: '+data['force_update']);
                 if(data['force_update']) {
 	                  marks_store.nuke();
 	                  restore_marks();
-                    marks_data = data['data'];
+                          marks_data = data['data'];
 	                  $.each(marks_data, function(index, record) {
 	                      console.log('item: '+index+': '+record['key']+':'+record['val']);
 	                      marks_store.save({key:record['key'],val:record['val']});
-	                      restore_marks();
+	                      
 	                  });
+                          restore_marks();
                 }
             });
         } else {
+          console.log("not logged in no syncing");
           displayNotice("No syncing occurs unless logged in");
         }
     } else {
