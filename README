@@ -19,8 +19,6 @@
     * put date stuff back in the json hash
     * Fix forgot password reminder email which is broken (no production email settings)
     * Error messages on failed login attempts (hook rails flash up to display notice/ display error)
-    * User account adds shareable username, required field (unique in DB)
-    * edit username on edit page
     * all forms put cursor context in first input item if it exists
     
 

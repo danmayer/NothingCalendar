@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
   :remember_me, :last_updated, :marks_data, :name
 
   validates :name, :presence => true
+  validates :name, :uniqueness => true
 end
