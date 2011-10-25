@@ -3,6 +3,7 @@
   var mark_count = 0;
   var longest_streak = 0;
   var logged_in = false;
+  var first_sync = false;
   if(typeof userMarks !== "undefined" && userMarks) {
       displayClear = false;
   } else {
@@ -129,21 +130,22 @@
 
   var auth = function() {
     if (window.navigator.onLine) {
-    console.log("check auth");
-    $.get("/users/auth", function (data) {
+      console.log("check auth");
+      $.get("/users/auth", function (data) {
 	  console.log('auth resp');
 	  console.log(data);
-    if(data['email'] && data['id']) {
-	      $("#auth-state").html("<span class='logged-in-info'>Logged in as <a href='/users/"+data['name']+"'>"+data['email']+"</a></span><br/><a href='/users/edit'>Edit Account</a> | Not you? <a id='logout' href='/users/sign_out'>Sign out</a>");
-        logged_in = true;
+          if(data['email'] && data['id']) {
+	    $("#auth-state").html("<span class='logged-in-info'>Logged in as <a href='/users/"+data['name']+"'>"+data['email']+"</a></span><br/><a href='/users/edit'>Edit Account</a> | Not you? <a id='logout' href='/users/sign_out'>Sign out</a>");
+            logged_in = true;
 	  } else {
-	      $("#auth-state").html("<span id='get-login'><a href='/users/sign_in' id='sign-in-link'>Sign In</a> or <a href='/users/sign_up' id='sign-up-link'>Sign Up</a></span>");
-        logged_in = false;
+	    $("#auth-state").html("<span id='get-login'><a href='/users/sign_in' id='sign-in-link'>Sign In</a> or <a href='/users/sign_up' id='sign-up-link'>Sign Up</a></span>");
+            logged_in = false;
 	  }
+        first_sync = true;
         sync();
       });
     } else {
-      console.log("offline try later");
+      console.log("offline try auth later");
       $("#auth-state").html("<span class='offline-mode'>offline mode, syncing disabled</span>");
     }
   }
@@ -154,20 +156,35 @@
             console.log("start sync");
             sync_data = [];
             marks_store.all(function(items) { sync_data = items });
-            sync_data = {'data':JSON.stringify(sync_data)}
+            sync_data = {'data':JSON.stringify(sync_data), 'first_sync':first_sync}
             console.log('sync data: '+sync_data);
             $.post("/marks/sync", sync_data, function (data) {
-                console.log('force local update: '+data['force_update']);
+		first_sync = false;
+		console.log('choose update?: '+data['choose_update']);
+                if(data['choose_update']) {
+                    var answer = confirm ("Your local storage has more recent changes than the version on our server. Please choose to use local data (click 'ok') or update to the last saved server data (cancel). Keep local data?")
+		    if(answer) {
+			sync();
+		     } else {
+                         //destroy local data, reset calendar
+			 marks_store.nuke();
+                         $("#calendar").calendarWidget({
+                           month: month,
+	                   year: year
+                         });
+			 sync();
+		     }
+                }
+                console.log('force local update?: '+data['force_update']);
                 if(data['force_update']) {
-	                  marks_store.nuke();
-	                  restore_marks();
-                          marks_data = data['data'];
-	                  $.each(marks_data, function(index, record) {
-	                      console.log('item: '+index+': '+record['key']+':'+record['val']);
-	                      marks_store.save({key:record['key'],val:record['val']});
-	                      
-	                  });
-                          restore_marks();
+	          marks_store.nuke();
+		  restore_marks();
+                  marks_data = data['data'];
+	          $.each(marks_data, function(index, record) {
+	            console.log('item: '+index+': '+record['key']+':'+record['val']);
+	            marks_store.save({key:record['key'],val:record['val']});
+	          });
+                  restore_marks();
                 }
             });
         } else {

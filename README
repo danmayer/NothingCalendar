@@ -11,14 +11,10 @@
   * possibly go back to live link (can't return false) but not always updating links
   * multiple track chains (tagging on chains (workout, quit smoking, etc))
   * different concept of goal (not every day but twice a week (Erin's feature))
-
-    * if a cookie expires or is cleared but there is local storage don't clear it, next time they log in compare if the server or local storage has more recent activity and take most recent activity
-    * login takes most recent activity and offers link to restore from server
-    * clicking anything and THEN signing in syncs the new single click and wipes out your whole history!!! Fix
-    * offers take local, take server version, or merge on conflict.
-    * put date stuff back in the json hash
-    * Fix forgot password reminder email which is broken (no production email settings)
-    * Error messages on failed login attempts (hook rails flash up to display notice/ display error)
+  * offers take local, take server version, or merge on conflict. (first two are done now need a merge option and better UI for the first two)
+  * put date stuff back in the json hash
+  * Fix forgot password reminder email which is broken (no production email settings)
+  * Error messages on failed login attempts (hook rails flash up to display notice/ display error)
     
 
 ++++++ Later ++++++
