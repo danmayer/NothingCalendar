@@ -13,7 +13,9 @@
   $(function(){
     //display calendar
     $("#calendar").calendarWidget({});
-    setTimeout(function() { window.scrollTo(0, 1) }, 1000);
+    setTimeout(function() { 
+        window.scrollTo(0, 1);
+    }, 1000);
 
     if(typeof userMarks !== "undefined" && userMarks) {
       restoreUserMarks();
