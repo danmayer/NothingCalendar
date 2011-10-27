@@ -13,7 +13,6 @@
   * different concept of goal (not every day but twice a week (Erin's feature))
   * offers take local, take server version, or merge on conflict. (first two are done now need a merge option and better UI for the first two)
   * put date stuff back in the json hash
-  * Fix forgot password reminder email which is broken (no production email settings)
   * Error messages on failed login attempts (hook rails flash up to display notice/ display error)
     
 

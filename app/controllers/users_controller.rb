@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     end
   end
 
-  #TODO move to users_controller#show with params?
+  #TODO do we like a auth and show on user, perhaps add this on session auth
   def auth
     if current_user
       render :json => {:email => current_user.email, :id => current_user.id, :name => current_user.name}.to_json
