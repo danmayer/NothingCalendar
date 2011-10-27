@@ -31,16 +31,12 @@ GEM
     arel (2.0.9)
     bcrypt-ruby (3.0.1)
     builder (2.1.2)
-    cgi_multipart_eof_fix (2.5.0)
-    daemons (1.1.4)
     devise (1.4.5)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    fastthread (1.0.7)
-    gem_plugin (0.2.3)
     i18n (0.5.0)
     json (1.6.1)
     mail (2.2.16)
@@ -49,11 +45,6 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
-    mongrel (1.1.5)
-      cgi_multipart_eof_fix (>= 2.4)
-      daemons (>= 1.0.3)
-      fastthread (>= 1.0.1)
-      gem_plugin (>= 0.2.3)
     orm_adapter (0.0.5)
     polyglot (0.3.1)
     rack (1.2.2)
@@ -90,7 +81,6 @@ PLATFORMS
 DEPENDENCIES
   devise (= 1.4.5)
   json
-  mongrel
   rack-offline (= 0.6.2)
   rails (= 3.0.6)
   sqlite3

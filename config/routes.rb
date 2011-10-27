@@ -2,7 +2,6 @@ Nothingcalendar::Application.routes.draw do
   devise_for :users
 
   match "/application.manifest" => Rails::Offline
-  devise_for :users
 
   get "site/index"
 

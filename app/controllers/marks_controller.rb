@@ -35,7 +35,11 @@ class MarksController < ApplicationController
         force_update = true
       end
 
-      remote_data = JSON.parse(current_user.marks_data) + [{:key => 'last_updated', :val => current_user.last_updated}]
+      remote_data = if current_user.marks_data
+                      JSON.parse(current_user.marks_data) + [{:key => 'last_updated', :val => current_user.last_updated}]
+                    else
+                      nil
+                    end
       remote_store = { :choose_update => choose_update,
                        :force_update => force_update,
                        :data => remote_data }
