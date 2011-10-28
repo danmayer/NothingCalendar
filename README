@@ -14,6 +14,8 @@
   * offers take local, take server version, or merge on conflict. (first two are done now need a merge option and better UI for the first two)
   * put date stuff back in the json hash
   * Error messages on failed login attempts (hook rails flash up to display notice/ display error)
+  * restyle error and notice warnings
+  * touch styling for the app (buttons links etc 44 px)
     
 
 ++++++ Later ++++++

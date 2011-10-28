@@ -1,9 +1,8 @@
-  <div class="nav_info">
-    <div class="title">NothingCalendar</div>
-    <div class="subtitle">Sign in</div>
-  </div>
-  <div id="signin">
-<h2>Forgot your password?</h2>
+<% content_for :sub_title do %>
+Forgot your password?
+<% end %>
+
+<div id="signin">
 
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
   <%= devise_error_messages! %>

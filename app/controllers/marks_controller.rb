@@ -11,14 +11,13 @@ class MarksController < ApplicationController
       stored_data.delete(last_updated);
       last_updated = last_updated && last_updated['val']
       marks_data = stored_data;
-      
-      Rails.logger.info params['first_sync']
-      Rails.logger.info "*"*40
 
+      # converting time back & forth to ruby DB time, the micro seconds get off
+      # make sure the time is greater than 1.0 second diff
       if last_updated==nil
         Rails.logger.info 'no user data yet, push force update'
         force_update = true
-      elsif(current_user.last_updated.nil? || current_user.last_updated < Time.parse(last_updated))
+      elsif(current_user.last_updated.nil? || current_user.last_updated < Time.parse(last_updated) && (current_user.last_updated - Time.parse(last_updated)).abs > 1.0 )
         Rails.logger.info 'user sending updated data'
         if(params['first_sync']=='true')
           Rails.logger.info 'first sync with new data, verify with user'
@@ -29,8 +28,6 @@ class MarksController < ApplicationController
                                           :marks_data => marks_data.to_json)
         end
       elsif(!current_user.last_updated.nil? && current_user.last_updated > Time.parse(last_updated) && current_user.last_updated - Time.parse(last_updated) > 1.0)
-        # converting time back & forth to ruby DB time, the micro seconds get off
-        # make sure the time is greater than 1.0 second diff
         Rails.logger.info 'push force_update, signaling client to update its data'
         force_update = true
       end
