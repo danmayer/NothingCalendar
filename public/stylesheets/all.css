@@ -59,6 +59,10 @@ body{
   color: red;
 }
 
+#error_explanation {
+ color: red;
+}
+
 .title, .subtitle{
   margin:0 auto;
   width:90%;
