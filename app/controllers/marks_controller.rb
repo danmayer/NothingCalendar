@@ -6,6 +6,7 @@ class MarksController < ApplicationController
       force_update = false
       choose_update = false
      
+      #todo need to keep all marks data togher and have helpers for doing this sort of thins
       stored_data = JSON.parse(params['data'])   
       last_updated = stored_data.detect{|item| item['key']=='last_updated' }
       stored_data.delete(last_updated);
@@ -17,8 +18,7 @@ class MarksController < ApplicationController
       if last_updated==nil
         Rails.logger.info 'no user data yet, push force update'
         force_update = true
-      elsif(current_user.last_updated.nil? || current_user.last_updated < Time.parse(last_updated) && (current_user.last_updated - Time.parse(last_updated)).abs > 1.0 )
-        Rails.logger.info 'user sending updated data'
+      elsif user_sending_updated_data?(last_updated)
         if(params['first_sync']=='true')
           Rails.logger.info 'first sync with new data, verify with user'
           choose_update = true
@@ -27,8 +27,7 @@ class MarksController < ApplicationController
           current_user.update_attributes!(:last_updated => last_updated,
                                           :marks_data => marks_data.to_json)
         end
-      elsif(!current_user.last_updated.nil? && current_user.last_updated > Time.parse(last_updated) && current_user.last_updated - Time.parse(last_updated) > 1.0)
-        Rails.logger.info 'push force_update, signaling client to update its data'
+      elsif user_sending_outdated_data?(last_updated)
         force_update = true
       end
 
@@ -45,6 +44,20 @@ class MarksController < ApplicationController
       render :json => "must be logged in to sync", status => 401
     end
       
+  end
+
+  protected
+
+  def user_sending_updated_data?(last_updated)
+    (current_user.last_updated.nil? ||
+     current_user.last_updated < Time.parse(last_updated) &&
+     (current_user.last_updated - Time.parse(last_updated)).abs > 1.0)
+  end
+
+  def user_sending_outdated_data?(last_updated)
+    (!current_user.last_updated.nil? &&
+     current_user.last_updated > Time.parse(last_updated) &&
+     current_user.last_updated - Time.parse(last_updated) > 1.0)
   end
 
 end
