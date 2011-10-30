@@ -8,9 +8,8 @@
     * possible phonegap compatibility for native android / iphone app.
 
 **TODOS**
-  * possibly go back to live link (can't return false) but not always updating links
+  * possibly go back to live link (can't return false) but not always updating link
   * multiple track chains (tagging on chains (workout, quit smoking, etc))
-  * different concept of goal (not every day but twice a week (Erin's feature))
   * offers take local, take server version, or merge on conflict. (first two are done now need a merge option and better UI for the first two)
   * put date stuff back in the json hash
   * Error messages on failed login attempts (hook rails flash up to display notice/ display error)
@@ -24,3 +23,4 @@
   * possible osx widget
   * android widget
   * full api support
+  * different concept of goal (not every day but twice a week (Erin's feature))
