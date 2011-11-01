@@ -13,14 +13,14 @@
   * offers take local, take server version, or merge on conflict. (first two are done now need a merge option and better UI for the first two)
   * put date stuff back in the json hash
   * Error messages on failed login attempts (hook rails flash up to display notice/ display error)
-  * restyle error and notice warnings
   * touch styling for the app (buttons links etc 44 px)
     
 
 ++++++ Later ++++++
   * Build out as a generic rails or ActiveRecord plugin that syncs offline storage / json. Doesn't have to be on user model. Needs a unique id to associate / sync to and a key. Then you could have acts_as_syncable or some such on any model, or perhaps the plugin creates its own model with a foriegn key to the declared model. either way to allow for generic sync, restore, and merge.
+  * full api support
+  * plugins (build a plugin that automatically ads marks for tweeting, pushing to github, for funning with fitbit, etc), allow others to contribute plugins
   * add to igoogle
   * possible osx widget
   * android widget
-  * full api support
   * different concept of goal (not every day but twice a week (Erin's feature))

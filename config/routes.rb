@@ -5,7 +5,7 @@ Nothingcalendar::Application.routes.draw do
 
   get "site/index"
 
-  resources :users, :only => [:show] do
+  resources :users, :only => [:index, :show] do
     collection do
       get 'auth'
     end

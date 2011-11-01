@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def index
+    redirect_to '/'
+  end
+
   def show
     @user = User.find_by_id(params[:id])
     @user ||= User.find_by_name(params[:id])
