@@ -17,6 +17,7 @@
     setTimeout(function() { 
         window.scrollTo(0, 1);
     }, 1000);
+    $('form:first *:input[type!=hidden]:first').focus();
 
     if(typeof userMarks !== "undefined" && userMarks) {
       restoreUserMarks();
