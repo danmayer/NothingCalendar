@@ -44,11 +44,25 @@ body{
   background:#DFDFDF;
 }
 
+.nav_info a {
+  font-size: 16px;
+  line-height: 36px;
+}
+
+.nav_info .title a {
+  font-size: 20px;
+  line-height: 20px;
+}
+
 .extra_info {
   background:#DFDFDF;
 }
 .wrap {
   text-align:center;
+}
+
+.messages {
+  font-size: 16px;
 }
 
 .messages .notice {
@@ -335,11 +349,12 @@ input[type=submit] {
 
 .nav a {
   font-size:16px;
+  line-height: 44px;
   color:#468;
 }
 
 .auth {
-  padding-top: 5px;
+  padding-top: 0px;
   padding-right: 10px;
 }
 
