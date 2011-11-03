@@ -14,6 +14,8 @@
   * put date stuff back in the json hash
   * Error messages on failed login attempts (hook rails flash up to display notice/ display error)
   * touch styling for the app (buttons links etc 44 px)
+  * touch form labels
+  * errors not showing up on bad login (sign in?)
     
 
 ++++++ Later ++++++
