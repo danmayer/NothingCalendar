@@ -2,7 +2,7 @@
   This project aims to help tracking arbitrary events. Such as working out every day, quiting smoking, reading, writing, or whatever chain you are currently working on. It is inspired by the popular Seinfeld don't break the chain concept. It also was based originally on Calendar about Nothing, which implements the don't break the chain concept for commiting to open source. I wanted to track keeping a chain alive for things other than open source so this project began.
 
   Goals:
-    * Simple shared chain calendar
+    * Simple shared my-chain calendar
     * full mobile support
     * full offline mode (installable as html5 app, offline syncing, etc)
     * possible phonegap compatibility for native android / iphone app.
@@ -13,10 +13,8 @@
   * offers take local, take server version, or merge on conflict. (first two are done now need a merge option and better UI for the first two)
   * put date stuff back in the json hash
   * Error messages on failed login attempts (hook rails flash up to display notice/ display error)
-  * touch styling for the app (buttons links etc 44 px)
-  * touch form labels
-  * errors not showing up on bad login (sign in?)
-    
+  * touch styling for the app (buttons links etc 44 px, in progress...)
+  * mobile offline detection seems to be failing
 
 ++++++ Later ++++++
   * Build out as a generic rails or ActiveRecord plugin that syncs offline storage / json. Doesn't have to be on user model. Needs a unique id to associate / sync to and a key. Then you could have acts_as_syncable or some such on any model, or perhaps the plugin creates its own model with a foriegn key to the declared model. either way to allow for generic sync, restore, and merge.

@@ -7,16 +7,16 @@ Sign Up
     <%= devise_error_messages! %>
 
   <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <%= f.email_field :email,  :placeholder => 'email'  %></div>
 
   <div><%= f.label :name %><br />
-  <%= f.text_field :name %></div>
+  <%= f.text_field :name, :placeholder => 'name'  %></div>
 
   <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+  <%= f.password_field :password, :placeholder => 'password'  %></div>
 
   <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+  <%= f.password_field :password_confirmation, :placeholder => 'password'  %></div>
 
   <div><%= f.submit "Sign up" %></div>
 <% end %>

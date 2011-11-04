@@ -69,7 +69,7 @@ body{
   color: green;
 }
 
-.messages .error {
+.messages .error, .messages .alert {
   color: red;
 }
 
@@ -193,6 +193,7 @@ a{
 
 .shared-links {
   padding: 12px 6px;
+  font-size: 18px; 
 }
 
 .footnote{
@@ -308,6 +309,10 @@ Form styles
 
 .hidden {
   display: none;
+}
+
+label {
+  font-size: 18px;
 }
 
 input {
