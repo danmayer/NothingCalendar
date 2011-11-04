@@ -311,6 +311,19 @@ Form styles
   display: none;
 }
 
+.button {
+  color: #000;
+  width: 90%;
+  font-size: 22px;
+  line-height: 44px;
+  text-align: center;
+  display: inline-block;
+  height: 44px;
+  background: #EEEEFF;
+  border: 1px solid #000;
+  -webkit-border-radius: 5px;
+}
+
 label {
   font-size: 18px;
 }
