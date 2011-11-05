@@ -96,18 +96,24 @@
       return false;
     });
 
-    $("#clear-all").unbind('click');
-    $('#clear-all').click( function() {
-      marks_store.nuke();
-      mark_count = 0;
-      $("#calendar").calendarWidget({
-        month: month,
-	year: year
+      $("#clear-all").unbind('click');
+      $('#clear-all').click( function() {
+
+          var answer = confirm ("Are you sure you want to clear your data?")
+	  if(answer) {
+	      marks_store.nuke();
+	      mark_count = 0;
+	      $("#calendar").calendarWidget({
+		  month: month,
+		  year: year
+	      });
+	      restore_marks();
+	      displayNotice("Local Marks cleared");
+	      return false;
+	  } else {
+              displayNotice("clear cancelled");
+	  }
       });
-      restore_marks();
-      displayNotice("Local Marks cleared");
-      return false;
-    });
 
     //logout is created after the page starts, can't use click
     $('#logout').live('click', function() {
