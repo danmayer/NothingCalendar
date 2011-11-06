@@ -192,8 +192,8 @@ a{
 }
 
 .shared-links {
-  padding: 12px 6px;
-  font-size: 18px; 
+  padding: 10px 6px;
+  font-size: 16px; 
 }
 
 .footnote{
@@ -232,8 +232,8 @@ a{
 
 #calendar table th .monthName{
   padding:0px;
-  font-size:32px;
-  letter-spacing:3px;
+  font-size:22px;
+  letter-spacing:2px;
   text-transform:uppercase;
   color:#b20000;
   margin:0px;
@@ -241,9 +241,9 @@ a{
 
 #calendar table th .current-year{
   padding:0px;
-  padding-right:15px;
-  font-size:16px;
-  letter-spacing:3px;
+  padding-right:14px;
+  font-size:14px;
+  letter-spacing:2.5px;
   text-transform:uppercase;
   color:#b20000;
 }
@@ -366,8 +366,8 @@ input[type=submit] {
 }
 
 .nav a {
-  font-size:16px;
-  line-height: 44px;
+  font-size:15px;
+  line-height: 40px;
   color:#468;
 }
 
