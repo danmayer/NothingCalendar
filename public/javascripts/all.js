@@ -21,6 +21,9 @@
 
     if(typeof userMarks !== "undefined" && userMarks) {
       restoreUserMarks();
+      // Can't do this as it starts up syncing again.
+      // Need altered link that get users info and update correctly 
+      // update_next_and_previous();
     } else {
       auth();
       restore_marks();
@@ -45,27 +48,7 @@
     streaks();
   }
 
-  var update_links = function() {
-    $(".date-item").unbind('click');
-    $(".date-item").click( function(){
-      console.log("clicked: "+$(this).attr('id'));
-      if($(this).hasClass('xmarksthespot')) {
-        $(this).toggleClass('xmarksthespot');
-        marks_store.remove($(this).attr('id'), function() {});
-        mark_count -= 1;
-      } else {
-        marks_store.save({key:$(this).attr('id'),val:true});
-        $(this).toggleClass('xmarksthespot');
-        mark_count += 1;
-      }
-      marks_store.save({key:'last_updated',val:new Date()}, function() {
-        $("#total-marks").html(mark_count);
-        streaks();
-        sync();
-      });
-      return false;
-    });
-
+var update_next_and_previous = function() {
     $("#next-month").unbind('click');
     $('#next-month').click( function() {
       var next_month = month + 1;
@@ -95,6 +78,30 @@
       restore_marks();
       return false;
     });
+}
+
+  var update_links = function() {
+    $(".date-item").unbind('click');
+    $(".date-item").click( function(){
+      console.log("clicked: "+$(this).attr('id'));
+      if($(this).hasClass('xmarksthespot')) {
+        $(this).toggleClass('xmarksthespot');
+        marks_store.remove($(this).attr('id'), function() {});
+        mark_count -= 1;
+      } else {
+        marks_store.save({key:$(this).attr('id'),val:true});
+        $(this).toggleClass('xmarksthespot');
+        mark_count += 1;
+      }
+      marks_store.save({key:'last_updated',val:new Date()}, function() {
+        $("#total-marks").html(mark_count);
+        streaks();
+        sync();
+      });
+      return false;
+    });
+
+      update_next_and_previous();
 
       $("#clear-all").unbind('click');
       $('#clear-all').click( function() {
