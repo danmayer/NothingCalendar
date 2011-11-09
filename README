@@ -12,8 +12,7 @@
   * multiple track chains (tagging on chains (workout, quit smoking, etc))
   * offers take local, take server version, or merge on conflict. (first two are done now need a merge option and better UI for the first two)
   * put date stuff back in the json hash
-  * Error messages on failed login attempts (hook rails flash up to display notice/ display error)
-  * touch styling for the app (buttons links etc 44 px, in progress...)
+  * Error messages on root url (not rails), setup flash endpoint (endpoint always removes cookie) and set a cookie, using after filter
   * mobile offline detection seems to be failing
   * next and previous on a users shared show page break.
 
