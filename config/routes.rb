@@ -3,6 +3,7 @@ Nothingcalendar::Application.routes.draw do
 
   match "/application.manifest" => Rails::Offline
 
+  match "/site/" => "site#index"
   get "site/index"
 
   resources :users, :only => [:index, :show] do

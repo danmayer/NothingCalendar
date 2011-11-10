@@ -1,21 +1,27 @@
-<div class="wrap">
+<div class="index">
+  <% content_for :sub_title do %>
+    Don't break the chain!
+  <% end %>
 
-  <div class="nav_info">
-    <div class="title">NothingCalendar</div>
-    <div class="subtitle">Account Info</div>
-    <div id="signin">
-        <% if signed_in?(:user) %>
-          Signed in as <%= current_user.email %>. Not you?
-          <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+  <p>
+    To get better at something, simple work on it <em>EVERY</em>
+    day. For example, if your goal was to exercise more.
+    <ol class="example"'>
+      <li>exercise today</li>
+      <li>click today's date on the calendar</li>
+      <li>repeat tomorrow</li>
+    </ol>
+  </p>
+  
 
-<%= form_tag sync_marks_path do %>  
- <%#= f.text_tag :name %>  
- <%= submit_tag "sync" %>  
-<% end %>  
-          
-        <% else %>
-          <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-        <% end %>
-     </div>
-  </div>
+  <p>
+    <br/>
+    NothingCalendar let's users track events, anything they feel like tracking over time. Mark off days you worked out, kept to your diet, worked on your writing, studied, quit smoking, or anything else.
+  </p>
+
+  <p>
+    The entire concept of "don't break the chain" comes
+    from <a href="http://lifehacker.com/281626/jerry-seinfelds-productivity-secret">Jerry
+    Seinfeld’s Productivity Secret</a>. 
+  </p>
 </div>
