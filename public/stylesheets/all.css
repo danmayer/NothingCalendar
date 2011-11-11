@@ -103,6 +103,14 @@ body{
   color:#999;
 }
 
+.subtitle a{
+  margin-top:3px;
+  margin-bottom:0px;
+  text-transform:uppercase;
+  font-size:11px;
+  color:#9999CC;
+}
+
 .current_streak, .longest_streak{
   width:40%;
   float:left;
@@ -187,6 +195,7 @@ a{
 }
 
 .footer {
+  font-size: 14px;
   border-top: 1px solid black;
   padding: 6px;
 }
@@ -379,6 +388,11 @@ input[type=submit] {
 
 ol.example, ul.example {
  text-align:left;
+}
+
+.about {
+  font-size:18px;
+  line-height:22px;
 }
 
 /*------------------------------------------------------------------------------------
