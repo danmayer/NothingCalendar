@@ -14,7 +14,7 @@
   * put date stuff back in the json hash
   * Error messages on root url (not rails), setup flash endpoint (endpoint always removes cookie) and set a cookie, using after filter
   * mobile offline detection seems to be failing
-  * next and previous on a users shared show page break.
+  * make a user list page so people can browse people's calendars
   * possible about 'intro' then cookie user so they never see again
   * update other form buttons and improve the ones on account update
 
