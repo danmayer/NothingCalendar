@@ -3,6 +3,7 @@
 	function calendarWidget(el, params) { 
 		
 		var now   = new Date();
+	        var thisday = now.getDate();
 		var thismonth = now.getMonth();
 		var thisyear  = now.getYear() + 1900;
 		
@@ -82,10 +83,12 @@
 			  
               if ((j<firstDay)){
                 table += ('<td class="date-item othermonth" id="'+zeroPad(prev_m+1,2)+'-'+zeroPad((prev_days-firstDay+j+1),2)+'-'+prev_y+'"><span class="day">'+ (prev_days-firstDay+j+1) +'</span></td>');
-			  } else if ((j>=firstDay+getDaysInMonth(month,year))) {
+	      } else if ((j>=firstDay+getDaysInMonth(month,year))) {
 				i = i+1;
 				table += ('<td class="date-item othermonth" id="'+zeroPad(next_m+1,2)+'-'+zeroPad(i,2)+'-'+next_y+'"><span class="day">'+ i +'</span></td>');			 
-              }else{
+              } else if((j-firstDay+1)==thisday) {
+                table += ('<td class="date-item today" id="'+zeroPad(month+1,2)+'-'+zeroPad((j-firstDay+1),2)+'-'+year+'"><span class="day">'+(j-firstDay+1)+'</span></td>');
+              } else {
                 table += ('<td class="date-item" id="'+zeroPad(month+1,2)+'-'+zeroPad((j-firstDay+1),2)+'-'+year+'"><span class="day">'+(j-firstDay+1)+'</span></td>');
               }
               if (j%7==6)  table += ('</tr>');
