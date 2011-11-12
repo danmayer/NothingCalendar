@@ -4,13 +4,7 @@
   var longest_streak = 0;
   var logged_in = false;
   var first_sync = false;
-  if(typeof userMarks !== "undefined" && userMarks) {
-      displayClear = false;
-  } else {
-      displayClear = true;
-  }
 
-  
   $(function(){
     //display calendar
     $("#calendar").calendarWidget({});
@@ -19,11 +13,8 @@
     }, 1000);
     $('form:first *:input[type!=hidden]:first').focus();
 
-    if(typeof userMarks !== "undefined" && userMarks) {
+    if(userPage()) {
       restoreUserMarks();
-      // Can't do this as it starts up syncing again.
-      // Need altered link that get users info and update correctly 
-      // update_next_and_previous();
     } else {
       auth();
       restore_marks();
@@ -32,21 +23,9 @@
     }
   });
 
-  var restoreUserMarks = function() {
-    mark_count = 0;
-    var data = userMarks.data
-    $.each(data, function(index, item) {
-        if(item.key!="last_updated") {
-	  mark_count += 1;
-          console.log('cached-mark: '+item.key);
-          $("#"+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
-        } else {
-          console.log('last updated: '+item.key+' : '+item.val);
-        }
-      });
-    $("#total-marks").html(mark_count);
-    streaks();
-  }
+  var userPage = function(){
+    return (typeof userMarks !== "undefined" && userMarks)
+  };
 
 var update_next_and_previous = function() {
     $("#next-month").unbind('click');
@@ -227,22 +206,44 @@ var update_next_and_previous = function() {
     setTimeout("$('#messages').slideUp();", 15000)
   }
 
-  var restore_marks = function() {
-    update_links();
+  //TODO to much shared with restore_marks, make more of the same
+  var restoreUserMarks = function() {
+    update_next_and_previous();
     mark_count = 0;
-    marks_store.all(function(items) {
-      items.forEach(function(item) {
+    var data = userMarks.data
+    $.each(data, function(index, item) {
         if(item.key!="last_updated") {
-	        mark_count += 1;
+	  mark_count += 1;
           console.log('cached-mark: '+item.key);
           $("#"+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
         } else {
           console.log('last updated: '+item.key+' : '+item.val);
         }
       });
-    });
     $("#total-marks").html(mark_count);
     streaks();
+  }
+
+  var restore_marks = function() {
+    if(userPage()) {
+	restoreUserMarks();
+    } else {
+      update_links();
+      mark_count = 0;
+      marks_store.all(function(items) {
+        items.forEach(function(item) {
+          if(item.key!="last_updated") {
+	          mark_count += 1;
+            console.log('cached-mark: '+item.key);
+            $("#"+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
+          } else {
+            console.log('last updated: '+item.key+' : '+item.val);
+          }
+        });
+      });
+      $("#total-marks").html(mark_count);
+      streaks();
+    }
   }
 
   var dateFormatted = function(d) {
@@ -327,7 +328,7 @@ var update_next_and_previous = function() {
     };
     
   
-    if(typeof userMarks !== "undefined" && userMarks) {
+   if(userPage()) {
       var data = userMarks.data
       console.log('data: '+data);
       $.each(data, loopIteration); 

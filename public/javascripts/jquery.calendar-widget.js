@@ -41,7 +41,7 @@
 
         //this is a bad idea need a REAL calendar object/class
 	    table += ('<th colspan="3"><h3 id="current-month" class="monthName">'+monthNames[month]+'</h3><span class="current-year">'+year+'</span>');
-            if(displayClear) {
+            if(!userPage()) {
 	      table += ('<a href="#" id="clear-all">Clear All</a>');
 	    }
 	    table +=('</th>');
