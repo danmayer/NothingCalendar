@@ -14,7 +14,7 @@ Sign In
         <div class="hidden"><%= f.check_box :remember_me, :checked => true %> <%= f.label :remember_me %></div>
       <% end -%>
 
-      <div><%= f.submit "Sign in" %></div>
+      <div><%= f.submit "Sign in", :class => 'button' %></div>
     <% end %>
 
     <%= render :partial => "devise/shared/links" %>

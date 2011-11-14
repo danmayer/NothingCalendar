@@ -46,7 +46,7 @@ body{
 
 .nav_info a {
   font-size: 16px;
-  line-height: 36px;
+  line-height: 28px;
 }
 
 .nav_info .title a {
@@ -78,6 +78,7 @@ body{
 }
 
 .title, .subtitle{
+  padding: 0px;
   margin:0 auto;
   width:90%;
   text-align:center;
@@ -108,6 +109,7 @@ body{
   margin-bottom:0px;
   text-transform:uppercase;
   font-size:11px;
+  line-height:22px;
   color:#9999CC;
 }
 
@@ -322,16 +324,17 @@ Form styles
   display: none;
 }
 
-.button {
+.button, input[type="submit"].button {
   color: #000;
   width: 90%;
   font-size: 22px;
   line-height: 44px;
+  font-weight:bold;
   text-align: center;
   display: inline-block;
   height: 44px;
   background: #EEEEFF;
-  border: 1px solid #000;
+  border: 2px solid #000;
   -webkit-border-radius: 5px;
 }
 
