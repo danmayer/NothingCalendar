@@ -16,7 +16,7 @@
   * mobile offline detection seems to be failing
   * make a user list page so people can browse people's calendars
   * possible about 'intro' then cookie user so they never see again
-  * update other form buttons and improve the ones on account update
+  * rewrite all views as mustache, so they can be server or client side
 
 __Later__
   * Build out as a generic rails or ActiveRecord plugin that syncs offline storage / json. Doesn't have to be on user model. Needs a unique id to associate / sync to and a key. Then you could have acts_as_syncable or some such on any model, or perhaps the plugin creates its own model with a foriegn key to the declared model. either way to allow for generic sync, restore, and merge.

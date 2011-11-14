@@ -8,9 +8,9 @@ Forgot your password?
   <%= devise_error_messages! %>
 
   <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <%= f.email_field :email, :placeholder => 'email' %></div>
 
-  <div><%= f.submit "Send me reset password instructions" %></div>
+  <div><%= f.submit "email me reset", :class=> 'button' %></div>
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>
