@@ -86,6 +86,7 @@ body{
 
 .title{
   margin-top:0px;
+  padding-top:6px;
   font-size:20px;
   color:#000;
   text-transform:uppercase;
@@ -396,8 +397,13 @@ ol.example, ul.example {
 }
 
 .about {
+  padding:0px 16px;
   font-size:18px;
   line-height:22px;
+}
+
+.about ul, .about ol{
+  padding-left: 16px;
 }
 
 /*------------------------------------------------------------------------------------

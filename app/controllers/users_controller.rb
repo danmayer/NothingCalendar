@@ -5,11 +5,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by_id(params[:id])
-    @user ||= User.find_by_name(params[:id])
+    @user = User.find_by_id_or_name(params[:id])
     if @user
-      @page_title = "NothingCalendar"
-      @sub_title = "Tracks occurences of some event."
       @marks = {}
       if @user.marks_data
         sorted_marks = JSON.parse(@user.marks_data).sort {|mark_a,mark_b| mark_a['key'] <=> mark_b['key']}
@@ -23,7 +20,7 @@ class UsersController < ApplicationController
     end
   end
 
-  #TODO do we like a auth and show on user, perhaps add this on session auth
+  #TODO do we like a auth and show on user controller?, perhaps move this on session controller #auth
   def auth
     if current_user
       render :json => {:email => current_user.email, :id => current_user.id, :name => current_user.name}.to_json

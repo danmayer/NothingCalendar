@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   validates :name, :presence => true
   validates :name, :uniqueness => true
 
-  
+  def self.find_by_id_or_name(param)
+    User.find_by_id(param) || User.find_by_name(param)
+  end
 
 end

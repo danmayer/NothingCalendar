@@ -10,7 +10,7 @@
 **TODOS**
   * possibly go back to live link (can't return false) but not always updating link
   * multiple track chains (tagging on chains (workout, quit smoking, etc))
-  * offers take local, take server version, or merge on conflict. (first two are done now need a merge option and better UI for the first two)
+  * conflict resolution: offers take local, take server version, or merge. (first two are done now need a merge option and better UI for the first two)
   * put date stuff back in the json hash
   * Error messages on root url (not rails), setup flash endpoint (endpoint always removes cookie) and set a cookie, using after filter
   * mobile offline detection seems to be failing
