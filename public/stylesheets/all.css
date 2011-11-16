@@ -396,6 +396,15 @@ ol.example, ul.example {
  text-align:left;
 }
 
+.user_list ol, .user_list ul {
+ text-align:left;
+}
+
+.user_list ol a, .user_list ul a {
+ font-size:22px;
+ line-height:44px;
+}
+
 .about {
   padding:0px 16px;
   font-size:18px;
