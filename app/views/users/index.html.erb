@@ -1,0 +1,14 @@
+<% content_for :title do %>
+Nothing Calendar
+<% end %>
+<% content_for :sub_title do %>
+User list.
+<% end %>
+
+<div class="user_list">
+   <ul>
+     <% @users.each do |user| %>
+       <li><%= link_to user.name, user_path(:id => user.name) %></li>
+     <% end %>
+  </ul>
+</div>
