@@ -127,8 +127,9 @@ var update_next_and_previous = function() {
       $.get("/users/auth", function (data) {
 	  console.log('auth resp');
 	  console.log(data);
-          if(data['email'] && data['id']) {
-	    $("#auth-state").html("<span class='logged-in-info'>Logged in as <a href='/users/"+data['name']+"'>"+data['email']+"</a></span><br/><a href='/users/edit'>Edit Account</a> | Not you? <a id='logout' href='/users/sign_out'>Sign out</a>");
+          var user = data['user'];
+          if(user['email'] && user['id']) {
+	    $("#auth-state").html("<span class='logged-in-info'>Logged in as <a href='/users/"+user['name']+"'>"+user['email']+"</a></span><br/><a href='/users/edit'>Edit Account</a> | Not you? <a id='logout' href='/users/sign_out'>Sign out</a>");
             logged_in = true;
 	  } else {
 	    $("#auth-state").html("<span id='get-login'><a href='/users/sign_in' id='sign-in-link'>Sign In</a> or <a href='/users/sign_up' id='sign-up-link'>Sign Up</a></span>");

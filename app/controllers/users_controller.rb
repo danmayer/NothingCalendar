@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   #TODO do we like a auth and show on user controller?, perhaps move this on session controller #auth
   def auth
     if current_user
-      render :json => {:email => current_user.email, :id => current_user.id, :name => current_user.name}.to_json
+      render :json => current_user
     else
       Rails.logger.info 'requires auth'
       render :json => {}.to_json, status => 401

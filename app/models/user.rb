@@ -15,4 +15,12 @@ class User < ActiveRecord::Base
     User.find_by_id(param) || User.find_by_name(param)
   end
 
+  def to_param
+    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
+  end
+
+  def as_json(options={})
+    super(:only => [:email, :id, :name])
+  end
+
 end
