@@ -14,7 +14,8 @@ class UserTest < ActiveSupport::TestCase
     mark = Mark.from_params([{'key' => 'last_updated', 'val' => time},
                              {'key' => '11-15-2011', 'val' => true}].to_json)
     assert_equal time.to_i, Time.parse(mark.last_updated).to_i
-    assert_equal [{"val"=>true, "key"=>"11-15-2011"}], mark.marks_data
+    assert_equal JSON.parse([{'key' => 'last_updated', 'val' => time},
+                  {"val"=>true, "key"=>"11-15-2011"}].to_json), mark.marks_data
   end
 
   test "creates returns as_hash" do

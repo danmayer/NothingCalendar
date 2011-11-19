@@ -26,7 +26,7 @@ class MarksController < ApplicationController
       end
 
       remote_data = if current_user.marks_data
-                      JSON.parse(current_user.marks_data) + [{:key => 'last_updated', :val => current_user.last_updated}]
+                      JSON.parse(current_user.marks_data)
                     else
                       nil
                     end

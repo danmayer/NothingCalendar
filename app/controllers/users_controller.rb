@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       @marks = {}
       if @user.marks_data
         sorted_marks = JSON.parse(@user.marks_data).sort {|mark_a,mark_b| mark_a['key'] <=> mark_b['key']}
-        @marks = {:data => (sorted_marks +[{:key => 'last_updated', :val => @user.last_updated}]) }
+        @marks = {:data => sorted_marks }
         Rails.logger.info @marks.inspect
       end
       render
