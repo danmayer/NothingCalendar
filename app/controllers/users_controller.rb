@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       render :json => current_user
     else
       Rails.logger.info 'requires auth'
-      render :json => {}.to_json, status => 401
+      render :json => {}, status => 401
     end
   end
 

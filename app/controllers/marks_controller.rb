@@ -33,7 +33,7 @@ class MarksController < ApplicationController
       remote_store = { :choose_update => choose_update,
                        :force_update => force_update,
                        :data => remote_data }
-      render :json => remote_store.to_json
+      render :json => remote_store
     else
       render :json => "must be logged in to sync", status => 401
     end
