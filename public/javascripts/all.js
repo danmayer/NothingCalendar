@@ -12,7 +12,6 @@
         window.scrollTo(0, 1);
     }, 1000);
     $('form:first *:input[type!=hidden]:first').focus();
-
     if(userPage()) {
       restoreUserMarks();
     } else {
@@ -128,13 +127,14 @@ var update_next_and_previous = function() {
 	  console.log('auth resp');
 	  console.log(data);
           var user = data['user'];
-          if(user['email'] && user['id']) {
-	    $("#auth-state").html("<span class='logged-in-info'>Logged in as <a href='/users/"+user['name']+"'>"+user['email']+"</a></span><br/><a href='/users/edit'>Edit Account</a> | Not you? <a id='logout' href='/users/sign_out'>Sign out</a>");
+          if(user && user['email'] && user['id']) {
+	    var template = "<span class='logged-in-info'>Logged in as <a href='/users/{{to_param}}'>{{email}}</a></span><br/><a href='/users/edit'>Edit Account</a> | Not you? <a id='logout' href='/users/sign_out'>Sign out</a>";
             logged_in = true;
 	  } else {
-	    $("#auth-state").html("<span id='get-login'><a href='/users/sign_in' id='sign-in-link'>Sign In</a> or <a href='/users/sign_up' id='sign-up-link'>Sign Up</a></span>");
+	    var template = "<span id='get-login'><a href='/users/sign_in' id='sign-in-link'>Sign In</a> or <a href='/users/sign_up' id='sign-up-link'>Sign Up</a></span>";
             logged_in = false;
 	  }
+          $("#auth-state").html(Mustache.to_html(template, user));
         first_sync = true;
         sync();
       });

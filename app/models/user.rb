@@ -10,17 +10,18 @@ class User < ActiveRecord::Base
 
   validates :name, :presence => true
   validates :name, :uniqueness => true
+  validates_format_of :name, :with => /^(\w|\s)+$/i, :on => :create, :message => "name can only be letters, numbers, and spaces."
 
   def self.find_by_id_or_name(param)
-    User.find_by_id(param) || User.find_by_name(param)
+    User.find_by_id(param) || User.find_by_name(param.gsub('-',' '))
   end
 
   def to_param
-    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
+    "#{name.gsub(/[^a-z0-9]+/i, '-')}"
   end
 
   def as_json(options={})
-    super(:only => [:email, :id, :name])
+    super(:only => [:email, :id, :name, :to_param])
   end
 
 end
