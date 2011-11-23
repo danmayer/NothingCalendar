@@ -18,7 +18,7 @@
       auth();
       restore_marks();
       //if we reconnect to the net sync again
-      $(window).bind("online", reconnected);  
+      $(window).bind("online", reconnected);
     }
   });
 
@@ -151,7 +151,7 @@ var update_next_and_previous = function() {
             sync_data = [];
             marks_store.all(function(items) { sync_data = items });
             sync_data = {'data':JSON.stringify(sync_data), 'first_sync':first_sync}
-            console.log('sync data: '+sync_data);
+            console.log('sync data: '+sync_data['data']);
             $.post("/marks/sync", sync_data, function (data) {
 		first_sync = false;
 		console.log('choose update?: '+data['choose_update']);
@@ -174,11 +174,13 @@ var update_next_and_previous = function() {
 	          marks_store.nuke();
 		  restore_marks();
                   marks_data = data['data'];
-	          $.each(marks_data, function(index, record) {
-	            console.log('item: '+index+': '+record['key']+':'+record['val']);
-	            marks_store.save({key:record['key'],val:record['val']});
-	          });
-                  restore_marks();
+                  if(marks_data!=null) {
+	            $.each(marks_data, function(index, record) {
+	              console.log('item: '+index+': '+record['key']+':'+record['val']);
+	              marks_store.save({key:record['key'],val:record['val']});
+	            });
+                    restore_marks();
+		  }
                 }
             });
         } else {

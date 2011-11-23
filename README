@@ -21,7 +21,6 @@
   * use JS framework, spine, backbone.js, etc rewrite calendard in framework
   * move to a SPA (single page application)
   * setup heroku staging server
-  * today isn't green because of the local cache writing that out once... need JS to move the today class per load / action.
   * more efficient packaging of JS (concat and minify), remove lawnchair plugins we aren't using.
   * add push state / ajax actions (smooth CSS animation transitions)
 
