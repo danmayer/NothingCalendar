@@ -260,12 +260,19 @@ a{
   color:#b20000;
 }
 
-
 #calendar table th{
   font-size:9px;
   font-weight:normal;
   text-transform:uppercase;
 }
+
+/*iphone*/
+@media screen and (max-device-width: 480px) {
+  #calendar table th{
+    font-size:8px;
+  }
+}
+
 
 #calendar table th a.next{ text-align:right; }
 
