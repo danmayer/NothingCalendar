@@ -441,6 +441,17 @@ ol.example, ul.example {
   opacity:0.7;
 }
 
+.xmarksthespot_2{
+  /*width:12%;
+  height:60px;
+  position:relative;
+  float:left;*/
+  margin-top:-60px;
+  z-index:100;
+  background:url(../images/x_2.png) 60% 100% no-repeat;
+  opacity:0.7;
+}
+
 .x-1{ background-image:url(../images/x_1.png);}
 .x-2{ background-image:url(../images/x_2.png);}
 .x-3{ background-image:url(../images/x_3.png);}
