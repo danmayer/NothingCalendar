@@ -20,7 +20,7 @@ class Mark
   end
 
   def self.from_params(data)
-    stored_data = JSON.parse(data)   
+    stored_data = JSON.parse(data)
     data_last_updated = stored_data.detect{|item| item['key']=='last_updated' }
     data_last_updated = data_last_updated && data_last_updated['val']
     Mark.new(:marks_data => stored_data, :last_updated => data_last_updated)

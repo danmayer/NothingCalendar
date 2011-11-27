@@ -26,26 +26,26 @@
 
     <div class="nav_info">
       <div class="title">
-	<a href='/'>
-	  <% if content_for?(:title) %>
-	    <%= yield(:title) %>
-	  <% else %>
-	    NothingCalendar
-	  <% end %>
-	</a>
+        <a href='/'>
+          <% if content_for?(:title) %>
+            <%= yield(:title) %>
+          <% else %>
+            NothingCalendar
+          <% end %>
+        </a>
       </div>
       <div class="subtitle">
         <% if content_for?(:sub_title) %>
-	  <%= yield(:sub_title) %>
-	<% else %>
-	  Tracks occurences of some event.
-	<% end %>
+          <%= yield(:sub_title) %>
+        <% else %>
+          Tracks occurences of some event.
+        <% end %>
       </div>
 
       <%= render :partial => "shared/notice_messages" %>
- 
+
     </div>
-    
+
     <%= yield %>
 
     <p class="footer">
@@ -62,7 +62,6 @@
   <% end %>
 
   <script type="text/javascript">
-
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-27172934-1']);
   _gaq.push(['_trackPageview']);
@@ -72,8 +71,7 @@
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
   </script>
-  
+
 </body>
 </html>

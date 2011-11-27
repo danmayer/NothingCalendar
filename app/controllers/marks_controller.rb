@@ -5,7 +5,6 @@ class MarksController < ApplicationController
     if current_user
       force_update = false
       choose_update = false
-     
       user_marks = Mark.from_params(params['data'])
 
       # converting time back & forth to ruby DB time, the micro seconds get off
@@ -37,7 +36,7 @@ class MarksController < ApplicationController
     else
       render :json => "must be logged in to sync", status => 401
     end
-      
+
   end
 
 end
