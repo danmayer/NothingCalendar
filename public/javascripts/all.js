@@ -20,6 +20,7 @@
       //if we reconnect to the net sync again
       $(window).bind("online", reconnected);
     }
+    displayNotices();
   });
 
   var userPage = function(){
@@ -93,10 +94,10 @@ var update_next_and_previous = function() {
 		  year: year
 	      });
 	      restore_marks();
-	      displayNotice("Local Marks cleared");
+	      displayNotice("Local Marks cleared", 'notice');
 	      return false;
 	  } else {
-              displayNotice("clear cancelled");
+              displayNotice("clear cancelled", 'notice');
 	  }
       });
 
@@ -110,7 +111,7 @@ var update_next_and_previous = function() {
 	      year: year
       });
       restore_marks();
-      displayNotice("You are now logged out!");
+	displayNotice("You are now logged out!", 'notice');
       return true;
     });
 
@@ -185,28 +186,31 @@ var update_next_and_previous = function() {
             });
         } else {
           console.log("not logged in no syncing");
-          displayNotice("No syncing occurs unless logged in");
+            displayNotice("No syncing occurs unless logged in", 'notice');
         }
     } else {
       console.log("offline try later");
-      displaError("No syncing occurs during offline mode");
+	displayNotice("No syncing occurs during offline mode", 'error');
     }
   }
 
-  var displayNotice = function(message) {
+  var displayNotice = function(message, type) {
     $("#messages .notice").html("");
     $("#messages .error").html("");
-    $("#messages .notice").html(message);
+    $("#messages .alert").html("");
+    $("#messages ."+type).html(message);
     $("#messages").slideDown();
     setTimeout("$('#messages').slideUp();", 15000)
   }
 
-  var displaError = function(message) {
-    $("#messages .notice").html("");
-    $("#messages .error").html("");
-    $("#messages .error").html(message);
-    $("#messages").slideDown();
-    setTimeout("$('#messages').slideUp();", 15000)
+  var displayNotices = function() {
+      var notices = ['notice', 'alert', 'error'];
+      $.each(notices, function(index, type) {
+        //if(cookie[type]) {
+         //msg = cookie[type]
+         //displayNotice(msg, type)
+       //}
+      });
   }
 
   //TODO to much shared with restore_marks, make more of the same

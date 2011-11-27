@@ -9,15 +9,15 @@
 
 **TODOS**
   * possibly go back to live link (can't return false) but not always updating link
+    (look at js delagate method)
   * multiple track chains (tagging on chains (workout, quit smoking, etc))
   * conflict resolution: offers take local, take server version, or merge. (first two are done now need a merge option and better UI for the first two)
   * Error messages on root url (not rails), setup flash endpoint (endpoint always removes cookie) and set a cookie, using after filter
   * mobile offline detection seems to be failing
-  * make a user list page so people can browse people's calendars
+  * make a user list page so people can browse people's calendars (public vs. private options?)
   * possible about 'intro' then cookie user so they never see again
   * rewrite all views as mustache, so they can be server or client side
   * project readme improvements, switch to markdown
-  * user links with _ opposed %20 for space
   * use JS framework, spine, backbone.js, etc rewrite calendard in framework
   * move to a SPA (single page application)
   * setup heroku staging server

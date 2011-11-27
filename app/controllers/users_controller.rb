@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   def index
+    flash[:notice] = 'bam'
     @users = User.order('lower(name)').all
   end
 
