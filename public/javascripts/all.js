@@ -8,17 +8,19 @@
   $(function(){
     //display calendar
     $("#calendar").calendarWidget({});
-    setTimeout(function() { 
+    setTimeout(function() {
         window.scrollTo(0, 1);
     }, 1000);
     $('form:first *:input[type!=hidden]:first').focus();
-    if(userPage()) {
-      restoreUserMarks();
-    } else {
-      auth();
-      restore_marks();
-      //if we reconnect to the net sync again
-      $(window).bind("online", reconnected);
+    if($('#calendar').length!=0) {
+      if(userPage()) {
+        restoreUserMarks();
+      } else {
+        auth();
+        restore_marks();
+        //if we reconnect to the net sync again
+        $(window).bind("online", reconnected);
+      }
     }
     displayNotices();
   });
@@ -27,7 +29,7 @@
     return (typeof userMarks !== "undefined" && userMarks)
   };
 
-var update_next_and_previous = function() {
+ var update_next_and_previous = function() {
     $("#next-month").unbind('click');
     $('#next-month').click( function() {
       var next_month = month + 1;
@@ -206,11 +208,26 @@ var update_next_and_previous = function() {
   var displayNotices = function() {
       var notices = ['notice', 'alert', 'error'];
       $.each(notices, function(index, type) {
-        //if(cookie[type]) {
-         //msg = cookie[type]
-         //displayNotice(msg, type)
-       //}
+          if(cookieGet(type)) {
+              var msg = cookieGet(type);
+              displayNotice(msg, type);
+          }
       });
+  }
+
+  var cookieGet = function(cookie_name) {
+      if (document.cookie) {
+	  index = document.cookie.indexOf(cookie_name);
+	  if (index != -1) {
+	      namestart = (document.cookie.indexOf("=", index) + 1);
+	      nameend = document.cookie.indexOf(";", index);
+	      if (nameend == -1) {
+		  nameend = document.cookie.length;
+	      }
+	      cookieVal = document.cookie.substring(namestart, nameend);
+	      return cookieVal;
+	  }
+      }
   }
 
   //TODO to much shared with restore_marks, make more of the same
@@ -277,7 +294,7 @@ var update_next_and_previous = function() {
     var today = new Date();
     var yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
-  
+
     var loopIteration = function(record, index) {
         if(typeof record.key==='undefined') {
 	  // Seriously jquery loop and lawnchair loop function
@@ -289,7 +306,7 @@ var update_next_and_previous = function() {
 	}
 
         if(record.key!='last_updated') {
-  
+
         if(current_streak.length==0) {
           //console.log('first: '+record.key);
           current_streak.push(record.key)
@@ -315,7 +332,7 @@ var update_next_and_previous = function() {
             }
           } else {
             //update current streak
-            $.each(current_streak, function(index, value) { 
+            $.each(current_streak, function(index, value) {
               //console.log('today:'+dateFormatted(today));
               //console.log('match:'+value);
               if(dateFormatted(today)==value) {
@@ -329,16 +346,16 @@ var update_next_and_previous = function() {
               current_streak_count = current_streak.length;
             }
           }
-         
+
         }
       }
     };
-    
-  
+
+
    if(userPage()) {
       var data = userMarks.data
       console.log('data: '+data);
-      $.each(data, loopIteration); 
+      $.each(data, loopIteration);
     } else {
     marks_store.where('record.val==true').asc('key', function(){
       this.each( loopIteration );
@@ -346,7 +363,7 @@ var update_next_and_previous = function() {
     }
 
     //update current streak, which didn't hit the next streak case
-    $.each(current_streak, function(index, value) { 
+    $.each(current_streak, function(index, value) {
       //console.log('today:'+dateFormatted(today));
       //console.log('match:'+value);
       if(dateFormatted(today)==value || dateFormatted(yesterday)==value) {

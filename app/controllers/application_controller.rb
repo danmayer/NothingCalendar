@@ -6,8 +6,9 @@ class ApplicationController < ActionController::Base
   protected
 
   def flash_preserve
+    Rails.logger.info flash
     [:notice, :error, :alert].each do |key|
-      cookies[key] = flash[key] unless flash[:key].blank?
+      cookies[key] = flash[key] unless flash[key].blank?
     end
   end
 

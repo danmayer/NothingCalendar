@@ -1,13 +1,4 @@
-<% notices = [:error, :notice, :alert] %>
-<% if notices.any?{ |notice| flash[notice] } %>
-  <div class="messages">
-    <% notices.each do |notice| %>
-      <% if flash[notice] %>
-        <span class="flash-<%= notice %>"><%= flash[notice] %></span>
-      <% end %>
-    <% end %>
-   </div>
-<% end %>
+
 
 <div class="messages" id="messages" style="display:none">
   <span class="notice"></span>
