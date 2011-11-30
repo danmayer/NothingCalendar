@@ -96,10 +96,10 @@
 		  year: year
 	      });
 	      restore_marks();
-	      displayNotice("Local Marks cleared", 'notice');
+	      clear_and_display_notice("Local Marks cleared", 'notice');
 	      return false;
 	  } else {
-              displayNotice("clear cancelled", 'notice');
+              clear_and_display_notice("clear cancelled", 'notice');
 	  }
       });
 
@@ -113,7 +113,7 @@
 	      year: year
       });
       restore_marks();
-	displayNotice("You are now logged out!", 'notice');
+	clear_and_display_notice("You are now logged out!", 'notice');
       return true;
     });
 
@@ -188,29 +188,40 @@
             });
         } else {
           console.log("not logged in no syncing");
-            displayNotice("No syncing occurs unless logged in", 'notice');
+            clear_and_display_notice("No syncing occurs unless logged in", 'notice');
         }
     } else {
       console.log("offline try later");
-	displayNotice("No syncing occurs during offline mode", 'error');
+      clear_and_display_notice("No syncing occurs during offline mode", 'error');
     }
   }
 
+  var clear_and_display_notice = function(message, type) {
+    clearNotices();
+    displayNotice(message, type)
+  }
+
   var displayNotice = function(message, type) {
-    $("#messages .notice").html("");
-    $("#messages .error").html("");
-    $("#messages .alert").html("");
     $("#messages ."+type).html(message);
     $("#messages").slideDown();
     setTimeout("$('#messages').slideUp();", 15000)
   }
 
+  var notices = ['notice', 'alert', 'error'];
+
+  var clearNotices = function() {
+    $.each(notices, function(index, type) {
+      $("#messages ."+type).html("");
+    });
+  }
+
   var displayNotices = function() {
-      var notices = ['notice', 'alert', 'error'];
+      clearNotices();
       $.each(notices, function(index, type) {
           if(cookieGet(type)) {
               var msg = cookieGet(type);
               displayNotice(msg, type);
+              writeCookie(type,'');
           }
       });
   }
@@ -228,6 +239,10 @@
 	      return cookieVal;
 	  }
       }
+  }
+
+  var writeCookie = function(key, value) {
+      document.cookie = key+'='+value+'; path=/;';
   }
 
   //TODO to much shared with restore_marks, make more of the same
