@@ -13,7 +13,6 @@
   * multiple track chains (tagging on chains (workout, quit smoking, etc))
   * conflict resolution: offers take local, take server version, or merge. (first two are done now need a merge option and better UI for the first two)
   * mobile offline detection seems to be failing
-  * make a user list page so people can browse people's calendars (public vs. private options?)
   * possible about 'intro' then cookie user so they never see again
   * rewrite all views as mustache, so they can be server or client side
   * project readme improvements, switch to markdown
@@ -32,3 +31,4 @@ __Later__
   * android widget
   * different concept of goal (not every day but twice a week (Erin's feature))
   * (possibly move to a plugin) how we handle Error messages on root url (not rails), setup flash endpoint (endpoint always removes cookie) and set a cookie, using after filter
+  * user list page optional so people can browse people's calendars, current exists but everyone is public by default (public vs. private options?)
