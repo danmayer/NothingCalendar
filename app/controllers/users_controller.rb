@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.order('lower(name)').all
+    @sub_title = 'User list'
   end
 
   def show

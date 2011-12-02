@@ -6,6 +6,8 @@ Nothingcalendar::Application.routes.draw do
   match "/site/" => "site#index"
   get "site/index"
 
+  match "/site/templates" => "site#templates"
+
   resources :users, :only => [:index, :show] do
     collection do
       get 'auth'

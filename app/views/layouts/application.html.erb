@@ -30,7 +30,9 @@
         <a href='/'>
           <% if content_for?(:title) %>
             <%= yield(:title) %>
-          <% else %>
+          <% elsif @title %>
+	    <%= @title %>
+	  <% else %>
             NothingCalendar
           <% end %>
         </a>
@@ -38,6 +40,8 @@
       <div class="subtitle">
         <% if content_for?(:sub_title) %>
           <%= yield(:sub_title) %>
+	<% elsif @sub_title %>
+	    <%= @sub_title %>
         <% else %>
           Tracks occurences of some event.
         <% end %>
