@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.6'
+gem 'rails', '3.0.3'
 gem 'devise', '1.4.5'
 
 # Bundle edge Rails instead:
@@ -9,6 +9,11 @@ gem 'devise', '1.4.5'
 gem 'sqlite3'
 gem 'rack-offline', '0.6.2'
 gem 'json'
+
+# mustache support
+# gem 'mustache_rails3'
+gem   'mustache'
+gem 'poirot', '0.0.2'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -31,6 +36,6 @@ gem 'json'
 # and rake tasks are available in development mode:
 group :development, :test do
   gem "mongrel"
-  #gem 'webrat'
-  #gem 'ruby-debug19', :require => 'ruby-debug'
+  # gem 'webrat'
+  # gem 'ruby-debug19', :require => 'ruby-debug'
 end
