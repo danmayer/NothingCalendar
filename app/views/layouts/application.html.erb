@@ -51,11 +51,13 @@
 
     </div>
 
-    <%= yield %>
+    <div id="main">
+      <%= yield %>
+    </div>
 
     <p class="footer">
-      <a href="/site">About NothingCalendar</a><br/>
-      <a href="/users">Current Streaks</a><br/>
+      <a href="/site" data-pjax="#main">About NothingCalendar</a><br/>
+      <a href="/users" data-pjax="#main">Current Streaks</a><br/>
       Inspired by
       <a href="http://calendaraboutnothing.com">Calendar About Nothing</a>.
       <br/>
@@ -67,6 +69,7 @@
     <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
   <% end %>
 
+  <script src="/javascripts/jquery.pjax.js"></script>
   <script src="/javascripts/all.js"></script>
 
   <script type="text/javascript">

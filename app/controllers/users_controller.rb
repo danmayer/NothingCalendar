@@ -3,6 +3,9 @@ class UsersController < ApplicationController
   def index
     @users = User.order('lower(name)').all
     @sub_title = 'User list'
+    if request.headers['X-PJAX']
+      render :layout => false
+    end
   end
 
   def show

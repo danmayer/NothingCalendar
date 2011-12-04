@@ -23,6 +23,7 @@
       }
     }
     displayNotices();
+    $('a[data-pjax]').pjax();
   });
 
   var userPage = function(){
