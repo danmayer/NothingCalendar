@@ -1,9 +1,11 @@
   //setup offline storage
-  var marks_store = new Lawnchair({name:'marks', adaptor:'dom indexed-db webkit-sqlite window-name'}, function(marks) {});
+  var marks_store = new Lawnchair({name:'marks', adaptor:'dom indexed-db window-name'}, function(marks) {});
   var mark_count = 0;
   var longest_streak = 0;
   var logged_in = false;
   var first_sync = false;
+
+  jQuery.fn.exists = function(){return this.length>0;}
 
   $(function(){
     //display calendar
@@ -12,7 +14,7 @@
         window.scrollTo(0, 1);
     }, 1000);
     $('form:first *:input[type!=hidden]:first').focus();
-    if($('#calendar').length!=0) {
+    if($('#calendar').exists()) {
       if(userPage()) {
         restoreUserMarks();
       } else {
