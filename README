@@ -16,7 +16,7 @@
   * possible about 'intro' then cookie user so they never see again
   * rewrite all views as mustache, so they can be server or client side
   * project readme improvements, switch to markdown
-  * use JS framework, spine, backbone.js, etc rewrite calendard in framework
+  * use JS framework, backbone.js, etc rewrite calendard in framework
   * move towards SPA (single page application), setup for appification
   * setup heroku staging server
   * more efficient packaging of JS (concat and minify), remove lawnchair plugins we aren't using.

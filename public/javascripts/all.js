@@ -7,6 +7,15 @@
 
   jQuery.fn.exists = function(){return this.length>0;}
 
+  //pjax start and end functions
+  $('#main')
+    .bind('pjax:start', function() { $('#loading').show() })
+    .bind('pjax:end',   function() {
+	$('#loading').hide();
+	var sub_title = $('.data-title').text();
+	$('.subtitle').html(sub_title);
+    });
+
   $(function(){
     //display calendar
     $("#calendar").calendarWidget({});
