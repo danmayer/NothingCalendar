@@ -17,10 +17,13 @@ class UsersController < ApplicationController
         @marks = {:data => sorted_marks }
         Rails.logger.info @marks.inspect
       end
-      render
     else
       flash[:error] = "User not found"
       redirect_to '/'
+      return
+    end
+    if request.headers['X-PJAX']
+      render :layout => false
     end
   end
 

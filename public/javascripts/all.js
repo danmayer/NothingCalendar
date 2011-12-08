@@ -14,10 +14,15 @@
 	$('#loading').hide();
 	var sub_title = $('.data-title').text();
 	$('.subtitle').html(sub_title);
+        startup();
     });
 
   $(function(){
-    //display calendar
+      startup();
+  });
+
+  var startup = function(){
+  //display calendar
     $("#calendar").calendarWidget({});
     setTimeout(function() {
         window.scrollTo(0, 1);
@@ -35,7 +40,7 @@
     }
     displayNotices();
     $('a[data-pjax]').pjax();
-  });
+  }
 
   var userPage = function(){
     return (typeof userMarks !== "undefined" && userMarks)

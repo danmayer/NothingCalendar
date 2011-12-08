@@ -1,7 +1,7 @@
 <div class="user_list">
   <ul>
      {{#users}}
-       <li><a href="/users/{{to_param}}">{{name}}</a></li>
+       <li><a href="/users/{{to_param}}" data-pjax="#main">{{name}}</a></li>
      {{/users}}
   </ul>
 </div>
