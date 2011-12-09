@@ -3,15 +3,6 @@
 <head>
   <title>Nothing Calendar</title>
   <link href='./stylesheets/all.css' rel='stylesheet' type='text/css' />
-  <script src="./javascripts/jquery-1.4.2.min.js"></script>
-  <script src="./javascripts/jquery.calendar-widget.js"></script>
-  <!--fixes a broken json parser on some android phones -->
-  <script>window.JSON = null;</script>
-  <script src="./javascripts/json2.js"></script>
-  <script src="./javascripts/lawnchair-0.6.1.min.js"></script>
-  <script src="./javascripts/lawnchair-adapter-webkit-sqlite-0.6.1.js"></script>
-  <script src="./javascripts/query.js"></script>
-  <script src="./javascripts/mustache.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
@@ -24,12 +15,12 @@
 <body>
   <div class="wrap">
   <div class="nav_info">
-    <div class="title"><a href='/'>NothingCalendar</a></div>
-    <div class="subtitle"><a href="/site">Tracks occurences</a> of some event.</div>
+    <div class="title"><a href='/' data-pjax="#main">NothingCalendar</a></div>
+    <div class="subtitle"><a href="/site" data-pjax="#main">Tracks occurences</a> of some event.</div>
     <div class="auth" id="auth-state">
       <span id='get-login'>
-        <a href='/users/sign_in' id='sign-in-link'>Sign In</a>
-        or   <a href='/users/sign_up' id='sign-up-link'>Sign Up</a>
+        <a href='/users/sign_in' id='sign-in-link' data-pjax="#main">Sign In</a>
+        or   <a href='/users/sign_up' id='sign-up-link' data-pjax="#main">Sign Up</a>
       </span>
     </div>
     <div class="messages" id="messages" style="display:none">
@@ -60,6 +51,14 @@
     </p>
   </div>
 
+  <script src="/javascripts/jquery-1.4.2.min.js"></script>
+  <script src="/javascripts/jquery.calendar-widget.js"></script>
+  <!--fixes a broken json parser on some android phones -->
+  <script>window.JSON = null;</script>
+  <script src="/javascripts/json2.js"></script>
+  <script src="/javascripts/lawnchair-0.6.1.min.js"></script>
+  <script src="/javascripts/query.js"></script>
+  <script src="/javascripts/mustache.js"></script>
   <script src="/javascripts/jquery.pjax.js"></script>
   <script src="/javascripts/all.js"></script>
 

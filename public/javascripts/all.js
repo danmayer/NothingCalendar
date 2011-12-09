@@ -151,7 +151,7 @@
 	    var template = "<span class='logged-in-info'>Logged in as <a href='/users/{{to_param}}'>{{email}}</a></span><br/><a href='/users/edit'>Edit Account</a> | Not you? <a id='logout' href='/users/sign_out'>Sign out</a>";
             logged_in = true;
 	  } else {
-	    var template = "<span id='get-login'><a href='/users/sign_in' id='sign-in-link'>Sign In</a> or <a href='/users/sign_up' id='sign-up-link'>Sign Up</a></span>";
+	    var template = "<span id='get-login'><a href='/users/sign_in' id='sign-in-link' data-pjax='#main'>Sign In</a> or <a href='/users/sign_up' id='sign-up-link' data-pjax='#main'>Sign Up</a></span>";
             logged_in = false;
 	  }
           $("#auth-state").html(Mustache.to_html(template, user));
