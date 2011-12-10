@@ -163,11 +163,11 @@ a{
 
 /* @end */
 
-/*------------------------------------------------------------------------------------
+/*-------------------------------------
   @group Homepage
-------------------------------------------------------------------------------------*/
+---------------------------------------*/
 
-#main, #borderedMain{
+/*#main, #borderedMain{
   margin:15px auto 20px auto;
   padding:0 0 20px 0;
   width:90%;
@@ -177,7 +177,7 @@ a{
 #borderedMain{
   border-top:2px solid #000;
   border-bottom:1px solid #000;
-}
+}*/
 
 #content{
   width: 95%;
@@ -205,7 +205,7 @@ a{
 
 .shared-links {
   padding: 10px 6px;
-  font-size: 16px; 
+  font-size: 16px;
 }
 
 .footnote{

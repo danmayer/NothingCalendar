@@ -22,7 +22,8 @@
   });
 
   var startup = function(){
-  //display calendar
+    //display calendar
+
     $("#calendar").calendarWidget({});
     setTimeout(function() {
         window.scrollTo(0, 1);

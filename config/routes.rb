@@ -4,8 +4,7 @@ Nothingcalendar::Application.routes.draw do
   match "/application.manifest" => Rails::Offline
 
   match "/site/" => "site#index"
-  get "site/index"
-
+  match "/site/about" => "site#about"
   match "/site/templates" => "site#templates"
 
   resources :users, :only => [:index, :show] do
