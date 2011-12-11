@@ -239,7 +239,7 @@
           if(cookieGet(type)) {
               var msg = unescape(cookieGet(type)).replace(/[+]/g," ");
               displayNotice(msg, type);
-              //writeCookie(type,'');
+              writeCookie(type,'');
           }
       });
   }
