@@ -144,7 +144,7 @@
   var auth = function() {
     if (window.navigator.onLine) {
       console.log("check auth");
-      $.get("/users/auth", function (data) {
+      $.get("/users/auth.json", function (data) {
 	  console.log('auth resp');
 	  console.log(data);
           var user = data['user'];

@@ -20,8 +20,10 @@ class User < ActiveRecord::Base
     "#{name.gsub(/[^a-z0-9]+/i, '-')}"
   end
 
+  #TODO why can't I put custom methods on :only seems only attrs work
   def as_json(options={})
-    super(:only => [:email, :id, :name, :to_param])
+    result = super(:only => [:email, :id, :name])
+    result.merge('user' =>result['user'].merge({'to_param' => to_param}))
   end
 
 end
