@@ -237,9 +237,9 @@
       clearNotices();
       $.each(notices, function(index, type) {
           if(cookieGet(type)) {
-              var msg = cookieGet(type);
+              var msg = unescape(cookieGet(type)).replace(/[+]/g," ");
               displayNotice(msg, type);
-              writeCookie(type,'');
+              //writeCookie(type,'');
           }
       });
   }
