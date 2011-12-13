@@ -26,7 +26,7 @@
 
     <div class="nav_info">
       <div class="title">
-        <a href='/'>
+        <a href='/' data-pjax="#main">
           <% if content_for?(:title) %>
             <%= yield(:title) %>
           <% elsif @title %>
@@ -40,9 +40,9 @@
         <% if content_for?(:sub_title) %>
           <%= yield(:sub_title) %>
 	<% elsif @sub_title %>
-	    <%= @sub_title %>
+	  <%= @sub_title %>
         <% else %>
-          Tracks occurences of some event.
+          <a href="/site/about" data-pjax="#main">Tracks occurences</a> of some event.
         <% end %>
       </div>
 

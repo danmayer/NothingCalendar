@@ -3,9 +3,7 @@ class UsersController < ApplicationController
   def index
     @users = User.order('lower(name)').all
     @sub_title = 'User list'
-    if request.headers['X-PJAX']
-      render :layout => false
-    end
+    render :layout => suggested_layout
   end
 
   def show
@@ -22,9 +20,7 @@ class UsersController < ApplicationController
       redirect_to '/'
       return
     end
-    if request.headers['X-PJAX']
-      render :layout => false
-    end
+    render :layout => suggested_layout
   end
 
   #TODO do we like a auth and show on user controller?, perhaps move this on session controller #auth

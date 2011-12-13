@@ -18,11 +18,15 @@
   * project readme improvements, switch to markdown
   * use JS framework, backbone.js, etc rewrite calendard in framework
   * move towards SPA (single page application), setup for appification
-  * setup heroku staging server
   * more efficient packaging of JS (concat and minify), remove lawnchair plugins we aren't using.
   * ajax actions (smooth CSS animation transitions)
   * coffeescript asset pipeline rails 3.1 upgrade
-  * move index to rails ajax so it can respond to ajax and load like others and reduce html / script duplication.
+  * improve look delete account button
+  * improve look of user list with mobile table link or similiar UI
+  * look at using perftools/rack_perftools to find dead code on production requests
+    * https://github.com/tmm1/perftools.rb/
+    * http://stackoverflow.com/questions/4823840/dead-code-detection-in-ruby
+    * https://github.com/bhb/rack-perftools_profiler
 
 __Later__
   * Build out as a generic rails or ActiveRecord plugin that syncs offline storage / json. Doesn't have to be on user model. Needs a unique id to associate / sync to and a key. Then you could have acts_as_syncable or some such on any model, or perhaps the plugin creates its own model with a foriegn key to the declared model. either way to allow for generic sync, restore, and merge.

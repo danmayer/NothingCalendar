@@ -12,22 +12,25 @@
     .bind('pjax:start', function() { $('#loading').show() })
     .bind('pjax:end',   function() {
 	$('#loading').hide();
-	var sub_title = $('.data-title').text();
+	var sub_title = $('.data-title').html();
 	$('.subtitle').html(sub_title);
+	window.scrollTo(0, 1);
         startup();
     });
 
   $(function(){
+      setTimeout(function() {
+        window.scrollTo(0, 1);
+      }, 1000);
       startup();
+      $('a[data-pjax]').pjax();
   });
 
   var startup = function(){
     //display calendar
 
     $("#calendar").calendarWidget({});
-    setTimeout(function() {
-        window.scrollTo(0, 1);
-    }, 1000);
+
     $('form:first *:input[type!=hidden]:first').focus();
     if($('#calendar').exists()) {
       if(userPage()) {
@@ -40,7 +43,6 @@
       }
     }
     displayNotices();
-    $('a[data-pjax]').pjax();
   }
 
   var userPage = function(){

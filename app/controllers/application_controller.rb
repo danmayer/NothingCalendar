@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def suggested_layout
+    request.headers['X-PJAX'] ? false : true
+  end
+
 end
