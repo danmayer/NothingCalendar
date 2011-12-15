@@ -3,7 +3,11 @@ class UsersController < ApplicationController
   def index
     @users = User.order('lower(name)').all
     @sub_title = 'User list'
-    render :layout => suggested_layout
+
+    respond_to do |format|
+      format.html { render :layout => suggested_layout }
+      format.json { render :json => @users }
+    end
   end
 
   def show
