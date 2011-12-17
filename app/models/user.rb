@@ -22,7 +22,11 @@ class User < ActiveRecord::Base
 
   #TODO why can't I put custom methods on :only seems only attrs work
   def as_json(options={})
-    result = super(:only => [:email, :id, :name])
+    if options[:only]
+      result = super(:only => options[:only])
+    else
+      result = super(:only => [:email, :id, :name])
+    end
     result.merge('user' =>result['user'].merge({'to_param' => to_param}))
   end
 
