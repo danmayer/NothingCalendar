@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html { render :layout => suggested_layout }
-      format.json { render :json => @users }
+      format.json { render :json => @users.as_json(:request => request) }
     end
   end
 
@@ -31,14 +31,14 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       format.html { render :layout => suggested_layout }
-      format.json { render :json => @user.as_json(:only => [:id, :name]) }
+      format.json { render :json => @user.as_json(:request => request) }
     end
   end
 
   #TODO do we like a auth and show on user controller?, perhaps move this on session controller #auth
   def auth
     if current_user
-      render :json => current_user
+      render :json => current_user.as_json(:only => [:email, :id, :name])
     else
       Rails.logger.info 'requires auth'
       render :json => {}, status => 401

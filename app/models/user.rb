@@ -20,14 +20,28 @@ class User < ActiveRecord::Base
     "#{name.gsub(/[^a-z0-9]+/i, '-')}"
   end
 
+  def to_url(options = {})
+    request = options.delete(:request)
+    path = "/users/#{to_param}.json"
+    if request
+      "#{request.protocol}#{request.host_with_port}#{path}"
+    else
+      path
+    end
+  end
+
   #TODO why can't I put custom methods on :only seems only attrs work
   def as_json(options={})
+    request = options[:request]
     if options[:only]
       result = super(:only => options[:only])
     else
-      result = super(:only => [:email, :id, :name])
+      result = super(:only => [:id, :name])
     end
-    result.merge('user' =>result['user'].merge({'to_param' => to_param}))
+    result.merge('user' => result['user'].merge({
+                                                 'to_param' => to_param,
+                                                  'url' => to_url(:request => request)
+                                               }))
   end
 
 end

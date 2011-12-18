@@ -1,7 +1,12 @@
 class SiteController < ApplicationController
+  include ApiRoutes
 
   def index
-    render :layout => suggested_layout
+    puts ApiRoutes.methods
+    respond_to do |format|
+      format.html { render :layout => suggested_layout }
+      format.json { render :json => ApiRoutes.index(request) }
+    end
   end
 
   def about
