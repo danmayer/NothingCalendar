@@ -6,12 +6,15 @@ Nothingcalendar::Application.routes.draw do
   match "/site/" => "site#index"
   match "/site/about" => "site#about"
   match "/site/templates" => "site#templates"
+  #TODO delete must keep it around for one deploy cycle
+  match "/users/auth" => "users#me"
 
   resources :users, :only => [:index, :show] do
     collection do
-      get 'auth'
+      get 'me'
     end
   end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
