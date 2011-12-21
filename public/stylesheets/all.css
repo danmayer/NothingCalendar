@@ -198,9 +198,14 @@ a{
 }
 
 .footer {
-  font-size: 14px;
+  font-size: 12px;
   border-top: 1px solid black;
   padding: 6px;
+}
+
+
+.footer a{
+  font-size: 18px;
 }
 
 .shared-links {
