@@ -383,6 +383,16 @@ input[type=submit] {
   padding: 0 3% 0 1%;
 }
 
+.sharing {
+  font-size:11px;
+  color:#666;
+  display:inline-block;
+}
+
+.sharing .app {
+  /*padding: 0 3% 0 1%;*/
+}
+
 .nav {
   font-size:15px;
   color:#666;

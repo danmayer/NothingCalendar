@@ -2,6 +2,7 @@ class SiteController < ApplicationController
   include ApiRoutes
 
   def index
+    @page_title = "NothingCalendar - daily progress"
     puts ApiRoutes.methods
     respond_to do |format|
       format.html { render :layout => suggested_layout }
@@ -10,6 +11,7 @@ class SiteController < ApplicationController
   end
 
   def about
+    @page_title = "NothingCalendar - daily progress"
     @sub_title = "Don't break the chain!"
     render :layout => suggested_layout
   end

@@ -8,19 +8,15 @@ Nothing Calendar
 
 <div class="extra_info">
   <div class="auth" id="auth-state">
-    You are viewing <%= @user.name %>'s, calendar!
+    Viewing <%= @user.name %>'s, calendar!
   </div>
-    <div class="sharing">
-      <span class="app">Twitter: <span id="tweets">0</span></span>
-      <span class="app">Facebook: <span id="fb-shares">0</span></span>
-      <span class="app">Google+: <span id="one-ups">0</span></span>
-    </div>
-    <div class="stats">
+  <%= render :partial => "shared/social_shares" %>
+   <div class="stats">
       <span class="stat">Current Steak: <span id="current-streak">0</span></span>
       <span class="stat">Longest Steak: <span id="longest-streak">0</span></span>
       <span class="stat">Total Marks: <span id="total-marks">0</span></span>
     </div>
-</div>
+ </div>
 
   <div id="calendar">
     <p>Please enable Javascript to view this calendar.</p>

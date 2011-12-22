@@ -30,6 +30,7 @@
   * add live error reporting hoptoad or whatnot for site
   * add hurl / api links to README
   * convert readme to markdown with nice formatting (project readme improvements, switch to markdown)
+  * Bug click user name, then click title back to root... now you aren't logged in... WHY WHY OH WHY!!!
 
 __Later__
   * Build out as a generic rails or ActiveRecord plugin that syncs offline storage / json. Doesn't have to be on user model. Needs a unique id to associate / sync to and a key. Then you could have acts_as_syncable or some such on any model, or perhaps the plugin creates its own model with a foriegn key to the declared model. either way to allow for generic sync, restore, and merge.

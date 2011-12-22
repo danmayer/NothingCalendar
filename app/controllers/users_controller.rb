@@ -30,7 +30,11 @@ class UsersController < ApplicationController
       return
     end
     respond_to do |format|
-      format.html { render :layout => suggested_layout }
+      format.html {
+        @page_title = "#{@user.name}'s NothingCalendar"
+        @share_description = "#{@user.name}'s NothingCalendar progress"
+        render :layout => suggested_layout
+      }
       format.json { render :json => @user.as_json(:request => request).merge(:marks => @marks[:data]) }
     end
   end
