@@ -16,6 +16,7 @@
 	$('.subtitle').html(sub_title);
 	window.scrollTo(0, 1);
         startup();
+	shareButtonsRefresh();
     });
 
   $(function(){
@@ -24,7 +25,41 @@
       }, 1000);
       startup();
       $('a[data-pjax]').pjax();
+      shareButtonsInit();
   });
+
+  var shareButtonsRefresh = function() {
+      //re-render the facebook icons (in a div with id of 'content')
+      FB.XFBML.parse(document.getElementById('main'));
+
+      //re-render twitter icons by calling the render() method on each
+      twttr.widgets.load();
+
+      //g+1 rerender
+      gapi.plusone.go("sharing");
+      //gapi.plusone.render("plusone-div");
+  }
+
+  var shareButtonsInit = function() {
+    //google plus button
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+
+   //twitter
+   !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+   //fb
+  (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=209648165783031";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+  };
 
   var startup = function(){
     //display calendar
@@ -265,7 +300,7 @@
       document.cookie = key+'='+value+'; path=/;';
   }
 
-  //TODO to much shared with restore_marks make more of the same
+  //TODO shares to much with restore_marks make more of the same
   var restoreUserMarks = function() {
     update_next_and_previous();
     mark_count = 0;
@@ -409,13 +444,3 @@
     $("#longest-streak").html(longest_streak);
     $("#current-streak").html(current_streak_count);
   }
-
-  //google plus button
-  $(function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-
-   //twitter
-!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-  });
