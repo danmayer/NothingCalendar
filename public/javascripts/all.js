@@ -423,11 +423,12 @@
       }
     };
 
-
    if(userPage()) {
       var data = userMarks.data
-      console.log('data: '+data);
-      $.each(data, loopIteration);
+      console.log('data: ' + data);
+      if(typeof data !== "undefined" && data) {
+        $.each(data, loopIteration);
+      }
     } else {
     marks_store.where('record.val==true').asc('key', function(){
       this.each( loopIteration );
