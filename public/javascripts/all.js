@@ -305,6 +305,7 @@
     update_next_and_previous();
     mark_count = 0;
     var data = userMarks.data
+    if(data) {
     $.each(data, function(index, item) {
         if(item.key!="last_updated") {
 	  mark_count += 1;
@@ -314,6 +315,7 @@
           console.log('last updated: '+item.key+' : '+item.val);
         }
       });
+    }
     $("#total-marks").html(mark_count);
     streaks();
   }
