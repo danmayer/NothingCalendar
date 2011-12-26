@@ -36,6 +36,7 @@
       twttr.widgets.load();
 
       //g+1 rerender
+      $('.g-plusone').attr( 'data-href' , document.location.href );
       gapi.plusone.go("sharing");
   }
 
