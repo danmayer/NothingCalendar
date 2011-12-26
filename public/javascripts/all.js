@@ -36,8 +36,7 @@
       twttr.widgets.load();
 
       //g+1 rerender
-      //gapi.plusone.go("sharing");
-      //gapi.plusone.render("plusone-div");
+      gapi.plusone.go("sharing");
   }
 
   var shareButtonsInit = function() {
