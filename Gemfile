@@ -36,6 +36,6 @@ gem 'poirot', '0.0.2'
 # and rake tasks are available in development mode:
 group :development, :test do
   gem "mongrel"
-  # gem 'webrat'
+  gem 'mocha'
   # gem 'ruby-debug19', :require => 'ruby-debug'
 end
