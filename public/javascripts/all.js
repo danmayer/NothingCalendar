@@ -9,7 +9,10 @@
 
   //pjax start and end functions
   $('#main')
-    .bind('pjax:start', function() { $('#loading').show() })
+    .bind('pjax:start', function() {
+	$('#loading').show();
+	userMarks = nil;
+    })
     .bind('pjax:end',   function() {
 	$('#loading').hide();
 	var sub_title = $('.data-title').html();
