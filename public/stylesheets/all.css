@@ -231,7 +231,7 @@ a{
   @group Calendar Styles
 ------------------------------------------------------------------------------------*/
 
-#calendar, #widget{
+#calendar, #widget, .calendar {
   margin:0px auto 5px auto;
   padding:0 0 20px 0;
   width:95%;
@@ -241,13 +241,13 @@ a{
 }
 
 
-#calendar table{
+#calendar table, .calendar table {
   width:98%;
   border-spacing:none;
   border-collapse:collapse;
 }
 
-#calendar table th .monthName{
+#calendar table th .monthName, .calendar table th .monthName {
   padding:0px;
   font-size:22px;
   letter-spacing:2px;
@@ -256,7 +256,7 @@ a{
   margin:0px;
 }
 
-#calendar table th .current-year{
+#calendar table th .current-year, .calendar table th .current-year {
   padding:0px;
   padding-right:14px;
   font-size:14px;
@@ -265,7 +265,7 @@ a{
   color:#b20000;
 }
 
-#calendar table th{
+#calendar table th, .calendar table th {
   font-size:9px;
   font-weight:normal;
   text-transform:uppercase;
@@ -273,15 +273,15 @@ a{
 
 /*iphone*/
 @media screen and (max-device-width: 480px) {
-  #calendar table th{
+  #calendar table th, .calendar table th {
     font-size:8px;
   }
 }
 
 
-#calendar table th a.next{ text-align:right; }
+#calendar table th a.next, .calendar table th a.next { text-align:right; }
 
-#calendar table td{
+#calendar table td, .calendar table td {
   position:relative;
   text-align:center;
   font-size:28px;
@@ -291,7 +291,7 @@ a{
   opacity:1.0;
 }
 
-#calendar table td.othermonth, td.othermonth, table td.othermonth {
+#calendar table td.othermonth, .calendar table td.othermonth, td.othermonth, table td.othermonth {
   color:#ccc;
 }
 

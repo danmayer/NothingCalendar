@@ -1,0 +1,1 @@
+$('.streaks').click(function() { Android.showToast('starting'); Android.showUsers(); return false; })

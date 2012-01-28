@@ -13,7 +13,7 @@
   * multiple track chains (tagging on chains (workout, quit smoking, etc))
   * conflict resolution: offers take local, take server version, or merge. (first two are done now need a merge option and better UI for the first two)
   * mobile offline detection seems to be failing
-  * possible about 'intro' then cookie user so they never see again
+  * possible FTE about site 'intro' then cookie user so they never see again
   * rewrite all views as mustache, so they can be server or client side
   * use JS framework, backbone.js, etc rewrite calendard in framework
   * more efficient packaging of JS (concat and minify), remove lawnchair plugins we aren't using.
@@ -25,7 +25,6 @@
     * https://github.com/tmm1/perftools.rb/
     * http://stackoverflow.com/questions/4823840/dead-code-detection-in-ruby
     * https://github.com/bhb/rack-perftools_profiler
-  * Share on twitter, facebook, google+, etc
   * start discoverable api returning all json (done now need posting, etc, actions)
   * add live error reporting hoptoad or whatnot for site
   * add hurl / api links to README

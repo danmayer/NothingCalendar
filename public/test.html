@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>Testing page</title>
+  <link href="/stylesheets/all.css" rel="stylesheet" type="text/css">
+  <style>
+#calendar-container {
+	width:95%;
+	height:100%;
+/*        width:450px;
+	height:281px;*/
+	overflow:hidden;
+	position:relative;
+}
+
+#calenders {
+	position:absolute;
+	left:0px;
+	width:300%;
+	-webkit-transition:all 1.0s ease-in-out;
+	-moz-transition:all 1.0s ease-in-out;
+	-o-transition:all 1.0s ease-in-out;
+	-ms-transition:all 1.0s ease-in-out;
+	transition:all 1.0s ease-in-out;
+}
+
+#calenders div, #calenders li, #calenders span {
+	padding:0;
+	margin:0;
+	/*float:left;*/
+}
+
+#calenders .calendar {
+  display: inline-block;
+}
+  </style>
+  <script src="/javascripts/jquery-1.4.2.min.js"></script>
+  <script src="/javascripts/jquery.calendar-widget.js"></script>
+  <!--fixes a broken json parser on some android phones -->
+  <script>window.JSON = null;</script>
+  <script src="/javascripts/json2.js"></script>
+  <script src="/javascripts/lawnchair-0.6.1.min.js"></script>
+  <script src="/javascripts/query.js"></script>
+  <script src="/javascripts/mustache.js"></script>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  <link rel="Icon" href="/images/favicon.ico">
+  <link rel="apple-touch-icon" href="/images/icon.png"/>
+  <link rel="apple-touch-icon-precomposed" href="/images/precomposed-icon.png"/>
+  <link rel="apple-touch-startup-image" href="/images/startup.png">
+</head>
+
+<body>
+<h1>Animation Tests</h1>
+
+<div id="calendar-container">
+  <div id="calenders">
+    <span id="main-calendar" class="calendar">
+      <p>Please enable Javascript to view this calendar.</p>
+    </span>
+    <span id="next-calendar" class="calendar">
+      <p>Please enable Javascript to view this calendar.</p>
+    </span>
+  </ul>
+</div>
+
+
+<script>
+$("#main-calendar").calendarWidget({});
+var next_month = month + 1;
+if(next_month >= 12) {
+  year = year + 1;
+  next_month = 0;
+}
+$("#next-calendar").calendarWidget({
+  month: next_month,
+  year: year
+});
+
+var shift_width = screen.width;
+$("#calenders .calendar table").css("width", shift_width);
+$("#calenders .calendar").css("width", shift_width);
+
+$("#next-month").unbind('click');
+$(".next-month").unbind('click');
+$('.next-month').click( function() {
+  $("#calenders").css("left","-"+shift_width+"px");
+  return false;
+});
+
+$("#prev-month").unbind('click');
+$(".prev-month").unbind('click');
+$('.prev-month').click( function() {
+  $("#calenders").css("left","0px");
+  return false;
+});
+</script>
+
+<br/>
+<hr/>
+<!-- hhmts start -->Last modified: Sat Jan 28 13:18:48 EST 2012 <!-- hhmts end -->
+</body> </html>

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html { render :layout => suggested_layout }
-      format.json { render :json => @users.as_json(:request => request) }
+      format.json { render :json => {:users => @users.as_json(:request => request, :skip_root => true)} }
     end
   end
 

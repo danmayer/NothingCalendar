@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation,
   :remember_me, :last_updated, :marks_data, :name
 
@@ -38,10 +37,17 @@ class User < ActiveRecord::Base
     else
       result = super(:only => [:id, :name])
     end
-    result.merge('user' => result['user'].merge({
-                                                 'to_param' => to_param,
-                                                  'url' => to_url(:request => request)
-                                               }))
+    if options[:skip_root]
+      result.merge(result['user'].merge({
+                                          'to_param' => to_param,
+                                          'url' => to_url(:request => request)
+                                        }))
+    else
+      result.merge('user' => result['user'].merge({
+                                                    'to_param' => to_param,
+                                                    'url' => to_url(:request => request)
+                                                  }))
+    end
   end
 
 end
