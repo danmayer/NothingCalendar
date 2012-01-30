@@ -84,19 +84,27 @@ $("#calenders .calendar").css("width", shift_width);
 $("#next-month").unbind('click');
 $(".next-month").unbind('click');
 $('.next-month').click( function() {
-  $("#calenders").css("left","-"+shift_width+"px");
+  if(typeof($("#calenders")[0].style['-webkit-transform'])!='undefined') {
+    $("#calenders").css("-webkit-transform","translate("+"-"+shift_width+"px"+", 0px)");
+  } else {
+    $("#calenders").css("left","-"+shift_width+"px");
+  }
   return false;
 });
 
 $("#prev-month").unbind('click');
 $(".prev-month").unbind('click');
 $('.prev-month').click( function() {
-  $("#calenders").css("left","0px");
+  if(typeof($("#calenders")[0].style['-webkit-transform'])!='undefined') {
+    $("#calenders").css("-webkit-transform","translate("+"0px"+", 0px)");
+  } else {
+    $("#calenders").css("left","0px");
+  }
   return false;
 });
 </script>
 
 <br/>
 <hr/>
-<!-- hhmts start -->Last modified: Sat Jan 28 13:18:48 EST 2012 <!-- hhmts end -->
+<!-- hhmts start -->Last modified: Sun Jan 29 21:50:33 EST 2012 <!-- hhmts end -->
 </body> </html>
