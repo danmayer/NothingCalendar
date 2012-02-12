@@ -3,7 +3,6 @@ class SiteController < ApplicationController
 
   def index
     @page_title = "NothingCalendar - daily progress"
-    puts ApiRoutes.methods
     respond_to do |format|
       format.html { render :layout => suggested_layout }
       format.json { render :json => ApiRoutes.index(request) }

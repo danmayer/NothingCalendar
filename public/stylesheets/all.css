@@ -42,6 +42,10 @@ body{
 
 .nav_info {
   background:#DFDFDF;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  z-index: 3;
 }
 
 .nav_info a {
@@ -56,6 +60,12 @@ body{
 
 .extra_info {
   background:#DFDFDF;
+  width: 100%;
+  z-index: 2;
+  position: fixed;
+  padding-top: 75px;
+  top: 0px;
+  border-bottom:2px solid #000;
 }
 .wrap {
   text-align:center;
@@ -167,17 +177,13 @@ a{
   @group Homepage
 ---------------------------------------*/
 
-/*#main, #borderedMain{
-  margin:15px auto 20px auto;
-  padding:0 0 20px 0;
-  width:90%;
-  background:#fff;
+#main{
+  padding-top:50px;
 }
 
-#borderedMain{
-  border-top:2px solid #000;
-  border-bottom:1px solid #000;
-}*/
+#main < .extra_info{
+  padding-top:5px;
+}
 
 #content{
   width: 95%;
@@ -233,11 +239,10 @@ a{
 
 #calendar, #widget, .calendar {
   margin:0px auto 5px auto;
-  padding:0 0 20px 0;
+  padding:90px 0 20px 0;
   width:95%;
   background:#fff;
   font-size:24px;
-  border-top:2px solid #000;
 }
 
 

@@ -10,7 +10,7 @@ Nothing Calendar
   <div class="auth" id="auth-state">
     Viewing <%= @user.name %>'s, calendar!
   </div>
-  <%= render :partial => "shared/social_shares" %>
+
    <div class="stats">
       <span class="stat">Current Steak: <span id="current-streak">0</span></span>
       <span class="stat">Longest Steak: <span id="longest-streak">0</span></span>
@@ -25,3 +25,7 @@ Nothing Calendar
 <script>
   var userMarks = $.parseJSON('<%= raw(@marks.as_json) %>');
 </script>
+
+<% unless request.headers['HTTP_APP_REQUEST'] %>
+  <%= render :partial => "shared/social_shares" %>
+<% end %>

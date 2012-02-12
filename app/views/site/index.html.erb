@@ -25,4 +25,6 @@
    <p>Please enable Javascript to view this calendar.</p>
 </div>
 
-<%= render :partial => "shared/social_shares" %>
+<% unless request.headers['HTTP_APP_REQUEST'] %>
+  <%= render :partial => "shared/social_shares" %>
+<% end %>
