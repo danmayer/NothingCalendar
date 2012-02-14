@@ -1,7 +1,7 @@
 require File.expand_path('../test_helper', File.dirname(__FILE__))
 
 class UserTest < ActiveSupport::TestCase
-  
+
   test "creates a valid mark" do
     time = Time.now
     mark = Mark.new( {:last_updated => time,
@@ -23,7 +23,7 @@ class UserTest < ActiveSupport::TestCase
     mark = Mark.new( {:last_updated => time,
                 :marks_data => []})
     assert_equal time, mark.as_hash[:last_updated]
-    assert_equal [], JSON.parse(mark.as_hash[:marks_data])
+    assert_equal [], mark.as_hash[:marks_data]
   end
 
 end

@@ -6,7 +6,7 @@ class ApiRoutesTest < ActiveSupport::TestCase
   test "index defaults to paths if not passed request" do
     results = ApiRoutes.index
     assert_equal [:routes], results.keys
-    assert_equal [:index,:users,:me], results[:routes].keys
+    assert_equal [:index,:users,:me].sort_by {|sym| sym.to_s}, results[:routes].keys.sort_by {|sym| sym.to_s}
     assert_equal '/users.json', results[:routes][:users]
   end
 
@@ -16,7 +16,7 @@ class ApiRoutesTest < ActiveSupport::TestCase
     fake_request.stubs(:host_with_port).returns('test.com')
     results = ApiRoutes.index(fake_request)
     assert_equal [:routes], results.keys
-    assert_equal [:index,:users,:me], results[:routes].keys
+    assert_equal [:index,:users,:me].sort_by {|sym| sym.to_s}, results[:routes].keys.sort_by {|sym| sym.to_s}
     assert_equal 'http://test.com/users.json', results[:routes][:users]
   end
 
