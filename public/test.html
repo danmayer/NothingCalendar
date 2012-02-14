@@ -4,7 +4,7 @@
   <link href="/stylesheets/all.css" rel="stylesheet" type="text/css">
   <style>
 #calendar-container {
-	width:95%;
+	width:100%;
 	height:100%;
 /*        width:450px;
 	height:281px;*/
@@ -15,7 +15,20 @@
 #calenders {
 	position:absolute;
 	left:0px;
-	width:300%;
+	width:1205%;
+    	-webkit-transition:all 1.0s ease-in-out;
+	-moz-transition:all 1.0s ease-in-out;
+	-o-transition:all 1.0s ease-in-out;
+	-ms-transition:all 1.0s ease-in-out;
+	transition:all 1.0s ease-in-out;
+}
+
+#notused {
+    -webkit-transition:none;
+	-moz-transition:none;
+	-o-transition:none;
+	-ms-transition:none;
+	transition:none;
 	-webkit-transition:all 1.0s ease-in-out;
 	-moz-transition:all 1.0s ease-in-out;
 	-o-transition:all 1.0s ease-in-out;
@@ -55,6 +68,9 @@
 
 <div id="calendar-container">
   <div id="calenders">
+    <span id="prev-calendar" class="calendar">
+      <p>Please enable Javascript to view this calendar.</p>
+    </span>
     <span id="main-calendar" class="calendar">
       <p>Please enable Javascript to view this calendar.</p>
     </span>
@@ -67,28 +83,81 @@
 
 <script>
 $("#main-calendar").calendarWidget({});
-var next_month = month + 1;
-if(next_month >= 12) {
-  year = year + 1;
-  next_month = 0;
+var orig_month = month;
+var orig_year = year;
+
+var prev_month = orig_month - 1;
+var prev_year = orig_year;
+if(prev_month < 0) {
+  prev_year = orig_year - 1;
+  prev_month = 12;
 }
-$("#next-calendar").calendarWidget({
-  month: next_month,
-  year: year
+$("#prev-calendar").calendarWidget({
+  month: prev_month,
+  year: prev_year
 });
 
+var next_month = orig_month;
+var next_year = orig_year;
+var next_month_and_year = function(){
+ next_month = orig_month + 1;
+ next_year = orig_year;
+ if(next_month >= 12) {
+  next_year = orig_year + 1;
+  next_month = 0;
+ }
+}
+
+next_month_and_year();
+$("#next-calendar").calendarWidget({
+  month: next_month,
+  year: next_year
+});
+
+//don't shift back recalculate how much to shift opposed to hard coded values
+
 var shift_width = screen.width;
+var prev_width = shift_width;
+var current_position = 0 - shift_width;
 $("#calenders .calendar table").css("width", shift_width);
 $("#calenders .calendar").css("width", shift_width);
+//center calendar
+$("#calenders").css("-webkit-transform","translate("+current_position+"px"+",0px)");
 
 $("#next-month").unbind('click');
 $(".next-month").unbind('click');
-$('.next-month').click( function() {
-  if(typeof($("#calenders")[0].style['-webkit-transform'])!='undefined') {
-    $("#calenders").css("-webkit-transform","translate("+"-"+shift_width+"px"+", 0px)");
+$('.next-month').live('click', function() {
+  current_position = current_position - shift_width;
+  prev_width = prev_width + shift_width;
+  if(typeof($("#calenders")[0].style['-webkit-transform'])!='undefined')
+{
+$("#calenders").css("-webkit-transform","translate("+current_position+"px"+",0px)");
   } else {
-    $("#calenders").css("left","-"+shift_width+"px");
+    $("#calenders").css("left","-"+shift_width*2+"px");
   }
+
+  orig_month = next_month;
+  orig_year = next_year;
+  next_month_and_year();
+
+  $("#prev-calendar").remove();
+  //$("#main-calendar").css("width", prev_width);
+  $("#main-calendar").attr("id","prev-calendar");
+  $("#next-calendar").attr("id","main-calendar");
+  var new_next = $("<span class='calendar'><p></p></span>");
+  new_next.attr("id","next-calendar");
+  $("#calenders").append(new_next);
+  $("#calenders #next-calendar").css("width", shift_width);
+  $("#next-calendar").calendarWidget({
+    month: next_month,
+    year: next_year
+  });
+
+  window.setTimeout(function() {
+    //$("#calenders").css('-webkit-transition','all 0.0s ease-in-out');
+    $("#prev-calendar").css("width", prev_width);
+  }, 1000);/**/
+
   return false;
 });
 
@@ -106,5 +175,5 @@ $('.prev-month').click( function() {
 
 <br/>
 <hr/>
-<!-- hhmts start -->Last modified: Sun Jan 29 21:50:33 EST 2012 <!-- hhmts end -->
+<!-- hhmts start -->Last modified: Tue Feb 14 00:49:28 EST 2012 <!-- hhmts end -->
 </body> </html>
