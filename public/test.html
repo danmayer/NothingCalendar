@@ -6,8 +6,6 @@
 #calendar-container {
 	width:100%;
 	height:100%;
-/*        width:450px;
-	height:281px;*/
 	overflow:hidden;
 	position:relative;
 }
@@ -21,6 +19,14 @@
 	-o-transition:all 1.0s ease-in-out;
 	-ms-transition:all 1.0s ease-in-out;
 	transition:all 1.0s ease-in-out;
+}
+
+#calenders.fast {
+    	-webkit-transition:all 0.3s ease-in-out;
+	-moz-transition:all 0.3s ease-in-out;
+	-o-transition:all 0.3s ease-in-out;
+	-ms-transition:all 0.3s ease-in-out;
+	transition:all 0.3s ease-in-out;
 }
 
 #notused {
@@ -39,7 +45,6 @@
 #calenders div, #calenders li, #calenders span {
 	padding:0;
 	margin:0;
-	/*float:left;*/
 }
 
 #calenders .calendar {
@@ -67,12 +72,25 @@
 <h1>Animation Tests</h1>
 
 <div id="calendar-container">
-  <div id="calenders">
+  <div id="calenders" class="fast">
   </div>
 </div>
 
 
 <script>
+/*
+  all 12 months are there but only prev, current, and next populate
+  animate between the 12 cubes redrwaring only prev, current, and next
+  if they pass a year animate quickly all the way over and redraw...
+  starting animation should also be like 0.1 opposed to full second.
+  all done except the only drawing 3 of the calendars
+*/
+
+var flipAnimationSpeed = function() {
+  $("#calenders").toggleClass('fast');
+}
+
+setTimeout('flipAnimationSpeed()', 400)
 
 //build calender collection
 var n = 0;
@@ -123,13 +141,6 @@ $("#calenders .calendar").css("width", shift_width);
 //center calendar on current month
 $("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
 
-/*
-  all 12 months are there but only prev, current, and next populate
-  animate between the 12 cubes redrwaring only prev, current, and next
-  if they pass a year animate quickly all the way over and redraw...
-  starting animation should also be like 0.1 opposed to full second.
-*/
-
 $("#next-month").unbind('click');
 $(".next-month").unbind('click');
 $('.next-month').live('click', function() {
@@ -158,8 +169,4 @@ $('.prev-month').click( function() {
   return false;
 });
 </script>
-
-<br/>
-<hr/>
-<!-- hhmts start -->Last modified: Wed Feb 15 20:41:30 EST 2012 <!-- hhmts end -->
 </body> </html>

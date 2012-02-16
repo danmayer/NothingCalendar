@@ -25,7 +25,7 @@ class MarksController < ApplicationController
       end
 
       remote_data = if current_user.marks_data
-                      JSON.parse(current_user.marks_data)
+                      JSON.parse(current_user.marks_data) rescue nil
                     else
                       nil
                     end
