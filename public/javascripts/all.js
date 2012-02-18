@@ -308,19 +308,24 @@
 
   var upgradeMarks = function() {
       var oldDateFormat = /^\d{1,2}(\-|\/|\.)\d{1,2}\1\d{4}$/
+      var needs_update = [];
       marks_store.all(function(items) {
           items.forEach(function(item) {
               if(item.key!="last_updated") {
                   if(oldDateFormat.test(item.key)) {
-		    var convertedDate = new Date(item.key);
-                    convertedDate = dateFormatted(convertedDate);
-                    console.log('update cached-mark old: '+item.key+' new: '+convertedDate);
-		    marks_store.remove(item.key, function() {});
-                    marks_store.save({key:convertedDate,val:true});
+                      needs_update.push(item);
 		  }
               }
           });
       });
+
+      $.each(needs_update, function(index, item) {
+	  var convertedDate = new Date(item.key);
+          convertedDate = dateFormatted(convertedDate);
+          console.log('update cached-mark old: '+item.key+' new: '+convertedDate);
+	  marks_store.remove(item.key, function() {});
+          marks_store.save({key:convertedDate,val:true});
+      }
   }
 
   //this shares to much with restore_marks make more of the same
