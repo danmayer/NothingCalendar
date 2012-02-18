@@ -45,7 +45,7 @@ body{
   position: fixed;
   width: 100%;
   top: 0px;
-  z-index: 3;
+  z-index: 5;
 }
 
 .nav_info a {
@@ -61,7 +61,7 @@ body{
 .extra_info {
   background:#DFDFDF;
   width: 100%;
-  z-index: 2;
+  z-index: 4;
   position: fixed;
   padding-top: 75px;
   top: 0px;
@@ -456,7 +456,7 @@ ol.example, ul.example {
   position:relative;
   float:left;*/
   margin-top:-60px;
-  z-index:100;
+  z-index:3;
   background:url(../images/x_1.png) 60% 100% no-repeat;
   opacity:0.7;
 }
@@ -467,7 +467,7 @@ ol.example, ul.example {
   position:relative;
   float:left;*/
   margin-top:-60px;
-  z-index:100;
+  z-index:3;
   background:url(../images/x_2.png) 60% 100% no-repeat;
   opacity:0.7;
 }

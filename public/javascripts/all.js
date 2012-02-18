@@ -66,8 +66,10 @@
 
   var startup = function(){
     //display calendar
-
     $("#calendar").calendarWidget({});
+
+    //one time upgrade user marks if using the old bad key format
+    upgradeMarks();
 
     $('form:first *:input[type!=hidden]:first').focus();
     if($('#calendar').exists()) {
@@ -211,6 +213,7 @@
             console.log("start sync");
             sync_data = [];
             marks_store.all(function(items) { sync_data = items });
+            console.log('sync data size: '+sync_data.length);
             sync_data = {'data':JSON.stringify(sync_data), 'first_sync':first_sync}
             console.log('sync data: '+sync_data['data']);
             $.post("/marks/sync", sync_data, function (data) {
@@ -303,7 +306,24 @@
       document.cookie = key+'='+value+'; path=/;';
   }
 
-  //TODO shares to much with restore_marks make more of the same
+  var upgradeMarks = function() {
+      var oldDateFormat = /^\d{1,2}(\-|\/|\.)\d{1,2}\1\d{4}$/
+      marks_store.all(function(items) {
+          items.forEach(function(item) {
+              if(item.key!="last_updated") {
+                  if(oldDateFormat.test(item.key)) {
+		    var convertedDate = new Date(item.key);
+                    convertedDate = dateFormatted(convertedDate);
+                    console.log('update cached-mark old: '+item.key+' new: '+convertedDate);
+		    marks_store.remove(item.key, function() {});
+                    marks_store.save({key:convertedDate,val:true});
+		  }
+              }
+          });
+      });
+  }
+
+  //this shares to much with restore_marks make more of the same
   var restoreUserMarks = function() {
     update_next_and_previous();
     mark_count = 0;
@@ -332,7 +352,7 @@
       marks_store.all(function(items) {
         items.forEach(function(item) {
           if(item.key!="last_updated") {
-	          mark_count += 1;
+	    mark_count += 1;
             console.log('cached-mark: '+item.key);
             $("#"+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
           } else {
@@ -349,7 +369,7 @@
     var curr_date  = zeroPad(d.getDate(),2);
     var curr_month = zeroPad(d.getMonth() + 1,2); //months are zero based
     var curr_year  = zeroPad(d.getFullYear(),2);
-    return (curr_month + "-" + curr_date + "-" + curr_year);
+    return (curr_year + "-" + curr_month + "-" + curr_date);
   }
 
   var zeroPad = function (num,count) {
@@ -368,6 +388,7 @@
     var current_streak_count = 0;
     var today = new Date();
     var yesterday = new Date();
+    var swap_item = null;
     yesterday.setDate(yesterday.getDate() - 1);
 
     var loopIteration = function(record, index) {
@@ -375,9 +396,9 @@
 	  // Seriously jquery loop and lawnchair loop function
           // have record and index in opposite fields
 	  // TODO find a better way to swap or make more explicit with mehtod call
-	  item = index
+	  swap_item = index
 	  index = record
-	  record = item
+	  record = swap_item
 	}
 
         if(record.key!='last_updated') {
@@ -394,7 +415,7 @@
           //console.log('more than one');
           var tomorrow = new Date();
           var parts = current_streak[current_streak.length-1].split('-');
-          tomorrow.setFullYear(parts[2], parts[0]-1, parts[1]); // year, month (0-based), day
+          tomorrow.setFullYear(parts[0], parts[1]-1, parts[2]); // year, month (0-based), day
           tomorrow.setTime(tomorrow.getTime() + 86400000);
           //console.log('tomorrow: '+dateFormatted(tomorrow));
           //console.log('matching: '+record.key);
