@@ -28,7 +28,7 @@ class Mark
 
   def as_hash
     {:last_updated => last_updated,
-      :marks_data => marks_data.as_json}
+      :marks_data => marks_data.as_json.to_json}
   end
 
 end
