@@ -314,18 +314,18 @@
               if(item.key!="last_updated") {
                   if(oldDateFormat.test(item.key)) {
                       needs_update.push(item);
-		  }
+      		  }
               }
           });
       });
 
       $.each(needs_update, function(index, item) {
-	  var convertedDate = new Date(item.key);
+      	  var convertedDate = new Date(item.key);
           convertedDate = dateFormatted(convertedDate);
           console.log('update cached-mark old: '+item.key+' new: '+convertedDate);
-	  marks_store.remove(item.key, function() {});
+      	  marks_store.remove(item.key, function() {});
           marks_store.save({key:convertedDate,val:true});
-      }
+      });
   }
 
   //this shares to much with restore_marks make more of the same
