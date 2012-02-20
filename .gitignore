@@ -1,6 +1,7 @@
 README
 .bundle
 db/*.sqlite3
+db/*.sqlite3.orig
 log/*.log
 tmp/
 public/images/.DS_Store
