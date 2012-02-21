@@ -59,6 +59,7 @@
   <script src="/javascripts/lawnchair-0.6.1.min.js"></script>
   <script src="/javascripts/query.js"></script>
   <script src="/javascripts/mustache.js"></script>
+  <!-- <script src="/javascripts/all.js"></script> -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
@@ -93,6 +94,7 @@ var flipAnimationSpeed = function() {
 setTimeout('flipAnimationSpeed()', 400)
 
 //build calender collection
+current_date = new Date();
 var n = 0;
 var new_cal = $("<span class='calendar'><p></p></span>");
 do {
@@ -114,24 +116,28 @@ var prev_month_and_year = function(){
   month = month - 1;
   if(month < 0) {
     year = year - 1;
-    month = 12;
+    month = 11;
   }
 }
 
+var reset_calendar_year = function(){
+  month = 0;
+  n = 0;
+  do {
+    $("#calendar-"+n).calendarWidget({
+      month: month,
+      year: year
+    });
+    next_month_and_year();
+    ++n;
+  } while (n<12)
+}
+
 var month = 0;
-var year = 2012;
-n = 0;
-do {
-  $("#calendar-"+n).calendarWidget({
-    month: month,
-    year: year
-  });
-  next_month_and_year();
-  ++n;
-} while (n<12)
+var year = current_date.getYear()+1900;
+reset_calendar_year();
 
 var shift_width = document.documentElement.clientWidth; //screen.width;
-current_date = new Date();
 //reset month to now
 month = current_date.getMonth();
 var current_position = (month) * shift_width;
@@ -144,7 +150,14 @@ $("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0p
 $("#next-month").unbind('click');
 $(".next-month").unbind('click');
 $('.next-month').live('click', function() {
+  old_year = year;
   next_month_and_year();
+  old_month = month;
+  if(year != old_year) {
+    year = old_year;
+    reset_calendar_year();
+    month = old_month;
+  }
   current_position = (month) * shift_width;
   if(typeof($("#calenders")[0].style['-webkit-transform'])!='undefined')
   {
@@ -158,8 +171,16 @@ $('.next-month').live('click', function() {
 
 $("#prev-month").unbind('click');
 $(".prev-month").unbind('click');
-$('.prev-month').click( function() {
+$('.prev-month').live('click', function() {
+  old_year = year;
   prev_month_and_year();
+  old_month = month;
+  if(year != old_year) {
+    year = year - 1
+    reset_calendar_year();
+    month = old_month;
+  }
+
   current_position = (month) * shift_width;
   if(typeof($("#calenders")[0].style['-webkit-transform'])!='undefined') {
     $("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
