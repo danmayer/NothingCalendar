@@ -5,6 +5,7 @@ Nothingcalendar::Application.routes.draw do
 
   match "/site/" => "site#index"
   match "/site/about" => "site#about"
+  match "/site/test" => "site#test"
   match "/site/templates" => "site#templates"
   #TODO delete must keep it around for one deploy cycle
   match "/users/auth" => "users#me"

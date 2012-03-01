@@ -26,6 +26,7 @@
       setTimeout(function() {
         window.scrollTo(0, 1);
       }, 1000);
+      //TODO startup doesn't work on animated calendars
       startup();
       $('a[data-pjax]').pjax();
       shareButtonsInit();
@@ -476,3 +477,118 @@
     $("#longest-streak").html(longest_streak);
     $("#current-streak").html(current_streak_count);
   }
+
+/*begin new animation functions these should all be in a closure*/
+
+var flipAnimationSpeed = function() {
+  $("#calenders").toggleClass('fast');
+};
+
+var next_month_and_year = function(){
+ month = month + 1;
+ if(month >= 12) {
+  year = year + 1;
+  month = 0;
+ }
+};
+
+var prev_month_and_year = function(){
+  month = month - 1;
+  if(month < 0) {
+    year = year - 1;
+    month = 11;
+  }
+};
+
+var reset_calendar_year = function(){
+  month = 0;
+  n = 0;
+  do {
+    $("#calendar-"+n).calendarWidget({
+      month: month,
+      year: year
+    });
+    next_month_and_year();
+    ++n;
+  } while (n<12)
+}
+
+/*
+  all 12 months are there but only prev, current, and next populate
+  animate between the 12 cubes redrwaring only prev, current, and next
+  if they pass a year animate quickly all the way over and redraw...
+  starting animation should also be like 0.1 opposed to full second.
+  all done except the only drawing 3 of the calendars
+*/
+current_date = new Date();
+var animatedCalendars = function() {
+
+  setTimeout('flipAnimationSpeed()', 400)
+
+//build calender collection
+var n = 0;
+var new_cal = $("<span class='calendar'><p></p></span>");
+do {
+  new_cal = $("<span class='calendar'><p></p></span>");
+  new_cal.attr("id","calendar-"+n);
+  $("#calenders").append(new_cal);
+  ++n;
+} while (n<12)
+
+month = 0;
+year = current_date.getYear()+1900;
+reset_calendar_year();
+
+var shift_width = document.documentElement.clientWidth; //screen.width;
+//reset month to now
+month = current_date.getMonth();
+var current_position = (month) * shift_width;
+$("#calenders .calendar table").css("width", shift_width);
+$("#calenders .calendar").css("width", shift_width);
+
+//center calendar on current month
+$("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
+
+$("#next-month").unbind('click');
+$(".next-month").unbind('click');
+$('.next-month').live('click', function() {
+  old_year = year;
+  next_month_and_year();
+  old_month = month;
+  if(year != old_year) {
+    year = old_year;
+    reset_calendar_year();
+    month = old_month;
+  }
+  current_position = (month) * shift_width;
+  if(typeof($("#calenders")[0].style['-webkit-transform'])!='undefined')
+  {
+    $("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
+  } else {
+    $("#calenders").css("left","-"+shift_width*2+"px");
+  }
+
+  return false;
+});
+
+$("#prev-month").unbind('click');
+$(".prev-month").unbind('click');
+$('.prev-month').live('click', function() {
+  old_year = year;
+  prev_month_and_year();
+  old_month = month;
+  if(year != old_year) {
+    year = year - 1
+    reset_calendar_year();
+    month = old_month;
+  }
+
+  current_position = (month) * shift_width;
+  if(typeof($("#calenders")[0].style['-webkit-transform'])!='undefined') {
+    $("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
+  } else {
+    $("#calenders").css("left","0px");
+  }
+  return false;
+});
+}

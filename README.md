@@ -31,6 +31,7 @@ This project aims to help tracking arbitrary events. Such as working out every d
 * add live error reporting hoptoad or whatnot for site
 * add hurl / api links to README
 * possible phonegap compatibility for native android / iphone app.
+* Twitter tweet text is getting displayed to the screen for some reason, fix it
 
 ### Later
 * Build out as a generic rails or ActiveRecord plugin that syncs offline storage / json. Doesn't have to be on user model. Needs a unique id to associate / sync to and a key. Then you could have acts_as_syncable or some such on any model, or perhaps the plugin creates its own model with a foreign key to the declared model. either way to allow for generic sync, restore, and merge.

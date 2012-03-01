@@ -2,55 +2,6 @@
 <html> <head>
 <title>Testing page</title>
   <link href="/stylesheets/all.css" rel="stylesheet" type="text/css">
-  <style>
-#calendar-container {
-	width:100%;
-	height:100%;
-	overflow:hidden;
-	position:relative;
-}
-
-#calenders {
-	position:absolute;
-	left:0px;
-	width:1300%;
-    	-webkit-transition:all 1.0s ease-in-out;
-	-moz-transition:all 1.0s ease-in-out;
-	-o-transition:all 1.0s ease-in-out;
-	-ms-transition:all 1.0s ease-in-out;
-	transition:all 1.0s ease-in-out;
-}
-
-#calenders.fast {
-    	-webkit-transition:all 0.3s ease-in-out;
-	-moz-transition:all 0.3s ease-in-out;
-	-o-transition:all 0.3s ease-in-out;
-	-ms-transition:all 0.3s ease-in-out;
-	transition:all 0.3s ease-in-out;
-}
-
-#notused {
-    -webkit-transition:none;
-	-moz-transition:none;
-	-o-transition:none;
-	-ms-transition:none;
-	transition:none;
-	-webkit-transition:all 1.0s ease-in-out;
-	-moz-transition:all 1.0s ease-in-out;
-	-o-transition:all 1.0s ease-in-out;
-	-ms-transition:all 1.0s ease-in-out;
-	transition:all 1.0s ease-in-out;
-}
-
-#calenders div, #calenders li, #calenders span {
-	padding:0;
-	margin:0;
-}
-
-#calenders .calendar {
-  display: inline-block;
-}
-  </style>
   <script src="/javascripts/jquery-1.4.2.min.js"></script>
   <script src="/javascripts/jquery.calendar-widget.js"></script>
   <!--fixes a broken json parser on some android phones -->
@@ -59,7 +10,8 @@
   <script src="/javascripts/lawnchair-0.6.1.min.js"></script>
   <script src="/javascripts/query.js"></script>
   <script src="/javascripts/mustache.js"></script>
-  <!-- <script src="/javascripts/all.js"></script> -->
+  <script src="/javascripts/jquery.pjax.js"></script>
+  <script src="/javascripts/all.js"></script>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
@@ -70,7 +22,22 @@
 </head>
 
 <body>
-<h1>Animation Tests</h1>
+<span class="data-title hidden"><a href="/site/about" data-pjax="#main">Tracks occurences</a> of some event.</span>
+
+<div class="extra_info">
+    <div class="auth" id="auth-state">
+      <span id='get-login'>
+        <a href='/users/sign_in' id='sign-in-link' data-pjax="#main">Sign In</a>
+        or   <a href='/users/sign_up' id='sign-up-link' data-pjax="#main">Sign Up</a>
+      </span>
+    </div>
+
+    <div class="stats">
+      <span class="stat">Current Steak: <span id="current-streak">0</span></span>
+      <span class="stat">Longest Steak: <span id="longest-streak">0</span></span>
+      <span class="stat">Total Marks: <span id="total-marks">0</span></span>
+    </div>
+</div>
 
 <div id="calendar-container">
   <div id="calenders" class="fast">
@@ -79,115 +46,6 @@
 
 
 <script>
-/*
-  all 12 months are there but only prev, current, and next populate
-  animate between the 12 cubes redrwaring only prev, current, and next
-  if they pass a year animate quickly all the way over and redraw...
-  starting animation should also be like 0.1 opposed to full second.
-  all done except the only drawing 3 of the calendars
-*/
-
-var flipAnimationSpeed = function() {
-  $("#calenders").toggleClass('fast');
-}
-
-setTimeout('flipAnimationSpeed()', 400)
-
-//build calender collection
-current_date = new Date();
-var n = 0;
-var new_cal = $("<span class='calendar'><p></p></span>");
-do {
-  new_cal = $("<span class='calendar'><p></p></span>");
-  new_cal.attr("id","calendar-"+n);
-  $("#calenders").append(new_cal);
-  ++n;
-} while (n<12)
-
-var next_month_and_year = function(){
- month = month + 1;
- if(month >= 12) {
-  year = year + 1;
-  month = 0;
- }
-}
-
-var prev_month_and_year = function(){
-  month = month - 1;
-  if(month < 0) {
-    year = year - 1;
-    month = 11;
-  }
-}
-
-var reset_calendar_year = function(){
-  month = 0;
-  n = 0;
-  do {
-    $("#calendar-"+n).calendarWidget({
-      month: month,
-      year: year
-    });
-    next_month_and_year();
-    ++n;
-  } while (n<12)
-}
-
-var month = 0;
-var year = current_date.getYear()+1900;
-reset_calendar_year();
-
-var shift_width = document.documentElement.clientWidth; //screen.width;
-//reset month to now
-month = current_date.getMonth();
-var current_position = (month) * shift_width;
-$("#calenders .calendar table").css("width", shift_width);
-$("#calenders .calendar").css("width", shift_width);
-
-//center calendar on current month
-$("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
-
-$("#next-month").unbind('click');
-$(".next-month").unbind('click');
-$('.next-month').live('click', function() {
-  old_year = year;
-  next_month_and_year();
-  old_month = month;
-  if(year != old_year) {
-    year = old_year;
-    reset_calendar_year();
-    month = old_month;
-  }
-  current_position = (month) * shift_width;
-  if(typeof($("#calenders")[0].style['-webkit-transform'])!='undefined')
-  {
-    $("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
-  } else {
-    $("#calenders").css("left","-"+shift_width*2+"px");
-  }
-
-  return false;
-});
-
-$("#prev-month").unbind('click');
-$(".prev-month").unbind('click');
-$('.prev-month').live('click', function() {
-  old_year = year;
-  prev_month_and_year();
-  old_month = month;
-  if(year != old_year) {
-    year = year - 1
-    reset_calendar_year();
-    month = old_month;
-  }
-
-  current_position = (month) * shift_width;
-  if(typeof($("#calenders")[0].style['-webkit-transform'])!='undefined') {
-    $("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
-  } else {
-    $("#calenders").css("left","0px");
-  }
-  return false;
-});
+  animatedCalendars();
 </script>
 </body> </html>
