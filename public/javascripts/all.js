@@ -26,7 +26,6 @@
       setTimeout(function() {
         window.scrollTo(0, 1);
       }, 1000);
-      //TODO startup doesn't work on animated calendars
       startup();
       $('a[data-pjax]').pjax();
       shareButtonsInit();
@@ -73,7 +72,7 @@
     upgradeMarks();
 
     $('form:first *:input[type!=hidden]:first').focus();
-    if($('#calendar').exists()) {
+    if($('#calendar').exists() || $('#calendar-container').exists()) {
       if(userPage()) {
         restoreUserMarks();
       } else {
@@ -83,6 +82,11 @@
         $(window).bind("online", reconnected);
       }
     }
+     $(".next-month").unbind('click');
+     $('.next-month').live('click', next_click );
+
+     $(".prev-month").unbind('click');
+     $('.prev-month').live('click', prev_click );
     displayNotices();
   }
 
@@ -90,37 +94,44 @@
     return (typeof userMarks !== "undefined" && userMarks)
   };
 
- var update_next_and_previous = function() {
-    $("#next-month").unbind('click');
-    $('#next-month').click( function() {
-      var next_month = month + 1;
-      if(next_month >= 12) {
-        year = year + 1;
-        next_month = 0;
-      }
-      $("#calendar").calendarWidget({
-        month: next_month,
-	year: year
-      });
-      restore_marks();
-      return false;
-    });
+var next_click = function() {
+	old_year = year;
+	next_month_and_year();
+	if(year != old_year) {
+	    reset_calendar_year();
+            restore_marks();
+	}
+	current_position = (month) * shift_width;
+	if(typeof($("#calenders")[0].style['-webkit-transform'])!='undefined')
+	{
+	    $("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
+	} else {
+	    $("#calenders").css("left","-"+shift_width*2+"px");
+	}
 
-    $("#prev-month").unbind('click');
-    $('#prev-month').click( function() {
-      var prev_month = month - 1;
-      if(prev_month < 0) {
-        year = year - 1;
-        prev_month = 11;
-      }
-      $("#calendar").calendarWidget({
-        month: prev_month,
-	year: year
-      });
-      restore_marks();
-      return false;
-    });
-}
+	return false;
+ };
+
+var prev_click = function() {
+  old_year = year;
+  prev_month_and_year();
+  if(year != old_year) {
+    reset_calendar_year();
+    restore_marks();
+  }
+
+  current_position = (month) * shift_width;
+  if(typeof($("#calenders")[0].style['-webkit-transform'])!='undefined') {
+    $("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
+  } else {
+    $("#calenders").css("left","0px");
+  }
+  return false;
+
+};
+
+ var update_next_and_previous = function() {
+ };
 
   var update_links = function() {
     $(".date-item").unbind('click');
@@ -339,7 +350,7 @@
         if(item.key!="last_updated") {
 	  mark_count += 1;
           console.log('cached-mark: '+item.key);
-          $("#"+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
+          $("."+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
         } else {
           console.log('last updated: '+item.key+' : '+item.val);
         }
@@ -360,7 +371,7 @@
           if(item.key!="last_updated") {
 	    mark_count += 1;
             console.log('cached-mark: '+item.key);
-            $("#"+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
+            $("."+item.key.replace(/ /g,'.')).addClass('xmarksthespot');
           } else {
             console.log('last updated: '+item.key+' : '+item.val);
           }
@@ -501,6 +512,8 @@ var prev_month_and_year = function(){
 };
 
 var reset_calendar_year = function(){
+  var original_year = year;
+  var original_month = month;
   month = 0;
   n = 0;
   do {
@@ -511,6 +524,8 @@ var reset_calendar_year = function(){
     next_month_and_year();
     ++n;
   } while (n<12)
+  year = original_year;
+  month = original_month;
 }
 
 /*
@@ -521,6 +536,7 @@ var reset_calendar_year = function(){
   all done except the only drawing 3 of the calendars
 */
 current_date = new Date();
+var shift_width = document.documentElement.clientWidth; //screen.width;
 var animatedCalendars = function() {
 
   setTimeout('flipAnimationSpeed()', 400)
@@ -539,7 +555,6 @@ month = 0;
 year = current_date.getYear()+1900;
 reset_calendar_year();
 
-var shift_width = document.documentElement.clientWidth; //screen.width;
 //reset month to now
 month = current_date.getMonth();
 var current_position = (month) * shift_width;
@@ -548,47 +563,4 @@ $("#calenders .calendar").css("width", shift_width);
 
 //center calendar on current month
 $("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
-
-$("#next-month").unbind('click');
-$(".next-month").unbind('click');
-$('.next-month').live('click', function() {
-  old_year = year;
-  next_month_and_year();
-  old_month = month;
-  if(year != old_year) {
-    year = old_year;
-    reset_calendar_year();
-    month = old_month;
-  }
-  current_position = (month) * shift_width;
-  if(typeof($("#calenders")[0].style['-webkit-transform'])!='undefined')
-  {
-    $("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
-  } else {
-    $("#calenders").css("left","-"+shift_width*2+"px");
-  }
-
-  return false;
-});
-
-$("#prev-month").unbind('click');
-$(".prev-month").unbind('click');
-$('.prev-month').live('click', function() {
-  old_year = year;
-  prev_month_and_year();
-  old_month = month;
-  if(year != old_year) {
-    year = year - 1
-    reset_calendar_year();
-    month = old_month;
-  }
-
-  current_position = (month) * shift_width;
-  if(typeof($("#calenders")[0].style['-webkit-transform'])!='undefined') {
-    $("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
-  } else {
-    $("#calenders").css("left","0px");
-  }
-  return false;
-});
 }
