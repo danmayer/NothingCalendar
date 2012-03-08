@@ -54,12 +54,17 @@
       <%= yield %>
     </div>
 
-    <p class="footer">
+    <div class="footer">
+      <% if @share_enabled && !request.headers['HTTP_APP_REQUEST'] %>
+        <%= render :partial => "shared/social_shares" %>
+      <% end %>
+      <p>
       <a href="/site/about" data-pjax="#main" class="about">About NothingCalendar</a><br/>
       <a href="/users" data-pjax="#main" class="streaks">Current Streaks</a><br/>
       Inspired by
       <a href="http://calendaraboutnothing.com">Calendar About Nothing</a>
-    </p>
+      </p>
+    </div>
   </div>
 
   <% if Rails.env.development? %>

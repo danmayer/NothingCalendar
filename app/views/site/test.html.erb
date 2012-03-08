@@ -26,9 +26,7 @@
   </div>
 </div>
 
-<% unless request.headers['HTTP_APP_REQUEST'] %>
-  <%= render :partial => "shared/social_shares" %>
-<% end %>
+<% @share_enabled = true %>
 
 <script>
   $(document).ready(function () {
