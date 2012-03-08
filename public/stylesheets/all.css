@@ -209,7 +209,8 @@ a{
   padding: 6px;
   position: fixed;
   width: 100%;
-  /*top: 490px;*/
+  top: 515px;
+  height: 48px;
   /*bottom: 0px;*/
   z-index: 5;
 }
@@ -500,7 +501,7 @@ ol.example, ul.example {
 #calenders {
 	position:absolute;
 	left:0px;
-	width:1300%;
+	width:1200%;
     	-webkit-transition:all 1.0s ease-in-out;
 	-moz-transition:all 1.0s ease-in-out;
 	-o-transition:all 1.0s ease-in-out;
