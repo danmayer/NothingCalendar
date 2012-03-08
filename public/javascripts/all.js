@@ -4,6 +4,7 @@
   var longest_streak = 0;
   var logged_in = false;
   var first_sync = false;
+  window.scrollTo(0, 1);
 
   jQuery.fn.exists = function(){return this.length>0;}
 
@@ -17,15 +18,15 @@
 	$('#loading').hide();
 	var sub_title = $('.data-title').html();
 	$('.subtitle').html(sub_title);
-	window.scrollTo(0, 1);
+	//window.scrollTo(0, 1);
         startup();
 	shareButtonsRefresh();
     });
 
   $(function(){
-      setTimeout(function() {
-        window.scrollTo(0, 1);
-      }, 1000);
+      //setTimeout(function() {
+      //  window.scrollTo(0, 1);
+      //}, 1000);
       startup();
       $('a[data-pjax]').pjax();
       shareButtonsInit();
@@ -104,9 +105,11 @@ var next_click = function() {
 	current_position = (month) * shift_width;
 	if(typeof($("#calenders")[0].style['-webkit-transform'])!='undefined')
 	{
-	    $("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
+	    //$("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
+	    window.scrollTo(current_position, 0);
 	} else {
-	    $("#calenders").css("left","-"+shift_width*2+"px");
+	   //$("#calenders").css("left","-"+shift_width*2+"px");
+	    window.scrollTo(current_position, 0);
 	}
 
 	return false;
@@ -122,9 +125,11 @@ var prev_click = function() {
 
   current_position = (month) * shift_width;
   if(typeof($("#calenders")[0].style['-webkit-transform'])!='undefined') {
-    $("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
+      //$("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
+      window.scrollTo(current_position, 0);
   } else {
-    $("#calenders").css("left","0px");
+      //$("#calenders").css("left","0px");
+      window.scrollTo(current_position, 0);
   }
   return false;
 
@@ -562,5 +567,7 @@ $("#calenders .calendar table").css("width", shift_width);
 $("#calenders .calendar").css("width", shift_width);
 
 //center calendar on current month
-$("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
+// $("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
+window.scrollTo(current_position, 0);
+
 }

@@ -209,7 +209,7 @@ a{
   padding: 6px;
   position: fixed;
   width: 100%;
-  top: 515px;
+  top: 520px;
   height: 48px;
   /*bottom: 0px;*/
   z-index: 5;
@@ -501,12 +501,13 @@ ol.example, ul.example {
 #calenders {
 	position:absolute;
 	left:0px;
+        top:110px;
 	width:1200%;
-    	-webkit-transition:all 1.0s ease-in-out;
-	-moz-transition:all 1.0s ease-in-out;
-	-o-transition:all 1.0s ease-in-out;
-	-ms-transition:all 1.0s ease-in-out;
-	transition:all 1.0s ease-in-out;
+    	-webkit-transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	transition:all 0.5s ease-in-out;
 }
 
 #calenders.fast {
