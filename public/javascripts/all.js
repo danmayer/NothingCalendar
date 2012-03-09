@@ -537,6 +537,14 @@ var reset_calendar_year = function(){
   month = original_month;
 }
 
+var scroll_end = function(){
+  widths = Math.round(window.scrollX / shift_width);
+  current_position = widths * shift_width;
+  $('html,body').animate({ scrollLeft: current_position }, 200);
+}
+
+current_date = new Date();
+var shift_width = document.documentElement.clientWidth; //screen.width;
 /*
   all 12 months are there but only prev, current, and next populate
   animate between the 12 cubes redrwaring only prev, current, and next
@@ -544,9 +552,9 @@ var reset_calendar_year = function(){
   starting animation should also be like 0.1 opposed to full second.
   all done except the only drawing 3 of the calendars
 */
-current_date = new Date();
-var shift_width = document.documentElement.clientWidth; //screen.width;
 var animatedCalendars = function() {
+  //window.onscroll=scroll_end;
+  $(window).bind('scrollstop', scroll_end);
 
   setTimeout('flipAnimationSpeed()', 400)
 
