@@ -540,7 +540,7 @@ var reset_calendar_year = function(){
 var scroll_end = function(){
   widths = Math.round(window.scrollX / shift_width);
   current_position = widths * shift_width;
-  $('html,body').animate({ scrollLeft: current_position }, 200);
+  $('html,body').animate({ scrollLeft: current_position }, 100);
 }
 
 current_date = new Date();

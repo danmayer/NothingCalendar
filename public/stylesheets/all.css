@@ -206,10 +206,10 @@ a{
 .footer {
   font-size: 12px;
   border-top: 1px solid black;
-  padding: 6px;
+  padding: 2px 6px;
   position: fixed;
   width: 100%;
-  top: 520px;
+  top: 490px;
   height: 48px;
   /*bottom: 0px;*/
   z-index: 5;
@@ -492,7 +492,7 @@ ol.example, ul.example {
 	width:100%;
 	height:380px;
 	overflow:hidden;
-        padding:90px 0 20px 0;
+        padding:90px 0 4px 0;
 	text-align:-webkit-auto;
 	text-align:auto;
 	/*position:relative;*/
