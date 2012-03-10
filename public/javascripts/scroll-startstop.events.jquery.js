@@ -1,3 +1,6 @@
+//taken with thanks from
+//http://james.padolsey.com/demos/scrollevents/scroll-startstop.events.jquery.js
+//using the above for now maybe special case to my needs more later
 (function(){
 
     var special = jQuery.event.special,
