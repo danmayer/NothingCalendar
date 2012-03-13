@@ -125,6 +125,7 @@ var prev_click = function() {
   var update_links = function() {
     $(".date-item").unbind('click');
     $(".date-item").click( function(){
+      scroll_animation = true;
       console.log("clicked: "+$(this).attr('id'));
       if($(this).hasClass('xmarksthespot')) {
         $(this).toggleClass('xmarksthespot');
@@ -140,6 +141,7 @@ var prev_click = function() {
         streaks();
         sync();
       });
+      scroll_animation = false;
       return false;
     });
 
