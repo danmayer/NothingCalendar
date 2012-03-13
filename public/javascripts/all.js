@@ -4,8 +4,7 @@
   var longest_streak = 0;
   var logged_in = false;
   var first_sync = false;
-  //window.scrollTo(0, 1);
-  $('html,body').scrollTop(1)
+  scroll_animation = false;
 
   jQuery.fn.exists = function(){return this.length>0;}
 
@@ -19,15 +18,12 @@
 	$('#loading').hide();
 	var sub_title = $('.data-title').html();
 	$('.subtitle').html(sub_title);
-	//window.scrollTo(0, 1);
         startup();
 	shareButtonsRefresh();
     });
 
   $(function(){
-      //setTimeout(function() {
-      //  window.scrollTo(0, 1);
-      //}, 1000);
+      $('html,body').scrollTop(1)
       startup();
       $('a[data-pjax]').pjax();
       shareButtonsInit();
@@ -97,46 +93,30 @@
   };
 
 var next_click = function() {
-	old_year = year;
-	next_month_and_year();
-	if(year != old_year) {
-	    reset_calendar_year();
-            restore_marks();
-	}
-	current_position = (month) * shift_width;
-        $('html,body').animate({ scrollLeft: current_position }, 500);
-	if(typeof($("#calenders")[0].style['-webkit-transform'])!='undefined')
-	{
-	    //$("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
-            //window.animate({scrollTo: (current_position, 0)}, 1000);
-	    //window.scrollTo(current_position, 0);
-	} else {
-	   //$("#calenders").css("left","-"+shift_width*2+"px");
-	    //window.scrollTo(current_position, 0);
-	}
-
-	return false;
- };
+    old_year = year;
+    scroll_animation = true;
+    next_month_and_year();
+    if(year != old_year) {
+	reset_calendar_year();
+        restore_marks();
+    }
+    current_position = (month) * shift_width;
+    $('html,body').animate({ scrollLeft: current_position }, 500, function() { scroll_animation = false; });
+    return false;
+};
 
 var prev_click = function() {
-  old_year = year;
-  prev_month_and_year();
-  if(year != old_year) {
-    reset_calendar_year();
-    restore_marks();
-  }
+    old_year = year;
+    scroll_animation = true;
+    prev_month_and_year();
+    if(year != old_year) {
+	reset_calendar_year();
+	restore_marks();
+    }
 
-  current_position = (month) * shift_width;
-  $('html,body').animate({ scrollLeft: current_position }, 500);
-  if(typeof($("#calenders")[0].style['-webkit-transform'])!='undefined') {
-      //$("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
-      //window.scrollTo(current_position, 0);
-  } else {
-      //$("#calenders").css("left","0px");
-      //window.scrollTo(current_position, 0);
-  }
-  return false;
-
+    current_position = (month) * shift_width;
+    $('html,body').animate({ scrollLeft: current_position }, 500, function() { scroll_animation = false; });
+    return false;
 };
 
  var update_next_and_previous = function() {
@@ -535,13 +515,15 @@ var reset_calendar_year = function(){
   } while (n<12)
   year = original_year;
   month = original_month;
-}
+};
 
 var scroll_end = function(){
-  widths = Math.round(window.scrollX / shift_width);
-  current_position = widths * shift_width;
-  $('html,body').animate({ scrollLeft: current_position }, 100);
-}
+  if(scroll_animation == false) {
+    widths = Math.round(window.scrollX / shift_width);
+    current_position = widths * shift_width;
+    $('html,body').animate({ scrollLeft: current_position }, 100);
+  }
+};
 
 current_date = new Date();
 var shift_width = document.documentElement.clientWidth; //screen.width;
