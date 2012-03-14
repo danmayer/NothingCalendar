@@ -101,7 +101,7 @@ var next_click = function() {
         restore_marks();
     }
     current_position = (month) * shift_width;
-    $('html,body').animate({ scrollLeft: current_position }, 500, function() { scroll_animation = false; });
+    $('html,body').animate({ scrollTop: current_position }, 500, function() { scroll_animation = false; });
     return false;
 };
 
@@ -115,7 +115,7 @@ var prev_click = function() {
     }
 
     current_position = (month) * shift_width;
-    $('html,body').animate({ scrollLeft: current_position }, 500, function() { scroll_animation = false; });
+    $('html,body').animate({ scrollTop: current_position }, 500, function() { scroll_animation = false; });
     return false;
 };
 
@@ -521,14 +521,16 @@ var reset_calendar_year = function(){
 
 var scroll_end = function(){
   if(scroll_animation == false) {
-    widths = Math.round(window.scrollX / shift_width);
+    widths = Math.round(window.scrollY / shift_width);
     current_position = widths * shift_width;
-    $('html,body').animate({ scrollLeft: current_position }, 100);
+    $('html,body').animate({ scrollTop: current_position }, 100);
   }
 };
 
 current_date = new Date();
-var shift_width = document.documentElement.clientWidth; //screen.width;
+//var shift_width = 383;
+var shift_width = document.documentElement.clientHeight * 0.60;
+var calendar_width = document.documentElement.clientWidth; //screen.width;
 /*
   all 12 months are there but only prev, current, and next populate
   animate between the 12 cubes redrwaring only prev, current, and next
@@ -556,15 +558,18 @@ month = 0;
 year = current_date.getYear()+1900;
 reset_calendar_year();
 
+
 //reset month to now
 month = current_date.getMonth();
+shift_width = $('.calendar-month').height();
 var current_position = (month) * shift_width;
-$("#calenders .calendar table").css("width", shift_width);
-$("#calenders .calendar").css("width", shift_width);
+    $("#calenders").css("height", shift_width * 12.5);
+$("#calenders .calendar table").css("width", calendar_width);
+$("#calenders .calendar").css("width", calendar_width);
 
 //center calendar on current month
 // $("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
-//window.scrollTo(current_position, 0);
- $('html,body').animate({ scrollLeft: current_position }, 500);
+
+ $('html,body').animate({ scrollTop: current_position }, 500);
 
 }

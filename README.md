@@ -31,8 +31,11 @@ This project aims to help tracking arbitrary events. Such as working out every d
 * add live error reporting hoptoad or whatnot for site
 * add hurl / api links to README
 * possible phonegap compatibility for native android / iphone app.
-* fix that sometimes clicking next/prev the month sometimes jumps back to where you are
+* fix that sometimes clicking next/prev the month sometimes jumps back to where you are (this is because the scroll jump needs to set current / last month to current location)
 * now deal with styling issues for iphone... thinkin CSS selector to deal with 320 screens.
+* the other month clicks don't also add a mark on the next real date-item things... like august first should make two X's
+
+
 
 
 ### Later
