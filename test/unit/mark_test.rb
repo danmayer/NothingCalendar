@@ -23,7 +23,7 @@ class UserTest < ActiveSupport::TestCase
     mark = Mark.new( {:last_updated => time,
                 :marks_data => []})
     assert_equal time, mark.as_hash[:last_updated]
-    assert_equal [], mark.as_hash[:marks_data]
+    assert_equal "[]", mark.as_hash[:marks_data]
   end
 
 end

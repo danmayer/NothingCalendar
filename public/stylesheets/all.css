@@ -244,7 +244,7 @@ a{
   @group Calendar Styles
 ------------------------------------------------------------------------------------*/
 
-#calendar, #widget, .calendar {
+#widget, .calendar {
   margin:0px auto 5px auto;
   padding:90px 0 20px 0;
   width:95%;
@@ -488,7 +488,7 @@ ol.example, ul.example {
 }
 /* @end */
 
-#calenders {
+#calenders, #calendar {
 	position:absolute;
 	left:0px;
         top:110px;

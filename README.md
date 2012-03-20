@@ -34,6 +34,10 @@ This project aims to help tracking arbitrary events. Such as working out every d
 * fix that sometimes clicking next/prev the month sometimes jumps back to where you are (this is because the scroll jump needs to set current / last month to current location)
 * now deal with styling issues for iphone... thinkin CSS selector to deal with 320 screens.
 * the other month clicks don't also add a mark on the next real date-item things... like august first should make two X's
+* fix the NORMAL version back to 100% and deploy before getting back to the test scrolly version
+* clicking on users page triggers checkbox, it shouldn't
+* user page shows invalid json error (perhaps needs to trigger or ignore the update json keys method?)
+
 
 
 

@@ -96,12 +96,21 @@ var next_click = function() {
     old_year = year;
     scroll_animation = true;
     next_month_and_year();
-    if(year != old_year) {
+
+    if($('#calendar').exists()) {
+      $("#calendar").calendarWidget({
+	  month: month,
+	  year: year
+      });
+      restore_marks();
+    } else {
+      if(year != old_year) {
 	reset_calendar_year();
         restore_marks();
+      }
+      current_position = (month) * shift_width;
+      $('html,body').animate({ scrollTop: current_position }, 500, function() { scroll_animation = false; });
     }
-    current_position = (month) * shift_width;
-    $('html,body').animate({ scrollTop: current_position }, 500, function() { scroll_animation = false; });
     return false;
 };
 
@@ -109,13 +118,21 @@ var prev_click = function() {
     old_year = year;
     scroll_animation = true;
     prev_month_and_year();
-    if(year != old_year) {
+
+    if($('#calendar').exists()) {
+      $("#calendar").calendarWidget({
+	  month: month,
+	  year: year
+      });
+      restore_marks();
+    } else {
+      if(year != old_year) {
 	reset_calendar_year();
 	restore_marks();
+      }
+      current_position = (month) * shift_width;
+      $('html,body').animate({ scrollTop: current_position }, 500, function() { scroll_animation = false; });
     }
-
-    current_position = (month) * shift_width;
-    $('html,body').animate({ scrollTop: current_position }, 500, function() { scroll_animation = false; });
     return false;
 };
 
