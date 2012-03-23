@@ -36,6 +36,7 @@ This project aims to help tracking arbitrary events. Such as working out every d
 * the other month clicks don't also add a mark on the next real date-item things... like august first should make two X's
 * fix the NORMAL version back to 100% and deploy before getting back to the test scrolly version
 * local storage not logged in check marks are saving
+  * seems the keys are being converted to this trash (59e728a4-36ec-9c4f-4730-3af2402990d2), what what?
 
 
 
