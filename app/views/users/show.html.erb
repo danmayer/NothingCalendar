@@ -23,7 +23,7 @@ Nothing Calendar
   </div>
 
 <script>
-  var userMarks = $.parseJSON('<%= raw(@marks.as_json) %>');
+  var userMarks = $.parseJSON('<%= raw(@marks.as_json.to_json) %>');
 </script>
 
 <% unless request.headers['HTTP_APP_REQUEST'] %>

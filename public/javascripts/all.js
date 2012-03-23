@@ -136,9 +136,6 @@ var prev_click = function() {
     return false;
 };
 
- var update_next_and_previous = function() {
- };
-
   var update_links = function() {
     $(".date-item").unbind('click');
     $(".date-item").click( function(){
@@ -161,8 +158,6 @@ var prev_click = function() {
       scroll_animation = false;
       return false;
     });
-
-      update_next_and_previous();
 
       $("#clear-all").unbind('click');
       $('#clear-all').click( function() {
@@ -350,7 +345,6 @@ var prev_click = function() {
 
   //this shares to much with restore_marks make more of the same
   var restoreUserMarks = function() {
-    update_next_and_previous();
     mark_count = 0;
     var data = userMarks.data
     if(data) {
