@@ -140,13 +140,14 @@ var prev_click = function() {
     $(".date-item").unbind('click');
     $(".date-item").click( function(){
       scroll_animation = true;
-      console.log("clicked: "+$(this).attr('id'));
+      key = $(this).attr('class').match(/\d+-\d+-\d+/)[0]
+      console.log("clicked: "+key);
       if($(this).hasClass('xmarksthespot')) {
         $(this).toggleClass('xmarksthespot');
-        marks_store.remove($(this).attr('id'), function() {});
+        marks_store.remove(key, function() {});
         mark_count -= 1;
       } else {
-        marks_store.save({key:$(this).attr('id'),val:true});
+        marks_store.save({key:key,val:true});
         $(this).toggleClass('xmarksthespot');
         mark_count += 1;
       }
