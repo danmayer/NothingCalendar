@@ -209,8 +209,9 @@ a{
   padding: 2px 6px;
   position: fixed;
   width: 100%;
-  top: 485px;
-  height: 200px;
+  /*top: 485px;*/
+  top: 515px;
+  height: 250px;
   /*bottom: 0px;*/
   z-index: 5;
   background: #FFF;
@@ -498,6 +499,10 @@ ol.example, ul.example {
 	-o-transition:all 0.5s ease-in-out;
 	-ms-transition:all 0.5s ease-in-out;
 	transition:all 0.5s ease-in-out;
+}
+
+#calendar {
+        top:130px;
 }
 
 #calenders.fast {
