@@ -32,8 +32,6 @@ This project aims to help tracking arbitrary events. Such as working out every d
 * add hurl / api links to README
 * possible phonegap compatibility for native android / iphone app.
 * now deal with styling issues for iphone... thinkin CSS selector to deal with 320 screens.
-* the other month clicks don't also add a mark on the next real date-item things... like august first should make two X's
-* local storage not logged in check marks are saving
 
 
 ### Later

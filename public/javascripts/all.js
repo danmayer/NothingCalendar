@@ -535,6 +535,7 @@ var scroll_end = function(){
   if(scroll_animation == false) {
     widths = Math.round(window.scrollY / shift_width);
     current_position = widths * shift_width;
+    month = widths;
     $('html,body').animate({ scrollTop: current_position }, 100);
   }
 };

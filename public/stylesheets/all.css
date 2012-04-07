@@ -179,6 +179,7 @@ a{
 
 #main{
   padding-top:50px;
+  height:545px;
 }
 
 #main < .extra_info{
@@ -211,12 +212,11 @@ a{
   width: 100%;
   /*top: 485px;*/
   top: 515px;
-  height: 250px;
+  height: 100%;
   /*bottom: 0px;*/
   z-index: 5;
   background: #FFF;
 }
-
 
 .footer a{
   font-size: 18px;
