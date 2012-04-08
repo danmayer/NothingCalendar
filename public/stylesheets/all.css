@@ -41,7 +41,7 @@ body{
 }
 
 .nav_info {
-  background:#DFDFDF;
+  background:#EFEFEF;
   position: fixed;
   width: 100%;
   top: 0px;
@@ -59,7 +59,7 @@ body{
 }
 
 .extra_info {
-  background:#DFDFDF;
+  background:#EFEFEF;
   width: 100%;
   z-index: 4;
   position: fixed;
@@ -134,7 +134,7 @@ body{
 }
 
 #zone {
-  background: #DFDFDF;
+  background: #EFEFEF;
   margin: 5px 0px 10px 0px;
   padding: 5px 0px 5px 0px;
   text-align: center;
@@ -179,11 +179,25 @@ a{
 
 #main{
   padding-top:50px;
-  height:550px;
+  height:554px;
 }
 
 #main < .extra_info{
   padding-top:5px;
+}
+
+.about-module{
+ height:100%;
+ min-height:700px;
+}
+
+.user-list-module{
+ height:100%;
+ min-height:700px;
+}
+
+.user-list-module .list-spacer{
+ min-height:500px;
 }
 
 #content{
@@ -215,7 +229,7 @@ a{
   height: 100%;
   /*bottom: 0px;*/
   z-index: 5;
-  background: #FFF;
+  background: #EFEFEF;
 }
 
 .footer a{
@@ -247,7 +261,7 @@ a{
 
 #widget, .calendar {
   margin:0px auto 5px auto;
-  padding:90px 0 20px 0;
+  padding:90px 0px 30px 0px;
   width:95%;
   background:#fff;
   font-size:24px;
@@ -256,6 +270,8 @@ a{
 
 #calendar table, .calendar table {
   width:98%;
+  margin-top: 5px;
+  margin-bottom: 5px;
   border-spacing:none;
   border-collapse:collapse;
 }
@@ -435,9 +451,20 @@ ol.example, ul.example {
  text-align:left;
 }
 
+.user_list ul {
+  list-style:none;
+}
+
 .user_list ol a, .user_list ul a {
  font-size:22px;
  line-height:44px;
+}
+
+.user_list ol li, .user_list ul li {
+  height:44px;
+  border-bottom: 1px solid #DDD;
+  margin-left:0px;
+  padding-left:12px;
 }
 
 .about {
@@ -492,17 +519,13 @@ ol.example, ul.example {
 #calenders, #calendar {
 	position:absolute;
 	left:0px;
-        top:110px;
+        top:130px;
 	width:100%;
     	-webkit-transition:all 0.5s ease-in-out;
 	-moz-transition:all 0.5s ease-in-out;
 	-o-transition:all 0.5s ease-in-out;
 	-ms-transition:all 0.5s ease-in-out;
 	transition:all 0.5s ease-in-out;
-}
-
-#calendar {
-        top:130px;
 }
 
 #calenders.fast {
@@ -526,10 +549,11 @@ ol.example, ul.example {
 	transition:all 1.0s ease-in-out;
 }
 
-#calenders div, #calenders li, #calenders span {
+/*#calenders div, #calenders li, #calenders span {
 	padding:0;
 	margin:0;
-}
+}*/
+
 
 /*#calenders .calendar {
   display: inline-block;

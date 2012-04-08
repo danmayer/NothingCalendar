@@ -1,6 +1,8 @@
 <span class="data-title hidden">Don't Break the Chain!</span>
-<%= render :partial => "about" %>
+<div class="about-module">
+  <%= render :partial => "about" %>
 
-<% unless request.headers['HTTP_APP_REQUEST'] %>
-  <%= render :partial => "shared/social_shares" %>
-<% end %>
+  <% unless request.headers['HTTP_APP_REQUEST'] %>
+    <%= render :partial => "shared/social_shares" %>
+  <% end %>
+</div>

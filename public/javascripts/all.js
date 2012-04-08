@@ -574,14 +574,12 @@ reset_calendar_year();
 
 //reset month to now
 month = current_date.getMonth();
-shift_width = $('.calendar-month').height();
+shift_width = $('.calendar-month').height()+5;
 var current_position = (month) * shift_width;
-    $("#calenders").css("height", shift_width * 12.5);
+$("#calenders").css("height", shift_width * 12.5);
 $("#calenders .calendar table").css("width", calendar_width);
 $("#calenders .calendar").css("width", calendar_width);
 
-//center calendar on current month
-// $("#calenders").css("-webkit-transform","translate(-"+current_position+"px"+",0px)");
 
  $('html,body').animate({ scrollTop: current_position }, 500);
 
