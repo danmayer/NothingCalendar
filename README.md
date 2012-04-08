@@ -32,6 +32,8 @@ This project aims to help tracking arbitrary events. Such as working out every d
 * add hurl / api links to README
 * possible phonegap compatibility for native android / iphone app.
 * now deal with styling issues for iphone... thinkin CSS selector to deal with 320 screens.
+* tall screens can get screwed up on slidy version with nov and dec because there isn't enough space to scroll them into the veiw opposed to 12.5 calendar height it needs to be 12.25 device hieghts I think. (test on android tablet vertical for fix)
+* invalid email or password warning covers part of the form.
 
 
 ### Later
