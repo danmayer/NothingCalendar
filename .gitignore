@@ -6,3 +6,5 @@ log/*.log
 tmp/
 public/images/.DS_Store
 .rvmrc
+.DS_Store
+b001.dump

@@ -9,6 +9,10 @@ This project aims to help tracking arbitrary events. Such as working out every d
 
 ---
 
+### Tips
+* to debug or backup use
+heroku db:pull, which can copy over the production DB, https://devcenter.heroku.com/articles/taps
+
 ### Todos
 * possibly go back to live link (can't return false) but not always updating link
     (look at js delegate method)

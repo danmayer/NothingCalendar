@@ -37,5 +37,6 @@ gem 'poirot', '0.0.2'
 group :development, :test do
   gem "mongrel"
   gem 'mocha'
+  gem 'danmayer-metric_fu'
   # gem 'ruby-debug19', :require => 'ruby-debug'
 end
