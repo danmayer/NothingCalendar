@@ -36,7 +36,7 @@ gem 'poirot', '0.0.2'
 # and rake tasks are available in development mode:
 group :development, :test do
   gem "mongrel"
-  gem 'mocha'
+  gem 'mocha', :require => 'mocha/setup'
   gem 'danmayer-metric_fu'
   # gem 'ruby-debug19', :require => 'ruby-debug'
 end

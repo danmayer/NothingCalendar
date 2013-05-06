@@ -90,7 +90,7 @@ GEM
     map (6.2.0)
     metaclass (0.0.1)
     mime-types (1.19)
-    mocha (0.10.0)
+    mocha (0.13.3)
       metaclass (~> 0.0.1)
     mongrel (1.1.5)
       cgi_multipart_eof_fix (>= 2.4)
