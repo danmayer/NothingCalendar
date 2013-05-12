@@ -207,6 +207,7 @@ var prev_click = function() {
 	  console.log(data);
           var user = data['user'];
           if(user && user['email'] && user['id']) {
+	    $('#calendar_picker').slideDown();
 	    var template = "<span class='logged-in-info'>Logged in as <a href='/users/{{to_param}}'>{{email}}</a></span><br/><a href='/users/edit'>Edit Account</a> | Not you? <a id='logout' href='/users/sign_out'>Sign out</a>";
             logged_in = true;
 	  } else {
@@ -280,8 +281,9 @@ var prev_click = function() {
 
   var displayNotice = function(message, type) {
     $("#messages ."+type).html(message);
+    $('#calendar_picker').slideUp();
     $("#messages").slideDown();
-    setTimeout("$('#messages').slideUp();", 15000)
+    setTimeout("$('#messages').slideUp(); $('#calendar_picker').slideDown();", 15000)
   }
 
   var notices = ['notice', 'alert', 'error'];

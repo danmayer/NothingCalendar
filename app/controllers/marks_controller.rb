@@ -36,7 +36,6 @@ class MarksController < ApplicationController
     else
       render :json => "must be logged in to sync", status => 401
     end
-
   end
 
 end
