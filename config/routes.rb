@@ -5,7 +5,7 @@ Nothingcalendar::Application.routes.draw do
 
   match "/site/" => "site#index"
   match "/site/about" => "site#about"
-  match "/site/test" => "site#test"
+ 
   match "/site/templates" => "site#templates"
   #TODO delete must keep it around for one deploy cycle
   match "/users/auth" => "users#me"
@@ -15,7 +15,21 @@ Nothingcalendar::Application.routes.draw do
       get 'me'
     end
   end
+  # You can have the root of your site routed with "root"
+  # just remember to delete public/index.html.
+  root :to => "site#index"
 
+  resources :marks ,:only => [] do
+    collection do
+      post 'sync'
+    end
+  end
+
+  # See how all your routes lay out with "rake routes"
+
+  # This is a legacy wild controller route that's not recommended for RESTful applications.
+  # Note: This route will make all actions in every controller accessible via GET requests.
+  # match ':controller(/:action(/:id(.:format)))'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -64,19 +78,4 @@ Nothingcalendar::Application.routes.draw do
   #     resources :products
   #   end
 
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  root :to => "site#index"
-
-  resources :marks ,:only => [] do
-    collection do
-      post 'sync'
-    end
-  end
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
 end

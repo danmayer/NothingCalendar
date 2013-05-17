@@ -15,13 +15,10 @@ class SiteController < ApplicationController
     render :layout => suggested_layout
   end
 
+  protected
+
   def templates
     render :layout => false
-  end
-
-  def test
-    @page_title = "NothingCalendar - daily progress"
-    render :layout => suggested_layout
   end
 
 end

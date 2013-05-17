@@ -186,10 +186,10 @@ var prev_click = function() {
       mark_count = 0;
       $("#calendar").calendarWidget({
         month: month,
-	      year: year
+	year: year
       });
       restore_marks();
-	clear_and_display_notice("You are now logged out!", 'notice');
+      clear_and_display_notice("You are now logged out!", 'notice');
       return true;
     });
 
@@ -476,7 +476,7 @@ var prev_click = function() {
         $.each(data, loopIteration);
       }
     } else {
-    marks_store.where('record.val==true').asc('key', function(){
+      marks_store.where('record.val==true').asc('key', function(){
       this.each( loopIteration );
       });
     }
@@ -494,95 +494,3 @@ var prev_click = function() {
     $("#current-streak").html(current_streak_count);
   }
 
-/*begin new animation functions these should all be in a closure*/
-
-var flipAnimationSpeed = function() {
-  $("#calenders").toggleClass('fast');
-};
-
-var next_month_and_year = function(){
- month = month + 1;
- if(month >= 12) {
-  year = year + 1;
-  month = 0;
- }
-};
-
-var prev_month_and_year = function(){
-  month = month - 1;
-  if(month < 0) {
-    year = year - 1;
-    month = 11;
-  }
-};
-
-var reset_calendar_year = function(){
-  var original_year = year;
-  var original_month = month;
-  month = 0;
-  n = 0;
-  do {
-    $("#calendar-"+n).calendarWidget({
-      month: month,
-      year: year
-    });
-    next_month_and_year();
-    ++n;
-  } while (n<12)
-  year = original_year;
-  month = original_month;
-};
-
-var scroll_end = function(){
-  if(scroll_animation == false) {
-    widths = Math.round(window.scrollY / shift_width);
-    current_position = widths * shift_width;
-    month = widths;
-    $('html,body').animate({ scrollTop: current_position }, 100);
-  }
-};
-
-current_date = new Date();
-//var shift_width = 383;
-var shift_width = document.documentElement.clientHeight * 0.60;
-var calendar_width = document.documentElement.clientWidth; //screen.width;
-/*
-  all 12 months are there but only prev, current, and next populate
-  animate between the 12 cubes redrwaring only prev, current, and next
-  if they pass a year animate quickly all the way over and redraw...
-  starting animation should also be like 0.1 opposed to full second.
-  all done except the only drawing 3 of the calendars
-*/
-var animatedCalendars = function() {
-  //window.onscroll=scroll_end;
-  $(window).bind('scrollstop', scroll_end);
-
-  setTimeout('flipAnimationSpeed()', 400)
-
-//build calender collection
-var n = 0;
-var new_cal = $("<span class='calendar'><p></p></span>");
-do {
-  new_cal = $("<span class='calendar'><p></p></span>");
-  new_cal.attr("id","calendar-"+n);
-  $("#calenders").append(new_cal);
-  ++n;
-} while (n<12)
-
-month = 0;
-year = current_date.getYear()+1900;
-reset_calendar_year();
-
-
-//reset month to now
-month = current_date.getMonth();
-shift_width = $('.calendar-month').height()+5;
-var current_position = (month) * shift_width;
-$("#calenders").css("height", shift_width * 12.5);
-$("#calenders .calendar table").css("width", calendar_width);
-$("#calenders .calendar").css("width", calendar_width);
-
-
- $('html,body').animate({ scrollTop: current_position }, 500);
-
-}
