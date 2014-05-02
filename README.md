@@ -14,6 +14,7 @@ This project aims to help tracking arbitrary events. Such as working out every d
 heroku db:pull, which can copy over the production DB, https://devcenter.heroku.com/articles/taps
 
 ### Todos
+* UPDATE THIS APP TO RAILS 4
 * possibly go back to live link (can't return false) but not always updating link
     (look at js delegate method)
 * multiple track chains (tagging on chains (workout, quit smoking, etc))
