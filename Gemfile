@@ -1,19 +1,21 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.20'
+gem 'rails', '3.2.21'
 gem 'devise', '1.4.5'
+gem "puma"
+gem 'pg'
+gem 'newrelic_rpm'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'rack-offline', '0.6.2'
 gem 'json'
 
 # mustache support
 # gem 'mustache_rails3'
 gem   'mustache'
-gem 'poirot', '0.0.2'
+gem 'poirot'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -35,7 +37,7 @@ gem 'poirot', '0.0.2'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-  #gem "mongrel"
+  gem "foreman"
   gem 'mocha', :require => 'mocha/setup'
   # gem 'danmayer-metric_fu'
   # gem 'ruby-debug19', :require => 'ruby-debug'
