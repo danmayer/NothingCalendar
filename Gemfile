@@ -3,7 +3,6 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.21'
 gem 'devise', '1.4.5'
 gem "puma"
-gem 'pg'
 gem 'newrelic_rpm'
 
 # Bundle edge Rails instead:
@@ -33,11 +32,16 @@ gem 'poirot'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
+group :production do
+  gem 'pg'
+end
+
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
   gem "foreman"
+  gem 'sqlite3'
   gem 'mocha', :require => 'mocha/setup'
   # gem 'danmayer-metric_fu'
   # gem 'ruby-debug19', :require => 'ruby-debug'
